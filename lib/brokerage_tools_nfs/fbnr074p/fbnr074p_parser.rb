@@ -2,8 +2,6 @@ require 'brokerage_tools_nfs/fbnr074p/fbnr074p_report'
 require 'time'
 require 'zip/zip'
 
-require 'pry'
- 
 class Fbnr074pParser
 
   attr_accessor :fbnr074p_records 

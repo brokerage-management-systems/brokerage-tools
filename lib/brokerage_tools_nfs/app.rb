@@ -7,11 +7,15 @@ module BrokerageToolsNfs
 
     def self.init_activerecord db_config
       ActiveRecord::Base.establish_connection(
-          :adapter  => db_config['production']['adapter'],
-          :host     => 'localhost',
-          :username => db_config['production']['username'],
-          :password => db_config['production']['password'],
-          :database => db_config['production']['database'])
+          :adapter   => db_config['production']['adapter'],
+          :database  => db_config['production']['database'])
+          :encoding  => db_config['production']['encoding'],
+          :host      => db_config['production']['host'],
+          :password  => db_config['production']['password'],
+          :pool      => db_config['production']['pool'],
+          :reconnect => db_config['production']['reconnect'],
+          :socket    => db_config['production']['socket'],
+          :username  => db_config['production']['username'],
     end
 
     def self.parse_file_name_from_config app_config, option_report
