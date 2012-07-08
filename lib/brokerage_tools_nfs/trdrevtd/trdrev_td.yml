@@ -1,0 +1,1274 @@
+header:
+  header_record_client_id:
+    description: 'Identifies the client data to follow. This field will typically be the SuperBranch for the given client.'
+    position: 1
+    length: 1
+    mapped_to_database_field: ''
+  super_branch:
+    description: 'Unique three-character alphanumeric code used to identify a correspondent firm or to aggregate several branches for reporting and calculation purposes.'
+    position: 2
+    length: 3
+    mapped_to_database_field: ''
+  filler_00:
+    description: 'FILLER - NFS internal use only.'
+    position: 5
+    length: 17
+    mapped_to_database_field: ''
+  file_origin:
+    description: 'Variable-character alpha string identifying the sender.'
+    position: 22
+    length: 16
+    mapped_to_database_field: ''
+  filler_01:
+    description: 'FILLER - NFS internal use only.'
+    position: 38
+    length: 4
+    mapped_to_database_field: ''
+  header_date:
+    description: 'The date of the file.'
+    position: 42
+    length: 6
+    format: 'MMDDYY' 
+    mapped_to_database_field: ''
+  filler_02:
+    description: 'FILLER - NFS internal use only.'
+    position: 48
+    length: 4
+    mapped_to_database_field: ''
+  file_title:
+    description: 'The title of the file. "TRADE AND REVENUE"'
+    position: 52
+    length: 17
+    mapped_to_database_field: ''
+  filler_03:
+    description: 'FILLER - NFS internal use only.'
+    position: 69
+    length: 33
+    mapped_to_database_field: ''
+record_01:
+  record_number:
+    description: 'For multi-line records, the number for the record. This is record segment 1.'
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_01'
+  firm:
+    description: 'Firm Number to identify as Fidelity Investments.'
+    position: 3
+    length: 4
+    possible_values:
+      0101: 'Default'
+    mapped_to_database_field: 'firm_01'
+  buy_sell_code:
+    description: 'One-character code indicating the type of trade as buy or sell.'
+    position: 7
+    length: 1
+    possible_values:
+      b: 'Buy'
+      s: 'Sell'
+    mapped_to_database_field: 'buy_sell_code_01'
+  trade_date:
+    description: 'The trade date associated with the underlying record.'
+    position: 8
+    length: 8
+    format: 'YYYYMMDD'
+    mapped_to_database_field: 'trade_date_01'
+  settlement_date:
+    description: 'The date of settlement for the trade.'
+    position: 16
+    length: 8
+    format: 'YYYYMMDD'
+    mapped_to_database_field: 'settlement_date_01'
+  market_code:
+    description:
+    position: 24
+    length: 1
+    possible_values:
+      0: 'Open Order (not gone to market)'
+      1: 'NYSE'
+      2: 'ASE'
+      3: 'PBW'
+      4: 'OTC (Non-NSCC clearing)'
+      5: 'Other (Regional)'
+      6: 'Midwest'
+      7: 'CBOE'
+      8: 'OTC'
+      9: 'PSCE'
+      L: 'London Stock Exchange'
+      N: 'Cincinnati Stock Exchange'
+      P: 'Prime Broker (commission charged to client but not passed on to correspondent)'
+      R: 'Index'
+    mapped_to_database_field: 'market_code_01'
+  blotter_code:
+    description: 'One-character field used to classify a trade i.e.. cross trades, average price, odd lot etc. The blotter code is used in conjunction with the market code to create an overall Market/Blotter code.'
+    position: 25
+    length: 1
+    possible_values:
+      0: 'Assigned Options Average Price'
+      1: 'Round Lot/Odd Lot-Agency'
+      2: 'Options'
+      3: 'Principal X-Clearing'
+      4: 'Confirm Only (auto dupe confirm trailer)'
+      5: 'Principal'
+      6: 'Syndicate'
+      7: 'When Issued'
+      8: 'Give Up (Net money - Street Side) Correspondent'
+      9: 'Cross'
+      T: '24 Hour'
+    mapped_to_database_field: 'blotter_code_01'
+  cancel_code:
+    description: 'The trade record is a canceled trade. If this field = 1, then CORRECTION CODE = 5.'
+    position: 26
+    length: 1
+    possible_values:
+      1: 'Canceled Trade'
+    mapped_to_database_field: 'cancel_code_01'
+  street_side_code:
+    description: 'The trade is a "street-side" trade.'
+    position: 27
+    length: 1
+    possible_values:
+      1: 'Street-side'
+    mapped_to_database_field: 'street_side_code_01'
+  due_bill:
+    description: 'A written notification that either dividends, interest, or other distributions are owed by the seller to the buyer or vice versa. Not in use at this time.'
+    position: 28
+    length: 1
+    mapped_to_database_field: 'due_bill_01'
+  correction_code:
+    description: 'One-character numeric code indicating the type of trade correction. Values of 1 and 2 indicate whether “CORRECTED CONFIRM” appears in one of the SECURITY DESCRIPTION fields and on the confirm. A value of 5 is associated with cancelled trades where CANCEL CODE = 1.'
+    position: 29
+    length: 1
+    possible_values:
+      1: 'Correction - "CORRECTED CONFIRM"'
+      2: 'Correction - No "CORRECTED CONFIRM"'
+      5: 'Post trade date cancel'
+    mapped_to_database_field: 'correction_code_01'
+  branch:
+    description: 'Unique three-character alphanumeric code used to identify branches for the purposes of reporting and grouping of accounts. A particular branch may be designated as a Super Branch for reporting and calculation purposes. This code is commonly displayed together with the six-digit account number is used to identify a unique brokerage account.'
+    position: 30
+    length: 3
+    mapped_to_database_field: 'branch_01_a'
+  account_number:
+    description: 'Non-unique six-digit code used to identify a unique customer account. This code is commonly displayed together with the three- character branch code and is used to identify a unique brokerage account. The same account number can be used with different branches but never with the same branch.'
+    position: 33
+    length: 6
+    mapped_to_database_field: 'account_number_01'
+  account_type:
+    description: 'Sub-account of a brokerage account used to identify separate money and security accounting types.'
+    position: 39
+    length: 1
+    possible_values:
+      0: ''
+      1: ''
+      2: ''
+      3: ''
+      4: ''
+      5: ''
+      6: ''
+      7: ''
+      8: ''
+      9: ''
+    mapped_to_database_field: 'account_type_01'
+  country_code:
+    description: 'Three-character numeric code identifying the country for the MRT record. Not in use at this time.'
+    position: 40
+    length: 2
+    mapped_to_database_field: 'country_code_01'
+  cusip:
+    description: ''
+    position: 42
+    length: 9
+    mapped_to_database_field: 'cusip_01'
+  filler_00:
+    description: ''
+    position: 51
+    length:  5
+    mapped_to_database_field: 'filler_01_a'
+  basis_price_code:
+    description: ''
+    position: 56
+    length: 1
+    possible_values:
+      D: ''
+      P: ''
+      Y: ''
+    mapped_to_database_field: 'basis_price_code_01'
+  run_date:
+    description: ''
+    position: 57
+    length: 8
+    format: 'YYMMDD'
+    mapped_to_database_field: 'run_date_01'
+  trade_reference_number:
+    description: ''
+    position: 65
+    length: 11
+    format: 'YYDDD+PICX(06)PIC X(11)'
+    mapped_to_database_field: 'trade_reference_number_01'
+  user_reference_number:
+    description: ''
+    position: 76
+    length: 11
+    mapped_to_database_field: 'user_reference_number_01'
+  canceled_combined_reference:
+    description: ''
+    position: 87
+    length: 11
+    mapped_to_database_field: 'canceled_combined_reference_01'
+  batch:
+    description: ''
+    position: 98
+    length: 4
+    mapped_to_database_field: 'batch_01_a'
+record_02:
+  record_number:
+    description: ''
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_02'
+  batch:
+    description: ''
+    position: 3
+    length: 1
+    mapped_to_database_field: 'batch_02_b'
+  count:
+    description: ''
+    position: 4
+    length: 6
+    mapped_to_database_field: 'count_02'
+  symbol:
+    description: ''
+    position: 10
+    length: 16
+    mapped_to_database_field: 'symbol_02'
+  security_type:
+    description: ''
+    position: 26
+    length: 1
+    possible_values: 'See Appendix 1: Possible Values'
+    mapped_to_database_field: 'security_type_02'
+  security_type_modifier:
+    description: ''
+    position: 27
+    length: 1
+    possible_values: 'See Appendix 1: Possible Values'
+    mapped_to_database_field: 'security_type_modifier_02'
+  security_type_calculation:
+    description: ''
+    position: 28
+    length: 1
+    possible_values: 'See Appendix 1: Possible Values'
+    mapped_to_database_field: 'security_type_calculation_02'
+  cns_code:
+    description: ''
+    position: 29
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'cns_code_02'
+  primary_exchange:
+    description: ''
+    position: 30
+    length: 2
+    possible_values:
+    mapped_to_database_field: 'primary_exchange_02'
+  dtc_eligibility_code:
+    description: ''
+    position: 32
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'dtc_eligiblity_code_02'
+  foreign_code:
+    description: ''
+    position: 33
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'foreign_code_02'
+  registered_rep_enter_rep:
+    description: ''
+    position: 34
+    length: 3
+    mapped_to_database_field: 'registered_rep_enter_rep_02'
+  state_country_code:
+    description: ''
+    position: 37
+    length: 3
+    mapped_to_database_field: 'state_country_code_02'
+  ny_tax:
+    description: ''
+    position: 40
+    length: 1
+    mapped_to_database_field: 'ny_tax_02'
+  security_instructions:
+    description: ''
+    position: 41
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'securities_instructions_02'
+  service:
+    description: ''
+    position: 42
+    length: 1
+    mapped_to_database_field: 'service_02'
+  parent_account:
+    description: ''
+    position: 43
+    length: 9
+    mapped_to_database_field: 'parent_account_02'
+  agency_code:
+    description: ''
+    position: 52
+    length: 8
+    mapped_to_database_field: 'agency_code_02'
+  filler_00:
+    description: ''
+    position: 60
+    length: 1
+    mapped_to_database_field: 'filler_02_b'
+  mode_del:
+    description: ''
+    position: 61
+    length: 1
+    mapped_to_database_field: 'mode_del_02'
+  proceeds_instructions:
+    description: ''
+    position: 62
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'proceeds_instructions_02'
+  cash_dividend_instructions:
+    description: ''
+    position: 63
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'cash_dividend_instructions_02'
+  sales_prod:
+    description: ''
+    position: 64
+    length: 1
+    mapped_to_database_field: 'sales_prod_02'
+  trade_unit:
+    description:
+    position: 65
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'trade_unit_02'
+  dif_principal:
+    description: ''
+    position: 66
+    length: 11
+    mapped_to_database_field: 'dif_principal_02'
+  short_name:
+    description: ''
+    position: 77
+    length: 10
+    mapped_to_database_field: 'short_name_02'
+  account_classification:
+    description: ''
+    position: 87
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'account_classification_02'
+  citizen_code:
+    description: ''
+    position: 89
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'citizen_code_02'
+  country_of_tax_residency:
+    description: ''
+    position: 90
+    length: 3
+    possible_values:
+    mapped_to_database_field: 'country_of_tax_residency_02'
+  transfer_legend_code:
+    description: ''
+    position: 93
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'transfer_legend_code_02'
+  market_maker_code:
+    description: ''
+    position: 94
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'market_maker_code_02'
+  rr_penalty:
+    description: ''
+    position: 95
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'rr_penalty_02'
+  minor_executing_broker:
+    description: ''
+    position: 96
+    length: 4
+    mapped_to_database_field: 'minor_executing_broker_02'
+  minor_clearing_broker:
+    description: ''
+    position: 100
+    length: 2
+    mapped_to_database_field: 'minor_clearing_broker_02_a'
+record_03:
+  record_number:
+    description: ''
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_03'
+  minor_clearing_broker:
+    description: ''
+    position: 3
+    length: 2
+    mapped_to_database_field: 'minor_clearing_broker_03_b'
+  offset_account:
+    description: ''
+    position: 5
+    length: 10
+    mapped_to_database_field: 'offset_account_03'
+  offset_shortname:
+    description: ''
+    position: 15
+    length: 10
+    mapped_to_database_field: 'offset_shortname_03'
+  offset_rr:
+    description: ''
+    position: 25
+    length: 3
+    mapped_to_database_field: 'offset_rr_03'
+  offset_commission:
+    description: ''
+    position: 28
+    length: 7
+    mapped_to_database_field: 'offset_commission_03'
+  conf_br_override:
+    description: ''
+    position: 35
+    length: 3
+    mapped_to_database_field: 'conf_br_override_03'
+  source:
+    description: ''
+    position: 38
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'source_03'
+  type_of_order:
+    description: ''
+    position: 39
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'type_of_order_03'
+  confirmation_print:
+    description: ''
+    position: 40
+    length: 1
+    mapped_to_database_field: 'confirmation_print_03'
+  comparison_print:
+    description: ''
+    position: 41
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'comparison_print_03'
+  commission_accumulation:
+    description: ''
+    position: 42
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'commission_accumulation_03'
+  commission_schedule:
+    description: ''
+    position: 43
+    length: 2
+    mapped_to_database_field: 'commission_schedule_03'
+  blotter_override_code:
+    description: ''
+    position: 45
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'blotter_override_code_03'
+  nscc_code:
+    description: ''
+    position: 46
+    length: 1
+    mapped_to_database_field: 'nscc_code_03'
+  tax_accumulation:
+    description: ''
+    position: 47
+    length: 1
+    mapped_to_database_field: 'tax_accumulation_03'
+  commission_concession_code:
+    description: ''
+    position: 48
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'commission_concession_code_03_a'
+  substitute_blotter:
+    description: ''
+    position: 49
+    length: 1
+    mapped_to_database_field: 'substitute_blotter_03'
+  quantity:
+    description: ''
+    position: 50
+    length: 16
+    mapped_to_database_field: 'quantity_03'
+  price:
+    description: ''
+    position: 66
+    length: 18
+    mapped_to_database_field: 'price_03'
+  alphaprice_dollar:
+    description: ''
+    position: 84
+    length: 9
+    mapped_to_database_field: 'alphaprice_dollar_03'
+  alphaprice_space:
+    description: ''
+    position: 93
+    length: 1
+    possible_values:
+    mapped_to_database_field: 'alphaprice_space_03'
+  alphaprice_fraction:
+    description: ''
+    position: 94
+    length: 8
+    mapped_to_database_field: 'alphaprice_fraction_03_a'
+record_04:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_04'
+  alphaprice_fraction:
+    position: 3
+    length: 1
+    mapped_to_database_field: 'alphaprice_fraction_04_b'
+  plus_minus:
+    position: 4
+    length: 18
+    mapped_to_database_field: 'plus_minus_04'
+  principal:
+    position: 22
+    length: 15
+    mapped_to_database_field: 'principal_04'
+  accrued_interest:
+    position: 37
+    length: 12
+    mapped_to_database_field: 'accrued_interest_04'
+  trade_commission:
+    position: 49
+    length: 10
+    mapped_to_database_field: 'trade_commission_04'
+  state_tax:
+    position: 59
+    length: 8
+    mapped_to_database_field: 'state_tax_04'
+  sec_fee:
+    position: 67
+    length: 8
+    mapped_to_database_field: 'sec_fee_04'
+  certificate_fee:
+    position: 75
+    length: 8
+    mapped_to_database_field: 'certificate_fee_04'
+  postage:
+    position: 83
+    length: 8
+    mapped_to_database_field: 'postage_04'
+  service_charge_misc_fee:
+    position: 91
+    length: 10
+    mapped_to_database_field: 'service_charge_misc_fee_04'
+  net:
+    position: 101
+    length: 1
+    mapped_to_database_field: 'net_04_a'
+record_05:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_05'
+  net:
+    position: 3
+    length: 14
+    mapped_to_database_field: 'net_05_b'
+  brokerage:
+    position: 17
+    length: 10
+    mapped_to_database_field: 'brokerage_05'
+  trade_concession:
+    position: 27
+    length: 10
+    mapped_to_database_field: 'trade_concession_05'
+  other_exchange_commission:
+    position: 37
+    length: 10
+    mapped_to_database_field: 'other_exchange_commission_05'
+  standard_commission:
+    position: 47
+    length: 10
+    mapped_to_database_field: 'standard_commission_05'
+  limit_order_change:
+    position: 57
+    length: 10
+    mapped_to_database_field: 'limit_order_charge_05'
+  number_of_security_description_lines:
+    position: 65
+    length: 1
+    mapped_to_database_field: 'number_of_security_description_lines_05'
+  security_description_line_1:
+    position: 66
+    length: 20
+    mapped_to_database_field: 'security_description_line_05_a'
+  security_description_line_2:
+    position: 86
+    length: 16
+    mapped_to_database_field: 'security_description_line_05_b'
+record_06:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_06'
+  security_description_line_2:
+    position: 3
+    length: 4
+    mapped_to_database_field: 'security_description_line_06_c'
+  security_description_line_3:
+    position: 7
+    length: 20
+    mapped_to_database_field: 'security_description_line_06_d'
+  security_description_line_4:
+    position: 27
+    length: 20
+    mapped_to_database_field: 'security_description_line_06_e'
+  security_description_line_5:
+    position: 47
+    length: 20
+    mapped_to_database_field: 'security_description_line_06_f'
+  security_description_line_6:
+    position: 67
+    length: 20
+    mapped_to_database_field: 'security_description_line_06_g'
+  security_description_line_7:
+    position: 87
+    length: 20
+    mapped_to_database_field: 'security_description_line_06_h'
+record_07:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_07'
+  security_description_line_7:
+    position: 3 
+    length: 5
+    mapped_to_database_field: 'security_description_line_07_i'
+  security_description_line_8:
+    position: 8
+    length: 20
+    mapped_to_database_field: 'security_description_line_07_j'
+  security_description_line_9:
+    position: 28
+    length: 20
+    mapped_to_database_field: 'security_description_line_07_k'
+  group_code:
+    position: 48
+    length: 3
+    mapped_to_database_field: 'group_code_07'
+  trader_code:
+    position: 51
+    length: 2
+    mapped_to_database_field: 'trader_code_07'
+  confirm_legend_code_01:
+    position: 53
+    length: 2
+    mapped_to_database_field: 'confirm_legend_code_07_a'
+  confirm_legend_code_02:
+    position: 55
+    length: 2
+    mapped_to_database_field: 'confirm_legend_code_07_b'
+  registered_rep_exec_rep:
+    position: 57
+    length: 3
+    mapped_to_database_field: 'registered_rep_exec_rep_rr2_07'
+  second_rr_percent:
+    position: 60
+    length: 3
+    mapped_to_database_field: 'second_rr_percent_07'
+  third_rr_code:
+    position: 63
+    length: 3
+    mapped_to_database_field: 'third_rr_code_07'
+  third_rr_percent:
+    position: 66
+    length: 3
+    mapped_to_database_field: 'third_rr_percent_07'
+  prospectus_enclosed:
+    position: 69
+    length: 1
+    mapped_to_database_field: 'prospectus_enclosed_07'
+  commission_discount_percent:
+    position: 70
+    length: 10
+    mapped_to_database_field: 'commission_discount_precent_07'
+  strike_price:
+    position: 80
+    length: 9
+    mapped_to_database_field: 'strike_price_07'
+  security_group_code:
+    position: 89
+    length: 1
+    mapped_to_database_field: ''
+  due_bill_multiplier:
+    position: 89
+    length: 5
+    mapped_to_database_field: 'due_bill_multiplier_07'
+  d_market_code:
+    position: 90
+    length: 1
+    mapped_to_database_field: ''
+  d_blotter_code:
+    position: 91
+    length: 1
+    mapped_to_database_field: ''
+  filler_00:
+    position: 92
+    length: 2
+    mapped_to_database_field: ''
+  postage_code:
+    position: 94
+    length: 1
+    mapped_to_database_field: 'postage_code_07'
+  commission_concession_code:
+    position: 95
+    length: 1
+    mapped_to_database_field: 'commission_concession_code_07_b'
+  commission_preference_code:
+    position: 96
+    length: 1
+    mapped_to_database_field: 'commission_preference_code_07'
+  filler_01:
+    position: 97
+    length: 2
+    mapped_to_database_field: 'filler_07_d'
+  fund_load_override:
+    position: 99
+    length: 3
+    mapped_to_database_field: 'fund_load_override_07_a'
+record_08:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_08'
+  fund_load_override:
+    position: 3
+    length: 1
+    mapped_to_database_field: 'fund_load_override_08_b'
+  quantity_type:
+    position: 4
+    length: 1
+    mapped_to_database_field: 'quantity_type_08'
+  confirm_line_number:
+    position: 5
+    length: 1
+    mapped_to_database_field: 'confirm_line_number_08'
+  exchange_line_number:
+    position: 6
+    length: 1
+    mapped_to_database_field: 'exchange_line_number_08'
+  yield:
+    position: 7
+    length: 5
+    mapped_to_database_field: 'yield_08'
+  yield_type:
+    position: 12
+    length: 1
+    mapped_to_database_field: 'yield_type_08'
+  yield_date:
+    position: 13
+    length: 7
+    mapped_to_database_field: 'yield_date_08'
+  yield_price:
+    position: 20
+    length: 6
+    mapped_to_database_field: 'yield_price_08'
+  trading_away_code:
+    position: 26
+    length: 1
+    mapped_to_database_field: 'trading_away_code_08'
+  filler_00:
+    position: 27
+    length: 7
+    mapped_to_database_field: 'filler_08_e'
+  major_clearing_broker:
+    position: 34
+    length: 4
+    mapped_to_database_field: 'major_clearing_broker_08'
+  major_executing_broker:
+    position: 38
+    length: 4
+    mapped_to_database_field: 'major_executing_broker_08'
+  execution_time:
+    position: 42
+    length: 45
+    mapped_to_database_field: 'execution_time_08'
+  branch:
+    position: 46
+    length: 3
+    mapped_to_database_field: 'branch_08_b'
+  irs_no:
+    position: 49
+    length: 9
+    mapped_to_database_field: 'irs_no_08'
+  filler_01:
+    position: 58
+    length: 3
+    mapped_to_database_field: 'filler_08_f'
+  market_place:
+    position: 61
+    length: 5
+    mapped_to_database_field: 'market_place_08'
+  market_sequence:
+    position: 66
+    length: 6
+    mapped_to_database_field: 'market_sequence_08'
+  market_override:
+    position: 72
+    length: 1
+    mapped_to_database_field: 'market_override_08'
+  time_in_force_code:
+    position: 73
+    length: 1
+    mapped_to_database_field: 'time_in_force_code_08'
+  auto_exec_code:
+    position: 74
+    length: 1
+    mapped_to_database_field: 'auto_exec_code_08'
+  issuer:
+    position: 75
+    length: 6
+    mapped_to_database_field: 'issuer_08'
+  issuer_type:
+    position: 81
+    length: 2
+    mapped_to_database_field: 'issuer_type_08'
+  bond_trader:
+    position: 83
+    length: 4
+    mapped_to_database_field: 'bond_trader_08'
+  bond_class_code:
+    position: 87
+    length: 1
+    mapped_to_database_field: 'bond_class_code_08'
+  additional_markup:
+    position: 88
+    length: 10
+    mapped_to_database_field: 'additional_markup_08'
+  terminal_id:
+    position: 98
+    length: 4
+    mapped_to_database_field: 'terminal_id_08'
+record_09:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_09'
+  signon_rep_location:
+    position: 3
+    length: 5
+    mapped_to_database_field: 'signon_rep_location_09'
+  registered_rep_signon_rep:
+    position: 8
+    length: 3
+    mapped_to_database_field: 'registered_rep_signon_rep_09'
+  registered_rep_owning_rep:
+    position: 11
+    length: 3
+    mapped_to_database_field: 'registered_rep_owning_rep_rr_09'
+  fund_load_percent:
+    position: 14
+    length: 4
+    mapped_to_database_field: 'fund_load_percent_09'
+  product_code:
+    position: 18
+    length: 12
+    mapped_to_database_field: 'product_code_09'
+  trading_flat_code:
+    position: 30
+    length: 1
+    mapped_to_database_field: 'trading_flat_code_09'
+  12b1_code:
+    position: 31
+    length: 1
+    mapped_to_database_field: '_12b1_09'
+  additional_fee_code_00:
+    position: 32
+    length: 2
+    mapped_to_database_field: 'additional_fee_code_09_a'
+  additional_fee_amount_00:
+    position: 34
+    length: 9
+    mapped_to_database_field: 'additional_fee_amount_09_a'
+  additional_fee_code_01:
+    position: 43
+    length: 2
+    mapped_to_database_field: 'additional_fee_code_09_b'
+  additional_fee_amount_01:
+    position: 45
+    length: 9
+    mapped_to_database_field: 'additional_fee_amount_09_b'
+  additional_fee_code_02:
+    position: 54
+    length: 2
+    mapped_to_database_field: 'additional_fee_code_09_c'
+  additional_fee_amount_02:
+    position: 56
+    length: 9
+    mapped_to_database_field: 'additional_fee_amount_09_c'
+  additional_fee_code_03:
+    position: 65
+    length: 2
+    mapped_to_database_field: 'additional_fee_code_09_d'
+  additional_fee_amount_03:
+    position: 67
+    length: 9
+    mapped_to_database_field: 'additional_fee_amount_09_d'
+  additional_fee_code_04:
+    position: 76
+    length: 2
+    mapped_to_database_field: 'additional_fee_code_09_e'
+  additional_fee_amount_04:
+    position: 78
+    length: 9
+    mapped_to_database_field: 'additional_fee_amount_09_e'
+  additional_fee_code_05:
+    position: 87
+    length: 2
+    mapped_to_database_field: 'additional_fee_code_09_f'
+  additional_fee_amount_05:
+    position: 89
+    length: 9
+    mapped_to_database_field: 'additional_fee_amount_09_f'
+  institutional_third_party:
+    position: 98
+    length: 4
+    mapped_to_database_field: 'institutional_third_party_09'
+record_10:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_10'
+  institutional_misc1:
+    position: 3
+    length: 4
+    mapped_to_database_field: 'institutional_misc1_10'
+  institutional_misc2:
+    position: 7
+    length: 4
+    mapped_to_database_field: 'institutional_misc2_10'
+  institutional_lot_number:
+    position: 11
+    length: 4
+    mapped_to_database_field: 'institutional_lot_number_10'
+  bord_tord_code:
+    position: 15
+    length: 1
+    mapped_to_database_field: 'bord_tord_code_10'
+  mutual_fund_dtc_number:
+    position: 16
+    length: 4
+    mapped_to_database_field: 'mutual_fund_dtc_number_10'
+  filler_00:
+    position: 20
+    length: 1
+    mapped_to_database_field: 'filler_10_g'
+  trade_entry:
+    position: 21
+    length: 6
+    mapped_to_database_field: 'trade_entry_10'
+  entry_sequence_number:
+    position: 27
+    length: 5
+    mapped_to_database_field: 'entry_sequence_number_10'
+  solicited_code:
+    position: 32
+    length: 1
+    mapped_to_database_field: 'solicited_code_10'
+  electronic_trade_id:
+    position: 33
+    length: 3
+    mapped_to_database_field: 'electronic_trade_id_10'
+  rollup_count:
+    position: 36
+    length: 3
+    mapped_to_database_field: 'rollup_count_10'
+  confirm_legend_code_00:
+    position: 39
+    length: 2
+    mapped_to_database_field: 'confirm_legend_code_10_a'
+  confirm_legend_code_01:
+    position: 41
+    length: 2
+    mapped_to_database_field: 'confirm_legend_code_10_b'
+  relationship_id:
+    position: 43
+    length: 12
+    mapped_to_database_field: 'relationship_id_10'
+  capacity_code:
+    position: 55
+    length: 1
+    mapped_to_database_field: 'capacity_code_10'
+  confirm_legend_code_02:
+    position: 56
+    length: 2
+    mapped_to_database_field: 'confirm_legend_code_10_c'
+  confirm_legend_code_03:
+    position: 58
+    length: 2
+    mapped_to_database_field: 'confirm_legend_code_10_d'
+  alternative_investment_code:
+    position: 60
+    length: 1
+    mapped_to_database_field: 'alternative_investment_code_10'
+  expanded_yield:
+    position: 61
+    length: 9
+    mapped_to_database_field: 'expanded_yield_10'
+  expanded_yield_sign:
+    position: 70
+    length: 1
+    mapped_to_database_field: 'expanded_yield_sign_10'
+  filler_01:
+    position: 71
+    length: 31
+    mapped_to_database_field: 'filler_10_h'
+record_11:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_11'
+  filler:
+    position: 3
+    length: 86
+    mapped_to_database_field: 'filler_11_i'
+  revenue_clearing_charge_sign:
+    position: 89
+    length: 1
+    mapped_to_database_field: 'revenue_clearing_charge_sign_11'
+  revenue_clearing_charge_amount:
+    position: 90
+    length: 7
+    mapped_to_database_field: 'revenue_clearing_charge_amount_11'
+  revenue_miscellaneous_fee_sign:
+    position: 97
+    length: 1
+    mapped_to_database_field: 'revenue_miscellaneous_fee_sign_11'
+  revenue_miscellaneous_fee_amount:
+    position: 98
+    length: 4
+    mapped_to_database_field: 'revenue_miscellaneous_fee_amount_11_a'
+record_12:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_12'
+  revenue_miscellaneous_fee_amount:
+    position: 3
+    length: 3
+    mapped_to_database_field: 'revenue_miscellaneous_fee_amount_12_b'
+  product_level:
+    position: 6
+    length: 2
+    mapped_to_database_field: 'product_level_12'
+  concession_code:
+    position: 8
+    length: 1
+    mapped_to_database_field: 'concession_code_12'
+  purchase_type_code:
+    position: 9
+    length: 2
+    mapped_to_database_field: 'purchase_type_code_12'
+  trade_definition_type:
+    position: 11
+    length: 1
+    mapped_to_database_field: 'trade_definition_type_12'
+  trade_definition_trade_id:
+    position: 12
+    length: 9
+    mapped_to_database_field: 'trade_definition_trade_id_12'
+  revenue_commission_sign:
+    position: 21
+    length: 1
+    mapped_to_database_field: 'revenue_commission_sign_12'
+  revenue_commission_amount:
+    position: 22
+    length: 7
+    mapped_to_database_field: 'revenue_commission_amount_12'
+  revenue_concession_sign:
+    position: 29
+    length: 1
+    mapped_to_database_field: 'revenue_concession_sign_12'
+  revenue_concession_amount:
+    position: 30
+    length: 7
+    mapped_to_database_field: 'revenue_concession_amount_12'
+  revenue_load_sign:
+    position: 37
+    length: 1
+    mapped_to_database_field: 'revenue_load_sign_12'
+  revenue_load_amount:
+    position: 38
+    length: 7
+    mapped_to_database_field: 'revenue_load_amount_12'
+  order_reference_number:
+    position: 45
+    length: 11
+    mapped_to_database_field: 'order_reference_number_12'
+  filler_00:
+    position: 56
+    length: 9
+    mapped_to_database_field: 'filler_12_j'
+  input_commission_sign:
+    position: 65
+    length: 1
+    mapped_to_database_field: 'input_commission_sign_12'
+  input_commission_amount:
+    position: 66
+    length: 10
+    mapped_to_database_field: 'input_commission_amount_12'
+  confirm_legend_code_00:
+    position: 76
+    length: 2
+    mapped_to_database_field: 'confirm_legend_code_12_a'
+  confirm_legend_code_01:
+    position: 78
+    length: 2
+    mapped_to_database_field: 'confirm_legend_code_12_b'
+  filler_01:
+    position: 80
+    length: 2
+    mapped_to_database_field: 'filler_12_k'
+  original_description:
+    position: 82
+    length: 20
+    mapped_to_database_field: 'original_description_12_a'
+record_13:
+  record_number:
+    position: 1
+    length: 2
+    mapped_to_database_field: 'record_number_13'
+  original_description:
+    position: 3
+    length: 20
+    mapped_to_database_field: 'original_description_13_b'
+  execution_time:
+    position: 23
+    length: 6
+    mapped_to_database_field: 'execution_time_13'
+  registered_rep_pay_to_rep:
+    position: 29
+    length: 3
+    mapped_to_database_field: 'registered_rep_pay_to_rep_13'
+  clearing_charge_sign:
+    position: 32
+    length: 1
+    mapped_to_database_field: 'clearing_charge_sign_13'
+  clearing_charge:
+    position: 33
+    length: 7
+    mapped_to_database_field: 'clearing_charge_13'
+  execution_fee_sign:
+    position: 40
+    length: 1
+    mapped_to_database_field: 'execution_fee_sign_13'
+  execution_fee:
+    position: 41
+    length: 7
+    mapped_to_database_field: 'execution_fee_13'
+  foreign_surcharge_sign:
+    position: 48
+    length: 1
+    mapped_to_database_field: 'foreign_surcharge_sign_13'
+  foreign_surcharge:
+    position: 49
+    length: 6
+    mapped_to_database_field: 'foreign_surcharge_13'
+  filler_00:
+    position: 55
+    length: 7
+    mapped_to_database_field: 'filler_13_l'
+  super_branch: 
+    position: 62
+    length: 3
+    mapped_to_database_field: 'super_branch_13'
+  filler_01:
+    position: 65
+    length: 37
+    mapped_to_database_field: 'filler_13_m'
+trailer:
+  trailer_record:
+    position: 1
+    length: 1
+    description: 'Identifies trailer record.'
+    mapped_to_database_field: ''
+  total_principal_sign:
+    position: 2
+    length: 1
+    description: 'Indicates the sign for the numeric value in the field TOTAL PRINCIPAL.'
+    mapped_to_database_field: ''
+  total_principal:
+    position: 3
+    length: 14
+    description: 'The total dollar amount of the PRINCIPAL amounts contained in the file.'
+    mapped_to_database_field: 'principal'
+  filler_00:
+    position: 17
+    length: 5
+    description: 'FILLER - NFS internal use only.'
+    mapped_to_database_field: ''
+  total_logical_records_with_header_and_trailer:
+    position: 22
+    length: 15
+    description: 'Indicates the total logical records contained in the file. Includes the header and trailer records.'
+    mapped_to_database_field: 'logical_records_ht'
+  filler_01:
+    position: 37
+    length: 5
+    description: 'FILLER - NFS internal use only.'
+    mapped_to_database_field: ''
+  total_logical_records:
+    position: 42
+    length: 15
+    description: 'Indicates the total logical records contained in the file. Excludes the header and trailer records.'
+    mapped_to_database_field: 'logical_records'
+  total_revenue_commission_sign:
+    position: 57
+    length: 1
+    description: 'Indicates the sign for the numeric value in the field TOTAL COMMISSION.'
+    mapped_to_database_field: ''
+  total_revenue_commission:
+    position: 58
+    length: 10
+    description: 'The total dollar amount of the REVENUE COMMISSION amounts contained in the file.'
+    mapped_to_database_field: 'commission'
+  total_revenue_concession_sign:
+    position: 68
+    length: 1
+    description: 'Indicates the sign for the numeric value in the field TOTAL CONCESSION.'
+    mapped_to_database_field: ''
+  total_revenue_concession:
+    position: 69
+    length: 10
+    description: 'The total dollar amount of the REVENUE CONCESSION amounts contained in the file.'
+    mapped_to_database_field: 'concession'
+  total_revenue_clearing_charge_sign:
+    position: 79
+    length: 1
+    description: 'Indicates the sign for the numeric value in the field TOTAL REVENUE CLEARING CHARGE.'
+    mapped_to_database_field: ''
+  total_revenue_clearing_charge:
+    position: 80
+    length: 10
+    description: ''
+    mapped_to_database_field: 'clearing_charge'
+  filler_02:
+    position: 90
+    length: 12
+    description: 'FILLER - NFS internal use only.'
+    mapped_to_database_field: ''

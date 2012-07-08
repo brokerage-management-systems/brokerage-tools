@@ -1,0 +1,85 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+
+help = <<HELP
+Brokerage Tools NFS is a report parsing tool.
+
+Basic Command Line Usage:
+  brokerage_tools_nfs [OPTIONS]
+
+Options:
+HELP
+
+require 'rubygems'
+require 'optparse'
+require 'brokerage_tools_nfs'
+require 'brokerage_tools_nfs/app'
+
+options = { :appconfig => "#{ Dir.pwd }#{ File::SEPARATOR }application.yml", :dbconfig => "#{ Dir.pwd }#{ File::SEPARATOR }database.yml" }
+
+opts = OptionParser.new do |opts|
+  opts.banner = help
+
+  opts.on('-a', '--appconfig [FILE]', 'Application configuration file [Optional], defaults to application.yml') do |file|
+    options[:appconfig] = file
+  end
+
+  opts.on('-d', '--dbconfig [FILE]', 'Database configuration file [Optional], defaults to database.yml') do |file|
+    options[:dbconfig] = file
+  end
+
+  opts.on('-r', '--report TYPE', [:fbnr074p, :trdrevtd], 'Report types: (fbnr074p, trdrevtd)') do |type|
+    options[:report] = type
+  end
+
+  opts.on('--no-backup', 'Disables report file backup.') do
+    options[:backup] = false
+  end
+
+  opts.on('--no-records', 'Disables writing report records to the database.') do
+    options[:records] = false
+  end
+
+  # TODO: May not be necessary any longer, check and remove or implement
+  opts.on('--no-trailer', 'Disables writing report trailer to the database.') do
+    options[:trailer] = false
+  end
+
+  opts.on_tail('-h', '--help', 'Show this message') do
+    puts opts
+    exit 0
+  end
+
+  opts.on_tail('-v', '--version', 'Display current version.') do
+    puts "Brokerage Tools NFS: " + BrokerageToolsNfs::VERSION
+    exit 0
+  end
+end
+
+# Read command line options into `options` hash
+begin
+  opts.parse!
+rescue OptionParser::InvalidOption
+  puts "brokerage_tools_nfs: #{$!.message}"
+  puts "brokerage_tools_nfs: try 'brokerage_tools_nfs --help' for more information"
+  exit
+end
+
+if options[:report].nil?
+  puts "brokerage_tools_nfs: please select a valid report type."
+  puts "brokerage_tools_nfs: try 'brokerage_tools_nfs --help' for more information"
+  exit
+end
+
+unless File.file? options[:appconfig]
+  puts "File does not exist: #{ options[:appconfig] }"
+  exit
+end
+
+unless File.file? options[:dbconfig]
+  puts "File does not exist: #{ options[:dbconfig] }"
+  exit
+end
+
+BrokerageToolsNfs::App.run options
