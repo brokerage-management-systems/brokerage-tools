@@ -266,5 +266,42 @@ class TradeRevenueTradeDateTrade < ActiveRecord::Base
 
   validates_uniqueness_of :run_date_01, :scope => [:trade_reference_number_01, :user_reference_number_01, :trade_definition_trade_id_12, :order_reference_number_12]
 
+  def self.parse_quantity_field trade
+    temp_quantity = (trade.quantity_03.class == Fixnum) ? trade.quantity_03 : trade.quantity_03.to_s.insert(-6, ".").to_i
+    if trade.cancel_code_01 === '1'
+        temp_quantity = -temp_quantity
+    end
+    return temp_quantity
+  end
+
+  def to_trade
+    trade = Trade.new
+    trade.account_number            = String::new self.account_number_01
+    trade.account_type              = String::new self.account_type_01
+    trade.blotter_code              = String::new self.blotter_code_01
+    trade.branch                    = String::new self.branch_01_a
+    trade.buy_sell_code             = String::new self.buy_sell_code_01
+    trade.cancel_code               = String::new self.cancel_code_01
+    trade.raw_commission            = String::new self.trade_commission_04
+    trade.raw_concession            = String::new self.trade_concession_05
+    trade.cusip                     = String::new self.cusip_01
+    trade.entity_id                 = String::new self.registered_rep_owning_rep_rr_09
+    trade.market_code               = String::new self.market_code_01
+    trade.raw_price                 = String::new self.alphaprice_dollar_03 + self.alphaprice_space_03 + self.alphaprice_fraction_03_a
+    # trade.raw_price                 = String::new self.price_03
+    trade.raw_principal             = String::new self.principal_04
+    trade.raw_quantity              = String::new self.quantity_03
+    trade.security_description_1    = String::new self.security_description_line_05_a.strip
+    trade.security_description_2    = String::new self.security_description_line_05_b.strip
+    trade.security_type             = String::new self.security_type_02
+    trade.settle_date               = String::new self.settlement_date_01
+    trade.solicitation_code         = String::new self.solicited_code_10
+    trade.symbol                    = String::new self.symbol_02.strip
+    trade.trade_date                = String::new self.trade_date_01
+    trade.trade_reference_number    = String::new self.trade_reference_number_01
+    trade.trade_definition_trade_id = String::new self.trade_definition_trade_id_12
+    return trade
+  end
+
 end
 

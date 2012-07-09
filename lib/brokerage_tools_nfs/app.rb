@@ -1,6 +1,7 @@
 require 'active_record'
 require 'brokerage_tools_nfs/fbnr074p/fbnr074p_parser'
 require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_parser'
+require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_validator'
 
 module BrokerageToolsNfs
   class App
@@ -37,9 +38,7 @@ module BrokerageToolsNfs
       end
     end
 
-    def self.run options
-      app_config = YAML.load_file(options[:appconfig])
-      init_activerecord YAML.load_file(options[:dbconfig])
+    def self.parse options
       parse_file_name_from_config app_config, options[:report]
       report_file = app_config['production']["#{ options[:report] }"]['report_file_directory'] + File::SEPARATOR + app_config['production']["#{ options[:report] }"]['report_file_name']
       case options[:report]
@@ -50,12 +49,37 @@ module BrokerageToolsNfs
         parser = TradeRevenueTradeDateParser.new
         parser.parse_report_file report_file, options[:trailer]
       else
-        puts "report #{ options[:report] } is unknown"
+        puts "report: #{ options[:report] } is unknown"
         exit 1
       end
       parser.save_records_to_db if options[:records] != false
       parser.backup_the_report app_config if options[:backup] != false
     end
+
+    def self.run options
+      app_config = YAML.load_file(options[:appconfig])
+      init_activerecord YAML.load_file(options[:dbconfig])
+      parse options unless options[:report].nil?
+      validate options unless options[:validate].nil?
+    end
+
+    def self.validate options
+      case options[:validate]
+      when :trdrevtd
+        if options[:commission_month].nil?
+          puts "brokerage_tools_nfs: validation needs a month to validate against."
+          puts "brokerage_tools_nfs: try with --with-commission-month 'December 2012'"
+          exit 1
+        end
+        validator = TradeRevenueTradeDateValidator.new
+        validator.validate_trdrevtd_against_fbnr(options[:commission_month], options[:entity_id])
+      else
+        puts "validation: #{ options[:validate] } is unknown"
+        exit 1
+      end
+      puts validator.format_validation
+    end
+
   end
 end
 

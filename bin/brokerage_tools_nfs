@@ -33,6 +33,18 @@ opts = OptionParser.new do |opts|
     options[:report] = type
   end
 
+  opts.on('-v', '--validate TYPE', [:trdrevtd], 'Validation type: (trdrevtd)') do |type|
+    options[:validate] = type
+  end
+
+  opts.on('--with-commission-month [Month]', 'Example \'December 2012\'.') do |commission_month|
+    options[:commission_month] = commission_month
+  end
+
+  opts.on('--with-entity-id [Entity ID]', 'Example \'000\'.') do |entity_id|
+    options[:entity_id] = entity_id
+  end
+
   opts.on('--no-backup', 'Disables report file backup.') do
     options[:backup] = false
   end
@@ -51,7 +63,7 @@ opts = OptionParser.new do |opts|
     exit 0
   end
 
-  opts.on_tail('-v', '--version', 'Display current version.') do
+  opts.on_tail('--version', 'Display current version.') do
     puts "Brokerage Tools NFS: " + BrokerageToolsNfs::VERSION
     exit 0
   end
@@ -62,12 +74,6 @@ begin
   opts.parse!
 rescue OptionParser::InvalidOption
   puts "brokerage_tools_nfs: #{$!.message}"
-  puts "brokerage_tools_nfs: try 'brokerage_tools_nfs --help' for more information"
-  exit
-end
-
-if options[:report].nil?
-  puts "brokerage_tools_nfs: please select a valid report type."
   puts "brokerage_tools_nfs: try 'brokerage_tools_nfs --help' for more information"
   exit
 end
