@@ -37,12 +37,8 @@ opts = OptionParser.new do |opts|
     options[:validate] = type
   end
 
-  opts.on('--with-commission-month [Month]', 'Example \'December 2012\'.') do |commission_month|
-    options[:commission_month] = commission_month
-  end
-
-  opts.on('--with-entity-id [Entity ID]', 'Example \'000\'.') do |entity_id|
-    options[:entity_id] = entity_id
+  opts.on('--email-validation-to EMAIL_ADDRESS', 'Email the validation to specified email address.') do |email_address|
+    options[:email_validation_to] = email_address
   end
 
   opts.on('--no-backup', 'Disables report file backup.') do
@@ -51,6 +47,14 @@ opts = OptionParser.new do |opts|
 
   opts.on('--no-records', 'Disables writing report records to the database.') do
     options[:records] = false
+  end
+
+  opts.on('--with-commission-month [Month]', 'Example \'December 2012\'.') do |commission_month|
+    options[:commission_month] = commission_month
+  end
+
+  opts.on('--with-entity-id [Entity ID]', 'Example \'000\'.') do |entity_id|
+    options[:entity_id] = entity_id
   end
 
   # TODO: May not be necessary any longer, check and remove or implement

@@ -60,10 +60,10 @@ module BrokerageToolsNfs
       app_config = YAML.load_file(options[:appconfig])
       init_activerecord YAML.load_file(options[:dbconfig])
       parse options unless options[:report].nil?
-      validate options unless options[:validate].nil?
+      validate options, app_config unless options[:validate].nil?
     end
 
-    def self.validate options
+    def self.validate options, app_config
       case options[:validate]
       when :trdrevtd
         if options[:commission_month].nil?
@@ -78,6 +78,7 @@ module BrokerageToolsNfs
         exit 1
       end
       puts validator.format_validation
+      validator.email_validation(options[:email_validation_to], app_config['production']['mailer']) unless options[:email_validation_to].nil?
     end
 
   end

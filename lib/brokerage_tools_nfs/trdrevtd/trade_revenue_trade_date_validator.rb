@@ -4,37 +4,53 @@ require 'brokerage_tools_nfs/fbnr074p/fbnr074p_report'
 require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_trade'
 require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_trailer'
 
-require 'pry'
-
 class TradeRevenueTradeDateValidator
 
-  attr_accessor :broker_list, :entity_totals, :fbnr_totals, :payroll_month
+  attr_accessor :broker_list, :entity_totals, :fbnr_totals, :formatted_validation, :payroll_month
+
+  def email_validation mail_to, mailer_config 
+    require 'net/smtp'
+    mailer_config['subject'] = "TRDREV_TD Validation Report for: #{ @payroll_month.label }" || mailer_config['subject']
+    mailer_config['body']    = @formatted_validation || mailer_config['body']
+
+    message_content = <<END_OF_MESSAGE
+From: <#{ mailer_config['from'] }>
+To: <#{ mail_to }>
+Subject: #{ mailer_config['subject'] }
+
+#{ mailer_config['body'] }
+END_OF_MESSAGE
+
+    Net::SMTP.start(mailer_config['server']) do |smtp|
+      smtp.send_message message_content, mailer_config['from'], mail_to
+    end
+  end
 
   def format_validation 
-    formatted_validation = "*************************************************************************\n" 
-    formatted_validation << "\tCommission Validation Report for: #{ @payroll_month.label }\n"
-    formatted_validation << "*************************************************************************\n"
+    @formatted_validation = "*************************************************************************\n" 
+    @formatted_validation << "\t TRDREV_TD Validation Report for: #{ @payroll_month.label }\n"
+    @formatted_validation << "*************************************************************************\n"
 
     @broker_list.each do |broker|
       unless @fbnr_totals.key? broker
-        formatted_validation << "Broker: #{ broker } not found in FBNR074P Report\n" 
+        @formatted_validation << "Broker: #{ broker } not found in FBNR074P Report\n" 
         next
       end
       unless @entity_totals.key? broker
-        formatted_validation << "Broker: #{ broker } not found in TRDREV_TD Report\n"
+        @formatted_validation << "Broker: #{ broker } not found in TRDREV_TD Report\n"
         next
       end
       fr = @fbnr_totals.fetch broker
       et = @entity_totals.fetch broker
       if fr[:commission] == et[:commission]
-        formatted_validation << "Broker: #{ broker } \tValidated \tCommission: #{ et[:commission] }\n"
+        @formatted_validation << "Broker: #{ broker } \tValidated \tCommission: #{ et[:commission] }\n"
       else
-        formatted_validation << "Broker: #{ broker } \tNot Validated \tDifference (from FBNR074P): #{ (et[:commission] - fr[:commission]).round(2) }\n"
+        @formatted_validation << "Broker: #{ broker } \tNot Validated \tDifference (from FBNR074P): #{ (et[:commission] - fr[:commission]).round(2) }\n"
         # TODO: check for cancels after month end 
       end
     end
 
-    formatted_validation << "*** END OF DATA ***\n"
+    @formatted_validation << "*** END OF DATA ***\n"
   end
 
   def validate_trdrevtd_against_fbnr(commission_month_label, entity_id = nil) 
