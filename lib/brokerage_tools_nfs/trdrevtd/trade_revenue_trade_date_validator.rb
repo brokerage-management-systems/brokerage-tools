@@ -10,19 +10,19 @@ class TradeRevenueTradeDateValidator
 
   def email_validation mail_to, mailer_config 
     require 'net/smtp'
-    mailer_config['subject'] = "TRDREV_TD Validation Report for: #{ @payroll_month.label }" || mailer_config['subject']
-    mailer_config['body']    = @formatted_validation || mailer_config['body']
+    mailer_config['message']['subject'] = "TRDREV_TD Validation Report for: #{ @payroll_month.label }" || mailer_config['message']['subject']
+    mailer_config['message']['body']    = @formatted_validation || mailer_config['message']['body']
 
     message_content = <<END_OF_MESSAGE
-From: <#{ mailer_config['from'] }>
+From: <#{ mailer_config['message']['from'] }>
 To: <#{ mail_to }>
-Subject: #{ mailer_config['subject'] }
+Subject: #{ mailer_config['message']['subject'] }
 
-#{ mailer_config['body'] }
+#{ mailer_config['message']['body'] }
 END_OF_MESSAGE
 
-    Net::SMTP.start(mailer_config['server']) do |smtp|
-      smtp.send_message message_content, mailer_config['from'], mail_to
+    Net::SMTP.start(mailer_config['smtp']['server']) do |smtp|
+      smtp.send_message message_content, mailer_config['message']['from'], mail_to
     end
   end
 

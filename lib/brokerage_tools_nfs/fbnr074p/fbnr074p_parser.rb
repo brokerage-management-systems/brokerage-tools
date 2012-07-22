@@ -92,7 +92,7 @@ class Fbnr074pParser
     mysql_date = mysql_date[6...10] << '-' << mysql_date[0...2] << '-' << mysql_date[3...5]
   end
 
-  def parse_report_file report_file
+  def parse_report_file(report_file, options_trailer = nil) 
     file = File.open(report_file,'r')
     build_records_from_file file.readlines
     file.close

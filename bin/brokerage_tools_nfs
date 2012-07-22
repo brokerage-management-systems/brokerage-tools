@@ -16,7 +16,7 @@ require 'optparse'
 require 'brokerage_tools_nfs'
 require 'brokerage_tools_nfs/app'
 
-options = { :appconfig => "#{ Dir.pwd }#{ File::SEPARATOR }application.yml", :dbconfig => "#{ Dir.pwd }#{ File::SEPARATOR }database.yml" }
+options = { :appconfig => "#{ Dir.pwd }#{ File::SEPARATOR }application.yml", :dbconfig => "#{ Dir.pwd }#{ File::SEPARATOR }database.yml", :emailconfig => "#{ Dir.pwd }#{ File::SEPARATOR }email.yml" }
 
 opts = OptionParser.new do |opts|
   opts.banner = help
@@ -29,16 +29,28 @@ opts = OptionParser.new do |opts|
     options[:dbconfig] = file
   end
 
-  opts.on('-r', '--report TYPE', [:fbnr074p, :trdrevtd], 'Report types: (fbnr074p, trdrevtd)') do |type|
-    options[:report] = type
+  opts.on('-e', '--emailconfig [FILE]', 'Email server configuration file [Optional], defaults to email.yml') do |file|
+    options[:emailconfig] = file
+  end
+
+  opts.on('-p', '--parse TYPE', [:fbnr074p, :trdrevtd], 'Report types to parse: (fbnr074p, trdrevtd)') do |type|
+    options[:parse] = type
   end
 
   opts.on('-v', '--validate TYPE', [:trdrevtd], 'Validation type: (trdrevtd)') do |type|
     options[:validate] = type
   end
 
+  opts.on('--email-errors-to EMAIL_ADDRESS', 'Email errors to specified email address.') do |email_address|
+    options[:email_errors_to] = email_address
+  end
+
   opts.on('--email-validation-to EMAIL_ADDRESS', 'Email the validation to specified email address.') do |email_address|
     options[:email_validation_to] = email_address
+  end
+
+  opts.on('--include-zips', 'Includes any zip files in the directory in parse process.') do
+    options[:zips] = true
   end
 
   opts.on('--no-backup', 'Disables report file backup.') do
@@ -89,6 +101,11 @@ end
 
 unless File.file? options[:dbconfig]
   puts "File does not exist: #{ options[:dbconfig] }"
+  exit
+end
+
+unless File.file? options[:emailconfig]
+  puts "File does not exist: #{ options[:emailconfig] }"
   exit
 end
 

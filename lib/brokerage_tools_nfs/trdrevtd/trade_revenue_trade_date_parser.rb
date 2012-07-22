@@ -43,19 +43,19 @@ class TradeRevenueTradeDateParser
     @trdrevtd_def.each do |main_element|
       main_element[1].each do |element|
         if element[1].key? 'position'
-          puts "You have a nil position: #{ element }" if element[1].fetch('position').nil?
+          # puts "You have a nil position: #{ element }" if element[1].fetch('position').nil?
         else
           puts element
         end
 
         if element[1].key? 'length'
-          puts "You have a nil length: #{ element }" if element[1].fetch('length').nil?
+          # puts "You have a nil length: #{ element }" if element[1].fetch('length').nil?
         else
           puts element 
         end
 
         if element[1].key? 'mapped_to_database_field'
-          puts "You have an empty mapped_to_database_field: #{ element }" if element[1].fetch('mapped_to_database_field').empty?
+          # puts "You have an empty mapped_to_database_field: #{ element }" if element[1].fetch('mapped_to_database_field').empty?
         else 
           puts element
         end
@@ -89,7 +89,7 @@ class TradeRevenueTradeDateParser
   end
 
   def build_collection_of_trades rows_of_13
-    @trade_revenue_trade_date_trades ||= []
+    @trade_revenue_trade_date_trades = []
     temp_trade = TradeRevenueTradeDateTrade.new
     row_index = 1
     rows_of_13.each do |row|

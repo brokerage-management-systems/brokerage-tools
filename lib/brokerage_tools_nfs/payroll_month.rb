@@ -19,7 +19,7 @@ class PayrollMonth < ActiveRecord::Base
   # has_many :holiday_dates
 
   def month_label
-    "#{label}"
+    "#{ label }"
   end
 
 end

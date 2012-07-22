@@ -19,5 +19,6 @@ tmp
 lib/brokerage_tools_nfs/trdrevtd/trdrev_td_definition_v4.7.7.pdf
 application.yml
 database.yml
+email.yml
 test_data
 
