@@ -101,7 +101,7 @@ class Fbnr074pParser
   def save_records_to_db
     @fbnr074p_records.each do |fbnr_record|
       if fbnr_record.save
-        puts "Record #{ fbrn_record } saved: #{ fbnr_record }"
+        puts "Record #{ fbnr_record } saved: #{ fbnr_record }"
       else
         puts "Error: #{ fbnr_record.errors.messages }"
         puts "\tRecord #{ fbnr_record.inspect }"
