@@ -1,5 +1,5 @@
-require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_trade'
-require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_trailer'
+require 'brokerage_tools/trdrevtd/trade_revenue_trade_date_trade'
+require 'brokerage_tools/trdrevtd/trade_revenue_trade_date_trailer'
 
 class TrdrevTdObject
 
@@ -11,10 +11,10 @@ class TrdrevTdObject
   def initialize record, field_name
     @record = record
     @field_name = field_name
-    @description = TrdrevTdObject.trdrevtd_def["#{ @record }"]["#{ @field_name }"]['description']
-    @position = TrdrevTdObject.trdrevtd_def["#{ @record }"]["#{ @field_name }"]['position']
-    @length = TrdrevTdObject.trdrevtd_def["#{ @record }"]["#{ @field_name }"]['length']
-    @format = TrdrevTdObject.trdrevtd_def["#{ @record }"]["#{ @field_name }"]['format']
+    @description = TrdrevTdObject.trdrevtd_def["#{@record}"]["#{@field_name}"]['description']
+    @position = TrdrevTdObject.trdrevtd_def["#{@record}"]["#{@field_name}"]['position']
+    @length = TrdrevTdObject.trdrevtd_def["#{@record}"]["#{@field_name}"]['length']
+    @format = TrdrevTdObject.trdrevtd_def["#{@record}"]["#{@field_name}"]['format']
   end
 
   def self.trdrevtd_def
@@ -71,7 +71,7 @@ class TradeRevenueTradeDateParser
     report_file_directory = app_config['production']['trdrevtd']['report_file_directory']
     report_file_name = app_config['production']['trdrevtd']['report_file_name']
 
-    archive_file_name = backup_base_name + '_' + Time.now.strftime('%Y-%m-%d') + '.zip'
+    archive_file_name = backup_base_name + '_' + @trade_revenue_trade_date_trailer.run_date + '.zip'
     
     if File.exists? backup_directory_main + File::SEPARATOR + archive_file_name
        FileUtils.rm backup_directory_main + File::SEPARATOR + archive_file_name

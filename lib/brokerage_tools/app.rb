@@ -1,11 +1,11 @@
 require 'active_record'
-require 'brokerage_tools_nfs/fbnr074p/fbnr074p_parser'
-require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_parser'
-require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_validator'
+require 'brokerage_tools/fbnr074p/fbnr074p_parser'
+require 'brokerage_tools/trdrevtd/trade_revenue_trade_date_parser'
+require 'brokerage_tools/trdrevtd/trade_revenue_trade_date_validator'
 
 require 'pry'
 
-module BrokerageToolsNfs
+module BrokerageTools
   class App
 
     attr_accessor :app_config, :db_config, :email_config, :options
@@ -94,8 +94,8 @@ module BrokerageToolsNfs
       case @options[:validate]
       when :trdrevtd
         if @options[:commission_month].nil?
-          puts "brokerage_tools_nfs: validation needs a month to validate against."
-          puts "brokerage_tools_nfs: try with --with-commission-month 'December 2012'"
+          puts "brokerage_tools: validation needs a month to validate against."
+          puts "brokerage_tools: try with --with-commission-month 'December 2012'"
           exit 1
         end
         validator = TradeRevenueTradeDateValidator.new

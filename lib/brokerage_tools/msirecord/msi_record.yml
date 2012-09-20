@@ -1,0 +1,225 @@
+msi_record:
+  order_date:
+    position: 1
+    length: 8
+    description: 'Order Date'
+    mapped_to_database_field: ''
+  order_time:
+    position: 9
+    length: 6
+    description: 'Order Time'
+    mapped_to_database_field: ''
+  order_num:
+    position: 15
+    length: 20
+    description: 'Order Number'
+    mapped_to_database_field: ''
+  order_id:
+    position: 35
+    length: 16
+    description: 'Order Identifier'
+    mapped_to_database_field: ''
+  buy_sell:
+    position: 51
+    length: 3
+    description: 'Buy / Sell Indicator Option orders: Buy / Sell Indicator Option Type indicator Position type indicator'
+    mapped_to_database_field: ''
+  order_quantity:
+    position: 54
+    length: 8
+    description: 'Order Quantity'
+    mapped_to_database_field: ''
+  symbol:
+    position: 62
+    length: 12
+    description: 'Stock Symbol'
+    mapped_to_database_field: ''
+  order_type:
+    position: 74
+    length: 3
+    description: 'Order Type'
+    mapped_to_database_field: ''
+  stp_price:
+    position: 77
+    length: 14
+    description: 'Stop Price'
+    dev_notes: 'length= N (14,7)'
+    mapped_to_database_field: ''
+  lmt_price:
+    position: 91
+    length: 14
+    description: 'Limit Price'
+    dev_notes: 'length= N (14,7)'
+    mapped_to_database_field: ''
+  strike_pr:
+    position: 105
+    length: 14
+    description: 'Option Strike Price'
+    dev_notes: 'length= N (14,7)'
+    mapped_to_database_field: ''
+  expiration:
+    position: 119
+    length: 3
+    description: 'Option Expiration'
+    mapped_to_database_field: ''
+  order_add1:
+    position: 122
+    length: 3
+    description: 'Additional Order 1'
+    mapped_to_database_field: ''
+  order_add2:
+    position: 125
+    length: 3
+    description: 'Additional Order 2'
+    mapped_to_database_field: ''
+  order_term:
+    position: 128 
+    length: 3
+    description: 'Order Term'
+    mapped_to_database_field: ''
+  gt_data:
+    position: 131
+    length: 8
+    description: 'Term Date'
+    mapped_to_database_field: ''
+  order_rep:
+    position: 139
+    length: 20
+    description: 'Order Replace'
+    mapped_to_database_field: ''
+  order_rep_date:
+    position: 159
+    length: 8
+    description: 'Order Replaced Date'
+    mapped_to_database_field: ''
+  account:
+    position: 167
+    length: 10
+    description: 'Account Info'
+    mapped_to_database_field: ''
+  cusip:
+    position: 177
+    length: 9
+    description: 'CUSIP'
+    mapped_to_database_field: ''
+  status:
+    position: 186
+    length: 1
+    description: 'Order Status'
+    mapped_to_database_field: ''
+  stppd_time:
+    position: 187
+    length: 6
+    description: 'Stopped Time'
+    mapped_to_database_field: ''
+  stppd_pric:
+    position: 193
+    length: 14
+    description: 'Stopped Price'
+    dev_notes: 'length N(14,7)'
+    mapped_to_database_field: ''
+  rout_date:
+    position: 207
+    length: 8
+    description: 'Routed Date'
+    mapped_to_database_field: ''
+  rout_time:
+    position: 215
+    length: 6
+    description: 'Routed Time'
+    mapped_to_database_field: ''
+  action_date:
+    position: 221
+    length: 8
+    description: 'Action Date'
+    mapped_to_database_field: ''
+  action_time:
+    position: 229
+    length: 6
+    description: 'Action Time'
+    mapped_to_database_field: ''
+  part_no:
+  position: 235
+    length: 2
+    description: 'Part Number'
+    mapped_to_database_field: ''
+  part_tot:
+    position: 237
+    length: 2
+    description: 'Total Part Numbers'
+    mapped_to_database_field: ''
+  exe_price:
+    position: 239
+    length: 14
+    description: 'Execution Price'
+    mapped_to_database_field: ''
+  action_qty:
+   position: 253
+    length: 8
+    description: 'Execution Quantity'
+    mapped_to_database_field: ''
+  lvs_qty:
+    position: 261
+    length: 8
+    description: 'Leaves Quantity'
+    mapped_to_database_field: ''
+  order_broker:
+    position: 269
+    length: 4
+    description: 'Order Broker'
+    mapped_to_database_field: ''
+  rout_venue:
+    position: 273
+    length: 4
+    description: 'Route Venue'
+    mapped_to_database_field: ''
+  direct_ven:
+    position: 277
+    length: 4
+    description: 'Directed Venue'
+    mapped_to_database_field: ''
+  ord_settle:
+    position: 281
+    length: 1
+    description: 'Special Settlement'
+    mapped_to_database_field: ''
+  def_override:
+    position: 282
+    length: 1
+    description: 'Override def routing'
+    mapped_to_database_field: ''
+  ord_handling:
+    position: 283
+    length: 10
+    description: 'Report distribution'
+    mapped_to_database_field: ''
+  recy_meth:
+    position: 293
+    length: 4
+    description: 'Receive Method'
+    mapped_to_database_field: ''
+  rout_qty:
+    position: 297
+    length: 8
+    description: 'Routed Quantity'
+    mapped_to_database_field: ''
+  contra:
+    position: 301
+    length: 4
+    description: 'Contra Broker'
+    mapped_to_database_field: ''
+  mkt_maker:
+    position: 305
+    length: 1
+    description: 'Market Maker'
+    mapped_to_database_field: ''
+  Symbol_1:
+    position: 306
+    length: 21
+    description: 'Symbol'
+    mapped_to_database_field: ''
+  Option_expiry_date:
+    position: 327
+    length: 8
+    description: 'Option Expiration Date'
+    mapped_to_database_field: ''

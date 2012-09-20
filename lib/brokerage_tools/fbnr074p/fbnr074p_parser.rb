@@ -1,4 +1,4 @@
-require 'brokerage_tools_nfs/fbnr074p/fbnr074p_report'
+require 'brokerage_tools/fbnr074p/fbnr074p_report'
 require 'time'
 require 'zip/zip'
 

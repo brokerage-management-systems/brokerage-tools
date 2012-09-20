@@ -16,9 +16,10 @@ test/tmp
 test/version_tmp
 tmp
 
-lib/brokerage_tools_nfs/trdrevtd/trdrev_td_definition_v4.7.7.pdf
 application.yml
 database.yml
 email.yml
+lib/brokerage_tools/trdrevtd/trdrev_td_definition_v4.7.7.pdf
+lib/brokerage_tools/msirecord/msi_record_output_layout_v2.1.doc
 test_data
 

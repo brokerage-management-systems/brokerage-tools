@@ -1,8 +1,8 @@
-require 'brokerage_tools_nfs/payroll_month'
-require 'brokerage_tools_nfs/trade'
-require 'brokerage_tools_nfs/fbnr074p/fbnr074p_report'
-require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_trade'
-require 'brokerage_tools_nfs/trdrevtd/trade_revenue_trade_date_trailer'
+require 'brokerage_tools/payroll_month'
+require 'brokerage_tools/trade'
+require 'brokerage_tools/fbnr074p/fbnr074p_report'
+require 'brokerage_tools/trdrevtd/trade_revenue_trade_date_trade'
+require 'brokerage_tools/trdrevtd/trade_revenue_trade_date_trailer'
 
 class TradeRevenueTradeDateValidator
 
@@ -14,11 +14,11 @@ class TradeRevenueTradeDateValidator
     mailer_config['message']['body']    = @formatted_validation || mailer_config['message']['body']
 
     message_content = <<END_OF_MESSAGE
-From: <#{ mailer_config['message']['from'] }>
-To: <#{ mail_to }>
-Subject: #{ mailer_config['message']['subject'] }
+From: #{mailer_config['message']['from_alias']} <#{mailer_config['message']['from']}>
+To: <#{mail_to}>
+Subject: #{mailer_config['message']['subject']}
 
-#{ mailer_config['message']['body'] }
+#{mailer_config['message']['body']}
 END_OF_MESSAGE
 
     Net::SMTP.start(mailer_config['smtp']['server']) do |smtp|

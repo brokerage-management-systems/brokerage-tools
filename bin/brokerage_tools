@@ -3,18 +3,18 @@
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
 help = <<HELP
-Brokerage Tools NFS is a report parsing tool.
+Brokerage Tools is a report parsing tool.
 
 Basic Command Line Usage:
-  brokerage_tools_nfs [OPTIONS]
+  brokerage_tools [OPTIONS]
 
 Options:
 HELP
 
 require 'rubygems'
 require 'optparse'
-require 'brokerage_tools_nfs'
-require 'brokerage_tools_nfs/app'
+require 'brokerage_tools'
+require 'brokerage_tools/app'
 
 options = { :appconfig => "#{ Dir.pwd }#{ File::SEPARATOR }application.yml", :dbconfig => "#{ Dir.pwd }#{ File::SEPARATOR }database.yml", :emailconfig => "#{ Dir.pwd }#{ File::SEPARATOR }email.yml" }
 
@@ -80,7 +80,7 @@ opts = OptionParser.new do |opts|
   end
 
   opts.on_tail('--version', 'Display current version.') do
-    puts "Brokerage Tools NFS: " + BrokerageToolsNfs::VERSION
+    puts "Brokerage Tools: " + BrokerageTools::VERSION
     exit 0
   end
 end
@@ -89,8 +89,8 @@ end
 begin
   opts.parse!
 rescue OptionParser::InvalidOption
-  puts "brokerage_tools_nfs: #{$!.message}"
-  puts "brokerage_tools_nfs: try 'brokerage_tools_nfs --help' for more information"
+  puts "brokerage_tools: #{$!.message}"
+  puts "brokerage_tools: try 'brokerage_tools --help' for more information"
   exit
 end
 
@@ -109,4 +109,4 @@ unless File.file? options[:emailconfig]
   exit
 end
 
-BrokerageToolsNfs::App.run options
+BrokerageTools::App.run options
