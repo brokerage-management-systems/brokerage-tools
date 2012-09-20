@@ -13,7 +13,6 @@ HELP
 
 require 'rubygems'
 require 'optparse'
-require 'brokerage_tools'
 require 'brokerage_tools/app'
 
 options = { :appconfig => "#{ Dir.pwd }#{ File::SEPARATOR }application.yml", :dbconfig => "#{ Dir.pwd }#{ File::SEPARATOR }database.yml", :emailconfig => "#{ Dir.pwd }#{ File::SEPARATOR }email.yml" }
