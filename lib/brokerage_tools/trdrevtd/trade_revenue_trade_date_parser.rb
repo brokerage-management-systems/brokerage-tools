@@ -71,7 +71,7 @@ class TradeRevenueTradeDateParser
     report_file_directory = app_config['production']['trdrevtd']['report_file_directory']
     report_file_name = app_config['production']['trdrevtd']['report_file_name']
 
-    archive_file_name = backup_base_name + '_' + @trade_revenue_trade_date_trailer.run_date + '.zip'
+    archive_file_name = backup_base_name + '_' + @trade_revenue_trade_date_trailer.run_date.strftime('%Y-%m-%d') + '.zip'
     
     if File.exists? backup_directory_main + File::SEPARATOR + archive_file_name
        FileUtils.rm backup_directory_main + File::SEPARATOR + archive_file_name
