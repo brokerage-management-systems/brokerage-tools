@@ -43,13 +43,13 @@ msi_record:
     position: 77
     length: 14
     description: 'Stop Price'
-    dev_notes: 'length= N (14,7)'
+    dev_notes: length= N (14,7)
     mapped_to_database_field: ''
   lmt_price:
     position: 91
     length: 14
     description: 'Limit Price'
-    dev_notes: 'length= N (14,7)'
+    dev_notes: length= N (14,7)
     mapped_to_database_field: ''
   strike_pr:
     position: 105
@@ -116,7 +116,7 @@ msi_record:
     position: 193
     length: 14
     description: 'Stopped Price'
-    dev_notes: 'length N(14,7)'
+    dev_notes: length N(14,7)
     mapped_to_database_field: ''
   rout_date:
     position: 207

@@ -1,0 +1,459 @@
+header_record:
+  program_name:
+    position: 1
+    length: 7
+    description: 'Identifies the program that created the file. This value will never change.'
+    mapped_to_database_field: ''
+  reserved_field_00:
+    position: 8
+    length: 1
+    description: 'Space. (Reserved for future use).'
+    mapped_to_database_field: ''
+  description:
+    position: 9
+    length: 19
+    description: 'The file identifier literal.'
+    mapped_to_database_field: ''
+  reserved_field_01:
+    position: 28
+    length: 1
+    description: 'Space. (Reserved for future use).'
+    mapped_to_database_field: ''
+  as_of_date:
+    position: 29
+    length: 8
+    description: 'Date on which the activity occurred in MM/DD/YY format.'
+    mapped_to_database_field: ''
+  reserved_field_02:
+    position: 37
+    length: 564
+    description: 'Space. (Reserved for future use).'
+    mapped_to_database_field: ''
+    
+    
+    
+    
+data_record:
+  realm_id_number:
+    position: 1
+    length: 5
+    description: 'The identification number of the firm.'
+    mapped_to_database_field: ''
+  general_ledger_office:
+    position: 6
+    length: 3
+    description: 'The three-character general ledger code.'
+    mapped_to_database_field: ''
+  adjustment_code:
+    position: 9
+    length: 2
+    description: 'Alphabetic code from A to Z. Entered if any adjustment or correction was made to any figures in the report. First adjustment = A, Second adjustment = B, Third adjustment = C, etc. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  rr_number:
+    position: 11
+    length: 3
+    description: 'Three-character (account executive) number.'
+    mapped_to_database_field: ''
+  account_number:
+    position: 
+    length: 
+    description: ''
+    dev_notes: 'field is blank'
+    mapped_to_database_field: ''
+  branch_office_number:
+    position: 14
+    length: 3
+    description: 'The office number assigned.'
+    mapped_to_database_field: ''
+  account_number:
+    position: 17
+    length: 5
+    description: 'The body of the account number.'
+    mapped_to_database_field: ''
+  account_type:
+    position: 22
+    length: 1
+    description: 'The account type: 1 Cash
+2 Margin
+5 Short
+9 RVP'
+    mapped_to_database_field: ''
+  check_digit:
+    position: 23
+    length: 1
+    description: 'Last character of account.'
+    mapped_to_database_field: ''
+  settlement_date:
+    position: 24
+    length: 6
+    description: 'The day the purchaser of the security must pay for what has been bought and the seller must deliver the certificates for the securities that have been sold. Format YYMMDD.'
+    mapped_to_database_field: ''
+  buy_sell_flag:
+    position: 30
+    length: 1
+    description: 'Valid values are:
+0 Indicates the transaction is a purchase
+1 Sale
+R Canceled buy 9 Canceled sale'
+    dev_notes: 'original field text "Buy/Sell Flag"'
+    mapped_to_database_field: ''
+  quantity:
+    position: 31
+    length: 15
+    description: 'The quantity of the securities in the transaction. Thirteen whole numbers followed by two decimals. The decimal point is assumed to occur after the thirteenth digit.'
+    mapped_to_database_field: ''
+  quantity_sign:
+    position: 46
+    length: 1
+    description: 'Value is a ‘-‘ if cancel trade or charge against broker. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  price:
+    position: 47
+    length: 12
+    description: 'The price of shares bought or sold. Four whole numbers followed by seven decimal places. The decimal point occurs after the fourth digit.'
+    mapped_to_database_field: ''
+  blotter_code:
+    position: 59
+    length: 2
+    description: 'A classification code for transactions that show such information as the exchange on which the trade took place. If the transaction is a journal entry, this field will contain the batch code.'
+    mapped_to_database_field: ''
+  commission:
+    position: 61
+    length: 17
+    description: 'Commission or gross credit paid to an RR (dollar amount). Thirteen whole numbers followed by two decimal places. The decimal point is assumed to occur after the thirteenth digit.'
+    mapped_to_database_field: ''
+  commission_sign:
+    position: 78
+    length: 1
+    description: 'Value is ‘-‘ if cancel trade or charge against broker. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  reserved_field_00:
+    position: 79
+    length: 2
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field: ''
+  currency_indicator:
+    position: 81
+    length: 1
+    description: 'Indicator is a ‘*’ if trade is done in a foreign currency. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  product_code:
+    position: 82
+    length: 3
+    description: 'Indicates type of security and/or trade. (See attached table).'
+    mapped_to_database_field: ''
+  contract_terms:
+    position: 85
+    length: 16
+    description: 'Not Populated'
+    mapped_to_database_field: ''
+  total_charge:
+    position: 101
+    length: 17
+    description: 'Total cost of clearance to correspondent, including any execution charge. Fifteen whole numbers followed by two decimal places. The decimal point is assumed to occur after the fifteenth digit.'
+    mapped_to_database_field: ''
+  total_charge_sign:
+    position: 118
+    length: 1
+    description: 'Indicator is ‘-‘ if there is no excess in commissions. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  correspondent_participation:
+    position: 119
+    length: 17
+    description: 'The net payment due to correspondent, including any execution charge. Fifteen whole numbers followed by two decimal places. The decimal point is assumed to occur after the fifteenth digit.'
+    mapped_to_database_field: ''
+  correspondent_participation_sign:
+    position: 136
+    length: 1
+    description: 'Indicator is a ‘-‘ if there is no excess in commissions. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  adp_security_number:
+    position: 137
+    length: 7
+    description: 'ADP security number.'
+    mapped_to_database_field: ''
+  cusip_number:
+    position: 144
+    length: 12
+    description: 'A number assigned to each security according to an industry wide system. The first nine digits represent the industry standard CUSIP number.
+The last digits are additional ADP identifiers. Valid values are:
+001 Do Not Use
+010 Bearer
+020 Registered Corporate 030 Interchangeable
+040 Registered Municipal 050 Registered Principal 060 Bookentry
+090 Partial Call
+100 When Issued'
+    mapped_to_database_field: ''
+  ticker_symbol:
+    position: 156
+    length: 12
+    description: 'A code assigned according to an industry wide system.'
+    mapped_to_database_field: ''
+  agency_principal_indicator:
+    position: 168
+    length: 1
+    description: 'A = Agency trade, P = Principal trade.'
+    dev_notes: 'original field text "Agency/Principal Indicator"'
+    mapped_to_database_field: ''
+  trade_date:
+    position: 169
+    length: 6
+    description: 'The day when the trade actually occurs (YYMMDD).'
+    mapped_to_database_field: ''
+  exchange_indicator:
+    position: 175
+    length: 1
+    description: 'Indicates which exchange trade took place on. Valid values are:
+1 NYSE
+2 ASE
+3 CBOE
+4 REG
+5 OTC
+6 Other'
+    mapped_to_database_field: ''
+  security_indicator:
+    position: 176
+    length: 1
+    description: 'Indicates security type. Valid values are:
+0 Stock
+1 Bond
+2 Option'
+    mapped_to_database_field: ''
+  security_description:
+    position: 177
+    length: 30
+    description: 'Name of the security.'
+    mapped_to_database_field: ''
+  security_description_line_2:
+    position: 207
+    length: 30
+    description: 'Continuation of security name.'
+    dev_notes: 'original field text "Security Description (Line 2)"'
+    mapped_to_database_field: ''
+  security_description_line_3:
+    position: 237
+    length: 30
+    description: 'Continuation of security name.'
+    dev_notes: 'original field text "Security Description (Line 3)"'
+    mapped_to_database_field: ''
+  standard_commission:
+    position: 267
+    length: 17
+    description: 'This field contains the RR allocation of the standard commission based on the commission schedule. Fifteen whole numbers followed by two decimal places. The decimal point is assumed to occur after the fifteenth digit.'
+    mapped_to_database_field: ''
+  contra_account_number:
+    position: 284
+    length: 10
+    description: 'For principal customer trades, this field will contain the correspondent firm trading account that represented the opposite side of this trade.'
+    dev_notes: 'original field text "Contra-Account Number"'
+    mapped_to_database_field: ''
+  executed_away_indicator:
+    position: 294
+    length: 1
+    description: '‘A’ means that the trade was entered with a non-payable RR number indicating it was executed away. A ‘ ‘ (space) means that the RR was payable.'
+    dev_notes: 'original field text "Executed-Away Indicator"'
+    mapped_to_database_field: ''
+  dot_execution_indicator:
+    position: 295
+    length: 1
+    description: '‘Y’ means that the trade was executed via the NYSE DOT system or AMEX-equivalent system.'
+    mapped_to_database_field: ''
+  dot_elapsed_time:
+    position: 296
+    length: 7
+    description: 'When the DOT execution indicator contains a "Y", this field will contain the elapsed time between order and execution. Format: 0HHMMSS'
+    mapped_to_database_field: ''
+  contra_broker:
+    position: 303
+    length: 5
+    description: 'Identifies contra broker.'
+    dev_notes: 'original field text "Contra-Broker"'
+    mapped_to_database_field: ''
+  reserved_field_00:
+    position: 308
+    length: 6
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field: ''
+  occd_code:
+    position: 314
+    length: 5
+    description: 'A code assigned to each client.'
+    mapped_to_database_field: ''
+  rr_split_ratio:
+    position: 319
+    length: 4
+    description: 'This field contains one integer and three decimal digits. Will contain 1.000 for trades that are allocated to only one RR number. Otherwise this field represents the ratio of the commission for this record as compared to the original commission amount.'
+    mapped_to_database_field: ''
+  foreign_currency_code_numeric:
+    position: 323
+    length: 3
+    description: 'Contains the currency code (i.e., 001 = U.S. Dollars, 016 = Japanese Yen).'
+    dev_notes: 'original field text "Foreign Currency Code (Numeric)"'
+    mapped_to_database_field: ''
+  foreign_currency_code_alpha:
+    position: 326
+    length: 3
+    description: 'Contains the alpha currency code (i.e., JPY = Japanese Yen). (See attached table).'
+    dev_notes: 'original field text ""Foreign Currency Code (Alpha)'
+    mapped_to_database_field: ''
+  currency_conversion_rate_to_us_dollars:
+    position: 329
+    length: 18
+    description: 'The rate at which the currency is converted into US dollars. Eight whole numbers followed by ten decimal places. The decimal is assumed to occur after the eighth digit.'
+    dev_notes: 'original field text "Currency Conversion Rate (to U.S. Dollars)"'
+    mapped_to_database_field: ''
+  tag_number:
+    position: 347
+    length: 5
+    description: 'Identifier attached to a trade. Contains five digits or a letter followed by four digits.'
+    mapped_to_database_field: ''
+  currency_factor_indicator:
+    position: 352
+    length: 1
+    description: 'Contains ‘ ‘ (space) for most currencies if currency factor is one, "K" if it is 1000, "M" if it is one million.'
+    mapped_to_database_field: ''
+  principal_amount:
+    position: 353
+    length: 17
+    description: 'Price X quantity. Fifteen whole numbers followed by two decimal places. The decimal point is assumed to occur after the fifteenth digit.'
+    mapped_to_database_field: ''
+  trailer_code_1:
+    position: 370
+    length: 2
+    description: 'Identifies the free form trailer information provided on the transaction.'
+    mapped_to_database_field: ''
+  trailer_code_2:
+    position: 372
+    length: 2
+    description: 'Subsequent information regarding the transaction.'
+    mapped_to_database_field: ''
+  trailer_code_3:
+    position: 374
+    length: 2
+    description: 'Subsequent information regarding the transaction.'
+    mapped_to_database_field: ''
+  fractional_quantity:
+    position: 376
+    length: 5
+    description: 'The total fractional shares for this transaction. The field contains five decimal digits, i.e., the sample value would be 0.38200.'
+    mapped_to_database_field: ''
+  ticket_charge:
+    position: 381
+    length: 17
+    description: 'The per trade ticket charge. The field contains fifteen integer digits followed by two decimals (the decimal point is implied).'
+    mapped_to_database_field: ''
+  ticket_charge_sign:
+    position: 398
+    length: 1
+    description: 'If the amount is negative, the indicator is ‘-‘. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  unit_charge:
+    position: 399
+    length: 17
+    description: 'The per unit clearance charge. The field contains fifteen integer digits followed by two decimals (the decimal point is implied).'
+    mapped_to_database_field: ''
+  unit_charge_sign:
+    position: 416
+    length: 1
+    description: 'If the amount is negative, the indicator is ‘-‘. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  execution_charge:
+    position: 417
+    length: 17
+    description: 'The floor brokerage charge for executing a trade if any. The field contains fifteen integer digits followed by two decimals (the decimal point is implied).'
+    mapped_to_database_field: ''
+  execution_charge_sign:
+    position: 434
+    length: 1
+    description: 'If the amount is negative, the indicator is ‘-‘. Otherwise it is a space.'
+    mapped_to_database_field: ''
+  principal_exchange_charge:
+    position: 435
+    length: 17
+    description: 'Principal/Exchange Fee: Any pass-thru charges from a regional exchange for NYSE issues which clear through that regional exchange if any and pass-thru charges relating to OCC and exchange fees. The field contains fifteen integer digits followed by two decimals (the decimal point is implied).'
+    dev_notes: 'original field text "Principal/Exchange Charge"'
+    mapped_to_database_field: ''
+  principal_exchange_charge_sign:
+    position: 452
+    length: 1
+    description: 'If the amount is negative, the indicator is ‘-‘. Otherwise it is a space.'
+    dev_notes: 'original field text "principal/Exchange Charge Sign"'
+    mapped_to_database_field: ''
+  buy_sell_code:
+    position: 453
+    length: 2
+    description: 'Valid values are:
+B Indicates the transaction is a purchase S Sale
+XB Canceled buy
+XS Canceled sale'
+    dev_notes:  'original field text "Buy/Sell Code"'
+    mapped_to_database_field: ''
+  root_symbol:
+    position: 455
+    length: 6
+    description: 'For options only, the symbol of the security on which the option is written. For other securities this field will be blank.'
+    mapped_to_database_field: ''
+  expiration_date:
+    position: 461
+    length: 6
+    description: 'Expiration date. YYMMDD format.'
+    mapped_to_database_field: ''
+  put_call_indicator:
+    position: 467
+    length: 1
+    description: 'P = Put, C = Call. Otherwise a space.'
+    dev_notes: 'original field text "Put/Call Indicator"'
+    mapped_to_database_field: ''
+  option_strike_price:
+    position: 468
+    length: 8
+    description: 'The price at which an option holder may buy/sell the underlying security. Five whole numbers followed by three decimal places. The decimal point is assumed to occur after the fifth digit.'
+    mapped_to_database_field: ''
+  fund_number:
+    position: 476
+    length: 4
+    description: 'Number of Fund'
+    mapped_to_database_field: ''
+  fund_discription:
+    position: 480
+    length: 15
+    description: 'Fund Description'
+    mapped_to_database_field: ''
+  country_of_settlement:
+    position: 495
+    length: 2
+    description: 'Indicates the country of settlement for the trade'
+    mapped_to_database_field: ''
+  sedol_number:
+    position: 497
+    length: 7
+    description: 'Identifies foreign security.'
+    mapped_to_database_field: ''
+  client_use:
+    position: 504
+    length: 20
+    description: 'Client use text field'
+    mapped_to_database_field: ''
+  mutual_fund_indicator:
+    position: 524
+    length: 4
+    description: 'EXCH – Mutual Fund Exchange PIPS – Periodic Investment Plan SWPS – Systematic Withdrawal Plan'
+    mapped_to_database_field: ''
+  commission_gross_credit_indicator:
+    position: 528
+    length: 1
+    description: 'C – Commission G – Gross Credit'
+    dev_notes: 'original field text "Commission/Gross Credit Indicator"'
+    mapped_to_database_field: ''
+  commission_principal_trade_indicator:
+    position: 529
+    length: 2
+    description: 'CM- Commission Trade
+ZP – Zero Commission or Principal Trade'
+    dev_notes: 'original field text "Commission/Principal Trade Indicator"'
+    mapped_to_database_field: ''
+  reserved_field:
+    position: 531
+    length: 70
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field:

@@ -1,0 +1,1305 @@
+header_record:
+  program_name:
+    position: 1
+    length: 7
+    description: 'Identifies the program that created this file. This value will never change.'
+    mapped_to_database_field: ''
+  reserved_field_00:
+    position: 8
+    length: 1
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field: ''
+  description:
+    position: 9
+    length: 19
+    description: 'File identifier literal.'
+    mapped_to_database_field: ''
+  reserved_field_01:
+    position: 28
+    length: 1
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field: ''
+  as_of_date:
+    position: 29
+    length: 8
+    description: 'Date on which the activity occurred in MM/DD/YY format.'
+    mapped_to_database_field: ''
+  reserved_field_02:
+    position: 37
+    length: 1364
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field: ''
+    
+    
+    
+    
+detail_record:
+  record_type: 1
+    position: 2
+    length:
+    description: 'Valid values are: A Add
+C1 Change - Old record
+C2 Change - New record
+D Delete'
+    mapped_to_database_field: ''
+  record_key_client:
+    position: 3
+    length: 3
+    description: 'Code used for internal purposes. Value defaults to 027.'
+    mapped_to_database_field: ''
+  branch_number:
+    position: 6
+    length: 3
+    description: 'The office number assigned'
+    mapped_to_database_field: ''
+  account_number:
+    position: 9
+    length: 5
+    description: 'Identifies the individual account.'
+    mapped_to_database_field: ''
+  number_of_confirms:
+    position: 14
+    length: 1
+    description: 'Number of client trade confirmations.'
+    mapped_to_database_field: ''
+  number_of_statements:
+    position: 15
+    length: 1
+    description: 'Number of client trade statements.'
+    mapped_to_database_field: ''
+  registered_rep_number:
+    position: 16
+    length: 3
+    description: 'Three-character (account executive) number.'
+    mapped_to_database_field: ''
+  account_type_table:
+    position: 
+    length:
+    description: ''
+    dev_notes: 'field is blank'
+    mapped_to_database_field: ''
+  type_1:
+    position: 19
+    length: 1
+    description: 'Cash account.'
+    mapped_to_database_field: ''
+  type_2:
+    position: 20
+    length: 1
+    description: 'Margin account.'
+    mapped_to_database_field: ''
+  type_3:
+    position: 21
+    length: 1
+    description: 'Dividend interest account.'
+    mapped_to_database_field: ''
+  type_4:
+    position: 22
+    length: 1
+    description: 'Non-purpose loan account.'
+    mapped_to_database_field: ''
+  type_5:
+    position: 23
+    length:
+    description: 'Short margin account.'
+    mapped_to_database_field: ''
+  type_6:
+    position: 24
+    length: 1
+    description: 'Special subscription account.'
+    mapped_to_database_field: ''
+  type_7:
+    position: 25
+    length: 1
+    description: 'Convertible bond account.'
+    mapped_to_database_field: ''
+  type_8:
+    position: 26
+    length: 1
+    description: 'Non-convertible bond account.'
+    mapped_to_database_field: ''
+  type_9:
+    position: 27
+    length: 1
+    description: 'COD/COR account.'
+    mapped_to_database_field: ''
+  type_0:
+    position: 28
+    length: 1
+    description: 'Individual account.'
+    mapped_to_database_field: ''
+  debit_margin_rate:
+    position: 29
+    length: 5
+    description: 'Debit margin rate with up to two whole numbers and three decimal places. The decimal point is assumed to occur after the second digit.'
+    mapped_to_database_field: ''
+  debit_margin_type:
+    position: 34
+    length: 1
+    description: 'Valid values are: F Fixed
+V Variable
+‘ ‘ Space if unused'
+    mapped_to_database_field: ''
+  credit_margin_rate:
+    position: 35
+    length: 1
+    description: 'Credit margin rate with up to two whole numbers and three decimal places. The decimal point is assumed to occur after the second digit.'
+    dev_notes: 'original field position: 35-39, length of 1; next field position: 40'
+    mapped_to_database_field: ''
+  credit_margin_type:
+    position: 40
+    length: 1
+    description: 'Valid values are: F Fixed
+V Variable
+‘ ‘ Space if unused'
+    mapped_to_database_field: ''
+  reserved_field_00:
+    position: 41
+    length: 9
+    description: 'Spaces (reserved for future use)'
+    mapped_to_database_field: ''
+  reserved_field_01:
+    position: 50
+    length: 1
+    description: 'Spaces (reserved for future use)'
+    mapped_to_database_field: ''
+  dividend_indicator:
+    position: 51
+    length: 1
+    description: 'Dividend payment code. Valid values are:
+1 Pay monthly
+2 Hold funds (default)
+3 Pay daily
+4 Pay weekly
+5 Pay quarterly'
+    mapped_to_database_field: ''
+  buy_code:
+    position: 52
+    length: 2
+    description: 'Buy Instructions. Valid values are: Blank No instructions (default)
+01 Transfer and ship
+02 Transfer and hold
+03 Hold firms name
+04 Special instructions
+05 Deliver against payment
+06 Special instructions
+10 Special instructions
+OA Register and ship to local office
+OB Bearer and ship to local office'
+    mapped_to_database_field: ''
+  sell_code:
+    position: 54
+    length: 2
+    description: 'Sell Instructions. Valid values are: Blank No Instructions (default)
+06 Receive against payment
+07 Hold proceeds in account
+08 Send proceeds to customer
+09 Send proceeds as designated
+11 Special instructions'
+    mapped_to_database_field: ''
+  account_classification_code:
+    position: 56
+    length: 2
+    description: 'Classifies brokerage firm’s account residence, i.e., institutional, broker dealer). (See attached table).
+Defaults to zeros.'
+    mapped_to_database_field: ''
+  new_york_state_resident_code:
+    position: 58
+    length: 1
+    description: 'Valid values are:
+C Resident
+D Non-resident G No tax
+Blank Default'
+    mapped_to_database_field: ''
+  zip_plus_4:
+    position: 59
+    length: 9
+    description: 'Zip code/postal code. Five-digit main number plus four digit extension. Right justified.'
+    mapped_to_database_field: ''
+  geographic_location_code:
+    position: 68
+    length: 3
+    description: '￼
+Geographic location. Valid values are 000 and 901-999. (See attached table).'
+    mapped_to_database_field: ''
+  commission_bond_code:
+    position: 71
+    length: 1
+    description: 'Special bond commission code. Valid values are: Blank Not used (default value)
+2 $1.25 commission per bond
+3 $3.00
+4 $4.00
+5 $5.00
+6 $7.50
+7 $10.00
+8 High order four digits of customer account, i.e.
+account number 03412500 compute $12.50/bond.
+9 Compute no commission
+Y $3.50/per bond if blotter code = 31, 33, 3F, 3Q.
+All other exchanges, compute at $2.50/ bond
+Z $2.50 commission per bond'
+    mapped_to_database_field: ''
+  commission_stock_code:
+    position: 72
+    length: 1
+    description: 'Special stock commission code. Valid values are: Blank Not used (default value)
+1 Commission on ASE/NYSE transactions floor
+brokerage
+2 Commission on ASE-combined floor brokerage/
+clearance. Commission on NYSE-double floor
+brokerage
+3 No commission
+4 50% Commission
+5 60% Commission
+7 75% Commission
+8 80% Commission
+9 90% Commission
+A 50% For exchange six, regular rate for others
+B No commission for exchange six, regular rate for others
+C 110% Commission (client may re-define)
+D 100% Commission'
+    mapped_to_database_field: ''
+  foreign_witholding_rate_stock:
+    position: 73
+    length: 3
+    description: 'Foreign withholding rate in percentage form. Defaults to 000.'
+    dev_notes: 'original field text "Foreign Witholding Rate - Stock"'
+    mapped_to_database_field: ''
+  foreign_witholding_rate_bonds:
+    position: 76
+    length: 3
+    description: 'Foreign withholding rate in percentage form. Defaults to 000.'
+    dev_notes: 'original field text "Foreign Witholding Rate - Bonds"'
+    mapped_to_database_field: ''
+  last_name_pointer:
+    position: 79
+    length: 2
+    description: 'Last name pointer.'
+    mapped_to_database_field: ''
+  last_name_length:
+    position: 81
+    length: 2
+    description: 'Last name length.'
+    mapped_to_database_field: ''
+  portfolio_status_reporting_on_line_trading_service_canadian_broker_indicator:
+    position: 83
+    length: 1
+    description: 'Valid values are:
+0 USA (default)
+1 USA and PSR
+2 USA and OLTS
+3 USA, PSR and OLTS
+4 Canadian
+5 Canadian and PSR
+6 Canadian and OLTS
+7 Canadian, PSR and OLT
+Note: Values four thru seven identify a Canadian account.'
+    dev_notes: 'original field text "Portfolio Status Reporting/ On- Line Trading Service/ Canadian Broker Indicator"'
+    mapped_to_database_field: ''
+  trust_papers:
+    position: 84
+    length: 1
+    description: 'Trust papers on file. Valid values are: Zero No (default)
+1 Yes'
+    mapped_to_database_field: ''
+  margin_agreement:
+    position: 85
+    length: 1
+    description: 'Valid values are: Blank No(default) 1 Yes'
+    mapped_to_database_field: ''
+  joint_agreement:
+    position: 86
+    length: 1
+    description: 'Valid values are:
+Blank Noagreement(default)
+1 Joint tenancy with right of survivorship
+2 Joint tenants in common
+3 Under uniform gifts to minors
+4 Corp resolution loan agreement
+5 Joint tenant code'
+    mapped_to_database_field: ''
+  loan_agreement:
+    position: 87
+    length: 1
+    description: 'Loan account agreement on file. Valid values are: Blank No(default)
+1 Yes'
+    mapped_to_database_field: ''
+  guaranty_instructions:
+    position: 88
+    length: 1
+    description: 'Guaranteed by another account. Valid values are: Blank No(default)
+1 Yes'
+    mapped_to_database_field: ''
+  sweep_code:
+    position: 89
+    length: 1
+    description: 'Automatic daily fund transfer (sweep code) instructions. Valid values are:
+Zero No (default) C Cash sweep'
+    mapped_to_database_field: ''
+  auto_cash_management_instructions:
+    position: 90
+    length: 1
+    description: 'Valid values are: Blank No(default) M Yes'
+    mapped_to_database_field: ''
+  tax_equity_and_fiscal_responsibility_act_instructions:
+    position: 91
+    length: 1
+    description: 'US tax withholding indicator used to override automatic processing for tax withholding under the Tax Equity and Fiscal Responsibility Act (TEFRA). Valid values are:
+Blank 1, 2 4
+5
+6
+7
+8
+9
+A
+B
+C
+D
+E
+F
+N
+X, Y Z, W
+Nocode(default)
+No reporting
+TIN
+Foreign status
+Failure to certify foreign status
+20% backup withholding on dividends and interest 20% backup withholding
+Exception certificate
+20% backup withholding
+Failure to certify TIN
+Notification of incorrect TIN from IRS
+Failure to certify backup withholding status
+Voluntary affirmation by payee for backup withholding Notification by IRS to commence backup withholding TIN number applied for by account
+Client defined - no backup withholding
+Client defined - 20% backup withholding'
+    mapped_to_database_field: ''
+  general_trading_option:
+    position: 92
+    length: 1
+    description: 'Option general trading agreement. Valid values are: Blank None(default)
+1 Trading agreement on file'
+    mapped_to_database_field: ''
+  restriction_indicator:
+    position: 93
+    length: 1
+    description: '90-day restriction indicator. Valid values are: Blank Norestriction(default)
+1 90-day restriction is in effect'
+    mapped_to_database_field: ''
+  no_more_business_indicator:
+    position: 94
+    length: 1
+    description: 'Valid values are:
+Blank Norestriction(default)
+1 Cash account
+2 Margin account'
+    mapped_to_database_field: ''
+  option_purpose_code:
+    position: 95
+    length: 1
+    description: 'Valid values are: Blank No(default) 1 Purchase'
+    mapped_to_database_field: ''
+  naked_option_code:
+    position: 96
+    length: 1
+    description: 'Valid values are: Blank No(default)
+1 Covered writing
+2 Naked put selling
+3 Both1&2
+4 Naked writing & naked put selling
+5 Account approved for 1, 2, 3 & 4'
+    mapped_to_database_field: ''
+  number_of_interested_parties:
+    position: 97
+    length: 1
+    description: 'Number of interested parties.'
+    mapped_to_database_field: ''
+  depository_trust_co_id_number:
+    position: 98
+    length: 5
+    description: 'Depository trust ID number assigned to your firm.'
+    dev_notes: 'original field text "Depository Trust Co. ID Number"'
+    mapped_to_database_field: ''
+  type_3_credit_income_option:
+    position: 103
+    length: 1
+    description: 'Type 3-credit income option. Valid values are:
+0 Not applicable (default)
+1 Allow automatic payment of dividends and interest'
+    mapped_to_database_field: ''
+  option_approval_date:
+    position: 104
+    length: 4
+    description: 'Date that principal approved option papers in YYMM format. Defaults to 0000 if there is no date.'
+    mapped_to_database_field: ''
+  last_commodity_settlement:
+    position: 108
+    length: 6
+    description: 'Date of last commodity statement in YYMM format. Defaults to 0000 if there is no date.'
+    mapped_to_database_field: ''
+  guaranteed_account_number:
+    position: 114
+    length: 8
+    description: 'Account number of the guarantor that guarantees obligations of this account. Defaults to zeros if not populated.'
+    mapped_to_database_field: ''
+  dividend_buy_fraction_code:
+    position: 122
+    length: 1
+    description: 'Dividend buy fractional code. Defaults to spaces.'
+    mapped_to_database_field: ''
+  settle_office:
+    position: 123
+    length: 3
+    description: 'Branch where trade will settle.'
+    mapped_to_database_field: ''
+  date_of_birth:
+    position: 126
+    length: 6
+    description: 'Date of client birth in YYMMDD format. Defaults to zeros if there is no date.'
+    mapped_to_database_field: ''
+  insurance_code:
+    position: 132
+    length: 1
+    description: 'Margin account insurance code. Defaults to zeros.'
+    mapped_to_database_field: ''
+  ab_sweep_code:
+    position: 133
+    length: 1
+    description: 'AB sweep code. Defaults to zeros.'
+    mapped_to_database_field: ''
+  ab_reinvestment_code:
+    position: 134
+    length: 1
+    description: 'Valid values are:
+Blank Hasnotbeencoded(default)
+0 Do not reinvest
+1 Reinvest
+2 Partial reinvest'
+    mapped_to_database_field: ''
+  ab_redeem_code:
+    position: 135
+    length: 1
+    description: 'Check redemption code. Valid values are: Blank Hasnotbeencoded(default)
+0 No check redemption
+1 Check redemption'
+    mapped_to_database_field: ''
+  tax_equity_and_fiscal_responsibility_act_update_date:
+    position: 136
+    length: 6
+    description: 'Date that TEFRA was updated in YYMMDD format.'
+    mapped_to_database_field: ''
+  objection_code:
+    position: 142
+    length: 1
+    description: 'Valid values are:
+Blank Clientdidnotrespond(default) 1 Client responded'
+    mapped_to_database_field: ''
+  individual_non_individual_code:
+    position: 143
+    length: 1
+    description: 'Valid values are:
+Blank Customerisanindividual(default) 1-9 Customer is a non-individual'
+    dev_notes: 'original field text "Individual/Non-Individual Code"'
+    mapped_to_database_field: ''
+  broker_book_indicator:
+    position: 144
+    length: 1
+    description: 'Valid values are: Blank No(default) 1 Yes'
+    mapped_to_database_field: ''
+  n_a_line_pointer:
+    position: 145
+    length: 1
+    description: 'Indicates line number of the account'
+    dev_notes: 'original text field "N/A Line Pointer"'
+    mapped_to_database_field: ''
+  n_a_line_pointer_for_mailing_address:
+    position: 146
+    length: 1
+    description: 'Indicates line number of the mailing address.'
+    dev_notes: 'original text field "N/A Line Pointer for Mailing Address"'
+    mapped_to_database_field: ''
+  n_a_line_pointer_for_city_and_state:
+    position: 147
+    length: 1
+    description: 'Indicates line number of the city and state.'
+    dev_notes: 'original text field "N/A Line Pointer for City and State"'
+    mapped_to_database_field: ''
+  ab_sweep_code_2_3:
+    position: 148
+    length: 2
+    description: 'Second and third bytes of AB sweep code. Defaults to zeros.'
+    dev_notes: 'original text field "AB Sweep Code 2-3"'
+    mapped_to_database_field: ''
+  line_pointer_for_joint_account:
+    position: 150
+    length: 1
+    description: 'Indicates line number if this is a joint account. Field defaults to blank if not used'
+    mapped_to_database_field: ''
+  address_location:
+    position: 151
+    length: 3
+    description: 'Address location code. Valid values are 000 and 901 – 999. (See attached table).'
+    mapped_to_database_field: ''
+  length_of_city:
+    position: 154
+    length: 3
+    description: 'Information is not always accurate for city length. This field is populated by security and was designed for their IRS reporting system.'
+    mapped_to_database_field: ''
+  year_end_record_indicator:
+    position: 157
+    length: 1
+    description: 'Valid values are:
+Blank Year End record does not exist (default) Y Year End record exists'
+    mapped_to_database_field: ''
+  reserved_field_02:
+    position: 158
+    length: 9
+    description: 'Zero’s (reserved for future use)'
+    mapped_to_database_field: ''
+  reserved_field_03:
+    position: 167
+    length: 1
+    description: 'Zero’s (reserved for future use)'
+    mapped_to_database_field: ''
+  option_account_code:
+    position: 168
+    length: 1
+    description: 'Designate if account is allowed to trade options. Blank No(default)
+Y Yes'
+    mapped_to_database_field: ''
+  reserved_field_04:
+    position: 169
+    length: 6
+    description: 'May be used for future expansion, the field defaults to "000"'
+    mapped_to_database_field: ''
+  due_diligence_code:
+    position: 175
+    length: 1
+    description: 'Due diligence code. Valid values are: First Notice
+1 Missing tax identification number without withholding
+2 Missing tax identification number with withholding
+3 Incorrect tax identification number without withholding
+4 Incorrect tax identification number with withholding
+Second Notice
+5 Missing tax identification number without withholding
+6 Missing tax identification number with withholding
+7 Incorrect tax identification number without withholding
+8 Incorrect tax identification number with withholding
+Blank = Default'
+    mapped_to_database_field: ''
+  irs_indicator:
+    position: 176
+    length: 1
+    description: 'IRS 1042 recipient. Valid values are: Blank Default
+1 Individual
+2 Corporation
+3 Partnership'
+    mapped_to_database_field: ''
+  ira_keogh_indicator:
+    position: 177
+    length: 1
+    description: 'Valid values are: Blank Default
+1 IRA participant
+2 IRA spouse
+3 IRA rollover
+4 SEP employee
+5 SEP participant
+6 ROTH IRA
+7 KEOGH self employed
+8 KEOGH participant
+9 Plan terminated
+A Participant mature plan
+B Education IRA
+C Plan subject to disability plan
+D Plan subject to death
+E Employee
+F Employee spouse
+G 401K
+H Money purchase plan
+I Simple IRA
+J Profit sharing plan
+K Plan terminated - non IRA
+L 401K Terminated
+M Premature exception - IRA
+N Death - non-IRA
+O Medical savings account
+P Pooled account-qualified plan
+Q Simple 401K
+R Beneficiary - IRA
+S Beneficiary - non-IRA
+T Self trustee (firm plan document)
+U Self trustee (own plan document)
+V ROTH conversion IRA
+W 403B
+X 403B7
+Y Express plan
+Z SARSEP employee
+0 SARSEP employer'
+    dev_notes: 'original field text "IRA/KEOGH Indicator"'
+    mapped_to_database_field: ''
+  scratch_pad_indicator:
+    position: 178
+    length: 1
+    description: 'Scratch pad indicator. Valid values are: Blank Default
+Y Yes'
+    mapped_to_database_field: ''
+  due_diligence_1st_date:
+    position: 179
+    length: 6
+    description: 'Date first due diligence notice was sent in YYMMDD format. Default is zeros.'
+    mapped_to_database_field: ''
+  date_account_opened:
+    position: 185
+    length: 6
+    description: 'Date account opened on record in YYMMDD format.'
+    mapped_to_database_field: ''
+  date_of_last_change:
+    position: 191
+    length: 6
+    description: 'Date that last change was done to the account in YYMMDD format.'
+    mapped_to_database_field: ''
+  date_of_90_day_restriction:
+    position: 197
+    length: 6
+    description: 'Date that 90-day restriction began in YYMMDD format. If no date, defaults to zeros'
+    dev_notes: 'original field text "Date of 90-Day Restriction"'
+    mapped_to_database_field: ''
+  profit_center_branch:
+    position: 203
+    length: 3
+    description: 'Profit center branch to designate the branch office for income/expense general ledger account purposes.'
+    mapped_to_database_field: ''
+  currency_code:
+    position: 206
+    length: 3
+    description: 'Currency of the security or the balance. (See attached table). Defaults to zeros.'
+    mapped_to_database_field: ''
+  service_change:
+    position: 209
+    length: 1
+    description: 'Service charge indicator. Field defaults to blank if not used'
+    mapped_to_database_field: ''
+  language_code:
+    position: 210
+    length: 1
+    description: 'Valid values are: E English F French'
+    mapped_to_database_field: ''
+  invoice_confirm_code:
+    position: 211
+    length: 1
+    description: 'Valid values are: 0 Do not print (default) 1 Print'
+    mapped_to_database_field: ''
+  mailing_list_code:
+    position: 212
+    length: 1
+    description: 'Mailing list instructions for customer account. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  net_payment_to_registered_rep:
+    position: 213
+    length: 3
+    description: 'Commission payout percentage rate to RR. This overrides the standard payout rate.
+Field defaults to zeros if not used.'
+    mapped_to_database_field: ''
+  number_of_account_title_lines:
+    position: 216
+    length: 1
+    description: 'Number of account title lines.'
+    mapped_to_database_field: ''
+  id_interested_party_1_stm9:
+    position: 217
+    length: 1
+    description: 'First interested party. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  id_interested_party_2_stm9:
+    position: 218
+    length: 1
+    description: 'Second interested party.
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  id_interested_party_1_stm6:
+    position: 219
+    length: 1
+    description: 'Alternate transferee interested party. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  id_interested_party_1_stm8:
+    position: 220
+    length: 1
+    description: 'Income check interested party. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  phone_number:
+    position: 221
+    length: 13
+    description: 'Area code plus telephone number. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  related_account_code:
+    position: 234
+    length: 1
+    description: 'If the account is related in someway to another account. Valid values are:
+0 Not used (default value)
+1 Margin
+2 Interest
+3 Margin and interest
+4 Investment advisor'
+    mapped_to_database_field: ''
+  related_account_number:
+    position: 235
+    length: 8
+    description: 'If none there will be zeros in this field.'
+    mapped_to_database_field: ''
+  number_of_principal_parties_address_lines:
+    position: 243
+    length: 1
+    description: 'Can have up to six.'
+    mapped_to_database_field: ''
+  principal_party_information_line_00:
+    position: 244
+    length: 30
+    description: 'Principal party address lines.'
+    mapped_to_database_field: ''
+  principal_party_information_line_01:
+    position: 274
+    length: 30
+    description: 'Principal party address lines.'
+    mapped_to_database_field: ''
+  principal_party_information_line_02:
+    position: 304
+    length: 30
+    description: 'Principal party address lines.'
+    mapped_to_database_field: ''
+  principal_party_information_line_03:
+    position: 334
+    length: 30
+    description: 'Principal party address lines.'
+    mapped_to_database_field: ''
+  principal_party_information_line_04:
+    position: 364
+    length: 30
+    description: 'Principal party address lines.'
+    mapped_to_database_field: ''
+  principal_party_information_line_05:
+    position: 394
+    length: 30
+    description: 'Principal party address lines.'
+    mapped_to_database_field: ''
+  e_confirm_indicator_00:
+    position: 424
+    length: 1
+    description: 'E=Confirm or P=Pending'
+    dev_notes: 'original field text "E-Confirm Indicator"'
+    mapped_to_database_field: ''
+  e_confirm_indicator_01:
+    position: 425
+    length: 1
+    description: 'E=Confirm or P=Pending'
+    dev_notes: 'original field text "E-Confirm Indicator"'
+    mapped_to_database_field: ''
+  class_code:
+    position: 426
+    length: 4
+    description: 'Describes ‘type’ of Account. See attached table for valid values.'
+    mapped_to_database_field: ''
+  sub_class_code:
+    position: 430
+    length: 4
+    description: 'Detailed Account Sub-Class Codes. See attached table for valid values.'
+    dev_notes: 'original field text "Sub-Class Code"'
+    mapped_to_database_field: ''
+  cash_check_digit:
+    position: 434
+    length: 1
+    description: 'Check digit for the cash account. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Cash - Check Digit"'
+    mapped_to_database_field: ''
+  margin_check_digit:
+    position: 435
+    length: 1
+    description: 'Check digit for the margin account. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Margin - Check Digit"'
+    mapped_to_database_field: ''
+  dividend_check_digit:
+    position: 436
+    length: 1
+    description: 'Check digit for the dividend. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Dividend - Check Digit"'
+    mapped_to_database_field: ''
+  potential_tax_equity_and_fiscal_responsibility_act_withholding_check_digit:
+    position: 437
+    length: 1
+    description: 'TEFRA withholding digit.
+Field defaults to blank if not used.'
+    dev_notes: 'original field text "Potential Tax Equity and Fiscal Responsibility Act Withholding- Check Digit"'
+    mapped_to_database_field: ''
+  short_sale_check_digit:
+    position: 438
+    length: 1
+    description: 'Check digit for the short account. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Short Sale - Check Digit"'
+    mapped_to_database_field: ''
+  specialist_subscript_check_digit:
+    position: 439
+    length: 1
+    description: 'Check digit for specialist account. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Specialist Subscript- Check Digit"'
+    mapped_to_database_field: ''
+  specialist_situations_employee_check_digit:
+    position: 440
+    length: 1
+    description: 'Check digit for employee/specialist. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Specialist Situations/Employee - Check Digit"'
+    mapped_to_database_field: ''
+  commodities_check_digit:
+    position: 441
+    length: 1
+    description: 'Check digit for commodity account. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Commodities - Check Digit"'
+    mapped_to_database_field: ''
+  delivery_vs_payment:
+    position: 442
+    length: 1
+    description: 'Shares or security vs. money. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Delivery vs. Payment"'
+    mapped_to_database_field: ''
+  individual_check_digit:
+    position: 443
+    length: 1
+    description: 'Check digit for individual account. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Individual - Check Digit"'
+    mapped_to_database_field: ''
+  reserved_field_05:
+    position: 444
+    length: 13
+    description: 'Reserved for future use. Default value equals ‘0000UNCLAIMED’.'
+    mapped_to_database_field: ''
+  closing_methodology:
+    position: 457
+    length: 2
+    description: 'Cost basis closing methodology for the account. Values are: FI-FIFO
+LI-LIFO
+HC-High Cost
+LC- Low Cost
+HL- Long Term High Cost'
+    mapped_to_database_field: ''
+  mutual_fund_average_cost_date:
+    position: 459
+    length: 8
+    description: 'Mutual fund average cost date in mmddccyy format.'
+    mapped_to_database_field: ''
+  reserved:
+    position: 467
+    length: 21
+    description: 'Reserved for future use'
+    mapped_to_database_field: ''
+  acronym:
+    position: 488
+    length: 8
+    description: 'Thompson alert acronym.'
+    mapped_to_database_field: ''
+  access_code:
+    position: 496
+    length: 12
+    description: 'Access code can have up to twelve characters. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  registered_rep_number:
+    position: 508
+    length: 3
+    description: 'Three-character Registered Representative (RR) number. Field defaults to blank if not used.'
+    dev_notes: 'original field text "Registered Rep. Number"'
+    mapped_to_database_field: ''
+  rep_name:
+    position: 511
+    length: 22
+    description: 'The name of the rep.
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  trader_number:
+    position: 533
+    length: 3
+    description: 'Trader number.
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  trader_name:
+    position: 536
+    length: 22
+    description: 'Trader name.
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  over_the_counter_number:
+    position: 558
+    length: 3
+    description: 'OTC number.
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  over_the_counter_name:
+    position: 561
+    length: 30
+    description: 'OTC name.
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  depository_trust_co_box:
+    position: 591
+    length: 3
+    description: 'DTC box number.
+Field defaults to blank if not used.'
+    dev_notes: 'original field text "Depository Trust Co. Box"'
+    mapped_to_database_field: ''
+  base_number:
+    position: 594
+    length: 5
+    description: 'Code used for internal purposes. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  customer_number:
+    position: 599
+    length: 15
+    description: 'Customer number.'
+    mapped_to_database_field: ''
+  annual_income:
+    position: 614
+    length: 15
+    description: 'Account annual income. Thirteen whole numbers followed by two decimal places. The decimal point if assumed to occur after the thirteenth digit.'
+    mapped_to_database_field: ''
+  net_worth:
+    position: 629
+    length: 15
+    description: 'Account net worth. Thirteen whole numbers followed by two decimal places. The decimal point if assumed to occur after the thirteenth digit.'
+    mapped_to_database_field: ''
+  investment_objective:
+    position: 644
+    length: 1
+    description: 'Valid values are:
+G - Growth
+I - Income
+P - Preservation of capital S - Speculation
+T - Trading Income'
+    mapped_to_database_field: ''
+  verification_date:
+    position: 645
+    length: 8
+    description: 'Date books and records information last verified by customer in YYYYMMDD format.'
+    mapped_to_database_field: ''
+  occd_code:
+    position: 658
+    length: 1
+    description: 'Valid Values are: F – Full
+P – Partial
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  wrap_indicator:
+    position: 659
+    length: 12
+    description: 'Group of accounts assigned by Relationship Managers.'
+    mapped_to_database_field: ''
+  relationship_banking_indicator:
+    position: 671
+    length: 1
+    description: 'Blank (existing accounts) Y=Yes
+N=No'
+    mapped_to_database_field: ''
+  reserved_field_06:
+    position: 672
+    length: 29
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field: ''
+  anti_money_laundering_disclosure_flay:
+    position: 701
+    length: 1
+    description: 'Indicates if Anti-Money Laundering Disclosure document has been provided to client. Valid values are: Blank – No (Default) Y – Yes'
+    dev_notes: 'original field text "Anti-Money Laundering Disclosure Flay"'
+    mapped_to_database_field: ''
+  publicly_traded:
+    position: 702
+    length: 1
+    description: 'Publicly traded company. Valid Values:
+Blank – No (Default) Y – Yes'
+    mapped_to_database_field: ''
+  affiliation_with_parent_entity:
+    position: 703
+    length: 1
+    description: 'Is the account affiliated with a parent entity Blank – No (Default)
+Y – Yes'
+    mapped_to_database_field: ''
+  public_symbol_code:
+    position: 704
+    length: 12
+    description: 'Symbol of the publicly traded company'
+    mapped_to_database_field: ''
+  exchange_code:
+    position: 716
+    length: 1
+    description: 'Exchange Code Valid Values:'
+    mapped_to_database_field: ''
+  exchange_sub_code:
+    position: 717
+    length: 4
+    description: 'Exchange Sub-Code Valid Values:'
+    dev_notes: 'original field text "Exchange Sub-Code"'
+    mapped_to_database_field: ''
+  parent_organization_name:
+    position: 721
+    length: 30
+    description: 'Name of the parent entity.'
+    mapped_to_database_field: ''
+  regulator_type:
+    position: 751
+    length: 1
+    description: 'Regulator Type Code'
+    mapped_to_database_field: ''
+  regulator_sub_type:
+    position: 752
+    length: 4
+    description: 'Regulator Sub Type Code'
+    mapped_to_database_field: ''
+  regulator_name:
+    position: 756
+    length: 30
+    description: 'Name of State or foreign regulator. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  risk_jusidiction_code:
+    position: 786
+    length: 1
+    description: 'Risk Jurisdiction Code:
+Valid Values:
+H – High
+F – FATF ( Financial Action Task Force) Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  second_investment_objective_code:
+    position: 787
+    length: 1
+    description: 'Second Investment Objective Code. Valid Values: G - Growth
+I - Income
+P - Preservation of capital S - Speculation
+T - Trading Income
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  offshore_license:
+    position: 788
+    length: 1
+    description: 'Offshore License code. Valid Values:
+Blank – No (Default)
+Y – Yes'
+    mapped_to_database_field: ''
+  prior_business:
+    position: 789
+    length: 1
+    description: 'Prior Business code when account is opened Valid Values:
+Blank – No (Default)
+Y – Yes'
+    mapped_to_database_field: ''
+  bearer_share:
+    position: 790
+    length: 1
+    description: 'Is the account Bearer Share Valid Values:
+Blank – No (Default)
+Y – Yes'
+    mapped_to_database_field: ''
+  fiscal_year_month:
+    position: 791
+    length: 2
+    description: 'Month in which the fiscal year ends in MM format.'
+    mapped_to_database_field: ''
+  reserved_field_07:
+    position: 793
+    length: 2
+    description: 'Space. (Reserved for future use).'
+    mapped_to_database_field: ''
+  anti_money_laundering_risk_code:
+    position: 795
+    length: 2
+    description: 'AML Risk code.
+Please refer to the Customer Identification Program documents. One can be obtained thru your relationship manager.'
+    dev_notes: 'original field text "Anti-Money Laundering Risk Code"'
+    mapped_to_database_field: ''
+  platform_code:
+    position: 797
+    length: 2
+    description: 'Indicates if the account is participating in a platform Valid Values:
+Consultants Edge, Financial Planning
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  account_purpose:
+    position: 799
+    length: 1
+    description: 'Indicates purpose of the account. Valid Values:
+1- Mutual Funds
+2- Accommodation
+3- Funding
+4- Managed
+5- Self-Directed
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  manager_id:
+    position: 800
+    length: 5
+    description: 'Manger associated with the account. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  account_benchmark_code_#1:
+    position: 805
+    length: 5
+    description: 'Benchmark used to measure performance of the account. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  account_benchmark_code_#2:
+    position: 810
+    length: 5
+    description: 'Benchmark used to measure performance of the account. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  account_benchmark_code_#3:
+    position: 815
+    length: 5
+    description: 'Benchmark used to measure performance of the account. Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  investment_style:
+    position: 820
+    length: 3
+    description: 'Investment Style.
+Valid Values:
+US Long, US Short, Small Cap Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  product_id:
+    position: 823
+    length: 5
+    description: 'Types of product associated with the account. Valid Values:
+Defaults to zeros.'
+    mapped_to_database_field: ''
+  commence:
+    position: 828
+    length: 8
+    description: 'Commencement Date represents the RIA effective date for the account in YYYYMMDD format
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  termination_date:
+    position: 836
+    length: 8
+    description: 'Termination Date represents the RIA expiration date of the account in YYYYMMDD format
+Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  document_code:
+    position: 844
+    length: 90
+    description: 'Document code from FDAC system Field defaults to blank if not used.'
+    mapped_to_database_field: ''
+  customer_legal_address_data:
+    position:
+    length:
+    description: ''
+    dev_notes: 'field is blank'
+    mapped_to_database_field: ''
+  street_address_1:
+    position: 934
+    length: 30
+    description: 'Street line 1.'
+    mapped_to_database_field: ''
+  street_address_2:
+    position: 964
+    length: 30
+    description: 'Street line 2.'
+    mapped_to_database_field: ''
+  apartment:
+    position: 994
+    length: 4
+    description: 'Apartment number.'
+    mapped_to_database_field: ''
+  suite:
+    position: 998
+    length: 4
+    description: 'Suite number.'
+    mapped_to_database_field: ''
+  city:
+    position: 1002
+    length: 20
+    description: 'City name.'
+    mapped_to_database_field: ''
+  state:
+    position: 1022
+    length: 2
+    description: 'State.'
+    mapped_to_database_field: ''
+  province:
+    position: 1024
+    length: 4
+    description: 'Province/administrative area.'
+    mapped_to_database_field: ''
+  postal_zip_code:
+    position: 1028
+    length: 15
+    description: 'Postal/zip code.'
+    dev_notes: 'original field text "Postal/Zip Code"'
+    mapped_to_database_field: ''
+  post_office_box:
+    position: 1043
+    length: 6
+    description: 'Post office box number.'
+    mapped_to_database_field: ''
+  country:
+    position: 1049
+    length: 25
+    description: 'Country.'
+    mapped_to_database_field: ''
+  goods_service_flag:
+    position: 1074
+    length: 1
+    description: 'Good Service Flag'
+    mapped_to_database_field: ''
+  pursuant_flag:
+    position: 1075
+    length: 1
+    description: 'Organized Pursuant Flag'
+    mapped_to_database_field: ''
+  exempt_flag:
+    position: 1076
+    length: 1
+    description: 'Exempt from PIV Classification Flag'
+    mapped_to_database_field: ''
+  liquid_net_equity:
+    position: 1077
+    length: 15
+    description: 'Dollar representation of liquid net equity'
+    mapped_to_database_field: ''
+  source_wealth:
+    position: 1092
+    length: 10
+    description: 'Source of Wealth'
+    mapped_to_database_field: ''
+  source_assets:
+    position: 1002
+    length: 10
+    description: 'Source of assets on deposit'
+    mapped_to_database_field: ''
+  reserved_field_08:
+    position: 1112
+    length: 289
+    description: 'Spaces. (reserved for future use).'
+    mapped_to_database_field: ''
+    
+    
+    
+    
+trailer_record:
+  literal:
+    position: 1
+    length: 13
+    description: 'Identifies this record as an end-of-job record. This value will never change.'
+    mapped_to_database_field: ''
+  eoj:
+    position:14
+    length: 8
+    description: 'Total number of records in the file including the header record plus an additional record.'
+    mapped_to_database_field: ''
+  reserved_field:
+    position: 22
+    length: 1379
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field: ''
+    
+    
+    
+    
+end_of_file_record:
+  literal:
+    position: 1
+    length: 11
+    description: 'End-of-file record. This value will never change.'
+    mapped_to_database_field: ''
+  reserved_field:
+    position: 12
+    length: 1389
+    description: 'Spaces. (Reserved for future use).'
+    mapped_to_database_field: ''
