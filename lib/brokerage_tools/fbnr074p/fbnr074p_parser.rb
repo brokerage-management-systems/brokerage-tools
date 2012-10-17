@@ -79,7 +79,6 @@ class Fbnr074pParser
         fbnr_record.payout = (payout.empty?) ? 0 : payout
         fbnr_record.created_by = 0
         @fbnr074p_records << fbnr_record
-        
       end
       if line.include? 'BRANCH  REP  REP NAME               TRADES   COMMISSIONS   CONCESSIONS  CONCESSIONS AWAY      CLEARING     EXECUTION       PAYOUT'
         can_parse = true

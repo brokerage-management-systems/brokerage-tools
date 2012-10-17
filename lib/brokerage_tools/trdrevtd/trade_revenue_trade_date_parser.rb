@@ -145,7 +145,6 @@ class TradeRevenueTradeDateParser
   end
 
   def parse_row_at_index row, row_index, trade
-    # puts row
     @trdrevtd_def["record_#{ (row_index < 10) ? '0' << row_index.to_s : row_index.to_s }"].each do |report_field|
       next if report_field[1]['mapped_to_database_field'].empty?
       position = report_field[1]['position'] - 1

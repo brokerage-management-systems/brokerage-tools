@@ -29,10 +29,6 @@ header_record:
     length: 263
     description: 'Space. (Reserved for future use).'
     mapped_to_database_field: ''
-    
-    
-    
-    
 data_record:
   family_number:
     position: 1
@@ -241,10 +237,6 @@ For Options, OSI symbol will be provided.'
     length: 74
     description: 'Spaces. (Reserved for future use).'
     mapped_to_database:field: ''
-    
-    
-    
-    
 trailer_record:
   literal:
     position: 1

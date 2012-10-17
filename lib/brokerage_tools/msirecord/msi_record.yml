@@ -139,7 +139,7 @@ msi_record:
     description: 'Action Time'
     mapped_to_database_field: ''
   part_no:
-  position: 235
+    position: 235
     length: 2
     description: 'Part Number'
     mapped_to_database_field: ''
@@ -154,7 +154,7 @@ msi_record:
     description: 'Execution Price'
     mapped_to_database_field: ''
   action_qty:
-   position: 253
+    position: 253
     length: 8
     description: 'Execution Quantity'
     mapped_to_database_field: ''
@@ -213,12 +213,12 @@ msi_record:
     length: 1
     description: 'Market Maker'
     mapped_to_database_field: ''
-  Symbol_1:
+  symbol_1:
     position: 306
     length: 21
     description: 'Symbol'
     mapped_to_database_field: ''
-  Option_expiry_date:
+  option_expiry_date:
     position: 327
     length: 8
     description: 'Option Expiration Date'

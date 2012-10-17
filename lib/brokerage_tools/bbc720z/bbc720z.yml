@@ -29,10 +29,6 @@ header_record:
     length: 564
     description: 'Spaces. (Reserved for future use).'
     mapped_to_database_field: ''
-    
-    
-    
-    
 data_record:
   realm_id_number:
     position: 1

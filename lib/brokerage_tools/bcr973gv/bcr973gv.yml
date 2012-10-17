@@ -29,14 +29,10 @@ header_record:
     length: 1364
     description: 'Spaces. (Reserved for future use).'
     mapped_to_database_field: ''
-    
-    
-    
-    
 detail_record:
-  record_type: 1
-    position: 2
-    length:
+  record_type:
+    position: 1
+    length: 2
     description: 'Valid values are: A Add
 C1 Change - Old record
 C2 Change - New record
@@ -72,58 +68,52 @@ D Delete'
     length: 3
     description: 'Three-character (account executive) number.'
     mapped_to_database_field: ''
-  account_type_table:
-    position: 
-    length:
-    description: ''
-    dev_notes: 'field is blank'
-    mapped_to_database_field: ''
-  type_1:
+  account_type_table_type_1:
     position: 19
     length: 1
     description: 'Cash account.'
     mapped_to_database_field: ''
-  type_2:
+  account_type_table_type_2:
     position: 20
     length: 1
     description: 'Margin account.'
     mapped_to_database_field: ''
-  type_3:
+  account_type_table_type_3:
     position: 21
     length: 1
     description: 'Dividend interest account.'
     mapped_to_database_field: ''
-  type_4:
+  account_type_table_type_4:
     position: 22
     length: 1
     description: 'Non-purpose loan account.'
     mapped_to_database_field: ''
-  type_5:
+  account_type_table_type_5:
     position: 23
-    length:
+    length: 1
     description: 'Short margin account.'
     mapped_to_database_field: ''
-  type_6:
+  account_type_table_type_6:
     position: 24
     length: 1
     description: 'Special subscription account.'
     mapped_to_database_field: ''
-  type_7:
+  account_type_table_type_7:
     position: 25
     length: 1
     description: 'Convertible bond account.'
     mapped_to_database_field: ''
-  type_8:
+  account_type_table_type_8:
     position: 26
     length: 1
     description: 'Non-convertible bond account.'
     mapped_to_database_field: ''
-  type_9:
+  account_type_table_type_9:
     position: 27
     length: 1
     description: 'COD/COR account.'
     mapped_to_database_field: ''
-  type_0:
+  account_type_table_type_0:
     position: 28
     length: 1
     description: 'Individual account.'
@@ -281,7 +271,7 @@ D 100% Commission'
     length: 2
     description: 'Last name length.'
     mapped_to_database_field: ''
-  portfolio_status_reporting_on_line_trading_service_canadian_broker_indicator:
+  psr_olts_cbi:
     position: 83
     length: 1
     description: 'Valid values are:
@@ -822,7 +812,7 @@ Field defaults to blank if not used.'
     description: 'Check digit for the dividend. Field defaults to blank if not used.'
     dev_notes: 'original field text "Dividend - Check Digit"'
     mapped_to_database_field: ''
-  potential_tax_equity_and_fiscal_responsibility_act_withholding_check_digit:
+  tefra_withholding_digit:
     position: 437
     length: 1
     description: 'TEFRA withholding digit.
@@ -1131,17 +1121,17 @@ Field defaults to blank if not used.'
     length: 5
     description: 'Manger associated with the account. Field defaults to blank if not used.'
     mapped_to_database_field: ''
-  account_benchmark_code_#1:
+  account_benchmark_code_1:
     position: 805
     length: 5
     description: 'Benchmark used to measure performance of the account. Field defaults to blank if not used.'
     mapped_to_database_field: ''
-  account_benchmark_code_#2:
+  account_benchmark_code_2:
     position: 810
     length: 5
     description: 'Benchmark used to measure performance of the account. Field defaults to blank if not used.'
     mapped_to_database_field: ''
-  account_benchmark_code_#3:
+  account_benchmark_code_3:
     position: 815
     length: 5
     description: 'Benchmark used to measure performance of the account. Field defaults to blank if not used.'
@@ -1176,59 +1166,53 @@ Field defaults to blank if not used.'
     length: 90
     description: 'Document code from FDAC system Field defaults to blank if not used.'
     mapped_to_database_field: ''
-  customer_legal_address_data:
-    position:
-    length:
-    description: ''
-    dev_notes: 'field is blank'
-    mapped_to_database_field: ''
-  street_address_1:
+  customer_legal_address_data_street_address_1:
     position: 934
     length: 30
     description: 'Street line 1.'
     mapped_to_database_field: ''
-  street_address_2:
+  customer_legal_address_data_street_address_2:
     position: 964
     length: 30
     description: 'Street line 2.'
     mapped_to_database_field: ''
-  apartment:
+  customer_legal_address_data_apartment:
     position: 994
     length: 4
     description: 'Apartment number.'
     mapped_to_database_field: ''
-  suite:
+  customer_legal_address_data_suite:
     position: 998
     length: 4
     description: 'Suite number.'
     mapped_to_database_field: ''
-  city:
+  customer_legal_address_data_city:
     position: 1002
     length: 20
     description: 'City name.'
     mapped_to_database_field: ''
-  state:
+  customer_legal_address_data_state:
     position: 1022
     length: 2
     description: 'State.'
     mapped_to_database_field: ''
-  province:
+  customer_legal_address_data_province:
     position: 1024
     length: 4
     description: 'Province/administrative area.'
     mapped_to_database_field: ''
-  postal_zip_code:
+  customer_legal_address_data_postal_zip_code:
     position: 1028
     length: 15
     description: 'Postal/zip code.'
     dev_notes: 'original field text "Postal/Zip Code"'
     mapped_to_database_field: ''
-  post_office_box:
+  customer_legal_address_data_post_office_box:
     position: 1043
     length: 6
     description: 'Post office box number.'
     mapped_to_database_field: ''
-  country:
+  customer_legal_address_data_country:
     position: 1049
     length: 25
     description: 'Country.'
@@ -1268,10 +1252,6 @@ Field defaults to blank if not used.'
     length: 289
     description: 'Spaces. (reserved for future use).'
     mapped_to_database_field: ''
-    
-    
-    
-    
 trailer_record:
   literal:
     position: 1
@@ -1279,7 +1259,7 @@ trailer_record:
     description: 'Identifies this record as an end-of-job record. This value will never change.'
     mapped_to_database_field: ''
   eoj:
-    position:14
+    position: 14
     length: 8
     description: 'Total number of records in the file including the header record plus an additional record.'
     mapped_to_database_field: ''
@@ -1288,10 +1268,6 @@ trailer_record:
     length: 1379
     description: 'Spaces. (Reserved for future use).'
     mapped_to_database_field: ''
-    
-    
-    
-    
 end_of_file_record:
   literal:
     position: 1
