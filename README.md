@@ -18,7 +18,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+#### If installed as a gem run with:
+
+    brokerage_tools -p trdrevtd --no-records --no-backup --no-trailer
+    brokerage_tools -p trdrevtd
+
+#### During development run with:
+
+    ruby -Ilib bin/brokerage_tools -p trdrevtd --no-records --no-backup --no-trailer
+    ruby -Ilib bin/brokerage_tools -p trdrevtd
 
 ## Contributing
 

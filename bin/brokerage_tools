@@ -1,5 +1,22 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
+require 'optparse'
+require 'ostruct'
+require 'brokerage_tools/app'
+
+# Thanks! http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/195810
+class Hash
+  def self.to_ostructs(obj, memo={})
+    return obj unless obj.is_a? Hash
+    os = memo[obj] = OpenStruct.new
+    obj.each { |k,v| os.send("#{k}=", memo[v] || to_ostructs(v, memo)) }
+    os
+  end
+end
+
+FS = File::SEPARATOR
+
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
 help = <<HELP
@@ -11,66 +28,67 @@ Basic Command Line Usage:
 Options:
 HELP
 
-require 'rubygems'
-require 'optparse'
-require 'brokerage_tools/app'
+conf_base = "#{Dir.pwd}#{FS}"
 
-options = { :appconfig => "#{ Dir.pwd }#{ File::SEPARATOR }application.yml", :dbconfig => "#{ Dir.pwd }#{ File::SEPARATOR }database.yml", :emailconfig => "#{ Dir.pwd }#{ File::SEPARATOR }email.yml" }
+$options = OpenStruct.new
+$options.app_conf    = "#{conf_base}application.yml"
+$options.db_conf     = "#{conf_base}database.yml"
+$options.mailer_conf = "#{conf_base}email.yml"
 
 opts = OptionParser.new do |opts|
   opts.banner = help
 
   opts.on('-a', '--appconfig [FILE]', 'Application configuration file [Optional], defaults to application.yml') do |file|
-    options[:appconfig] = file
+    $options.app_conf = file
   end
 
   opts.on('-d', '--dbconfig [FILE]', 'Database configuration file [Optional], defaults to database.yml') do |file|
-    options[:dbconfig] = file
+    $options.db_conf = file
   end
 
   opts.on('-e', '--emailconfig [FILE]', 'Email server configuration file [Optional], defaults to email.yml') do |file|
-    options[:emailconfig] = file
+    $options.mailer_conf = file
   end
 
-  opts.on('-p', '--parse TYPE', [:fbnr074p, :trdrevtd], 'Report types to parse: (fbnr074p, trdrevtd)') do |type|
-    options[:parse] = type
+  opts.on('-p', '--parse TYPE', [:bbc702z, :bbc710z, :bbc720z, :bbc810z, :bcr973gv, :fbnr074p, :msirecord, :trdrevtd], 'Report types to parse: (bbc702z, bbc710z, bbc720z, bbc810z, bcr973gv, fbnr074p, msirecord, trdrevtd)') do |type|
+    $options.parser_type = type
   end
 
   opts.on('-v', '--validate TYPE', [:trdrevtd], 'Validation type: (trdrevtd)') do |type|
-    options[:validate] = type
+    $options.validation_type = type
   end
 
   opts.on('--email-errors-to EMAIL_ADDRESS', 'Email errors to specified email address.') do |email_address|
-    options[:email_errors_to] = email_address
+    $options.email_errors_to = email_address
   end
 
   opts.on('--email-validation-to EMAIL_ADDRESS', 'Email the validation to specified email address.') do |email_address|
-    options[:email_validation_to] = email_address
+    $options.email_validation_to = email_address
   end
 
   opts.on('--include-zips', 'Includes any zip files in the directory in parse process.') do
-    options[:zips] = true
+    $options.zips = true
   end
 
   opts.on('--no-backup', 'Disables report file backup.') do
-    options[:backup] = false
+    $options.backup = false
   end
 
   opts.on('--no-records', 'Disables writing report records to the database.') do
-    options[:records] = false
+    $options.records = false
   end
 
   opts.on('--with-commission-month [Month]', 'Example \'December 2012\'.') do |commission_month|
-    options[:commission_month] = commission_month
+    $options.commission_month = commission_month
   end
 
   opts.on('--with-entity-id [Entity ID]', 'Example \'000\'.') do |entity_id|
-    options[:entity_id] = entity_id
+    $options.entity_id = entity_id
   end
 
   # TODO: May not be necessary any longer, check and remove or implement
   opts.on('--no-trailer', 'Disables writing report trailer to the database.') do
-    options[:trailer] = false
+    $options.trailer = false
   end
 
   opts.on_tail('-h', '--help', 'Show this message') do
@@ -93,19 +111,28 @@ rescue OptionParser::InvalidOption
   exit
 end
 
-unless File.file? options[:appconfig]
-  puts "File does not exist: #{ options[:appconfig] }"
+# report parsing not yet implemented for the following reports so quit.
+case $options.parser_type
+when :bbc702z, :bbc710z, :bbc720z, :bbc810z, :bcr973gv, :msirecord
+  puts "report: #{$options.parse_type} is not yet implemented."
+  exit 1
+end
+
+# Quit if you dont have the necessary conf files
+unless File.file? $options.app_conf
+  puts "File does not exist: #{$options.app_conf}"
   exit
 end
 
-unless File.file? options[:dbconfig]
-  puts "File does not exist: #{ options[:dbconfig] }"
+unless File.file? $options.db_conf
+  puts "File does not exist: #{$options.db_conf}"
   exit
 end
 
-unless File.file? options[:emailconfig]
-  puts "File does not exist: #{ options[:emailconfig] }"
+unless File.file? $options.mailer_conf
+  puts "File does not exist: #{$options.mailer_conf}"
   exit
 end
 
-BrokerageTools::App.run options
+# At this point we should have what we need to run!
+BrokerageTools::App.run
