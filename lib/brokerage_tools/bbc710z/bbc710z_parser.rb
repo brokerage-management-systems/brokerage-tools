@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'daily_commission_and_ticket_charge')
 
 class Bbc710zParser < Parser
 
-  attr_accessor :run_as_date
+  attr_accessor :as_of_date
 
 # Overridden from parent class
 
@@ -12,13 +12,13 @@ class Bbc710zParser < Parser
   end
 
   def backup backup_date
-    super(@run_as_date.strftime '%Y-%m-%d')
+    super(@as_of_date.strftime '%Y-%m-%d')
   end
 
   def parse(report_file, options_trailer = nil)
     super(report_file, options_trailer)
     @header  = @lines.shift.chomp
-    # @run_as_date = ???
+    @as_of_date = DailyCommissionAndTicketCharge.as_of_date_to_date @header[@report_conf.header_record.as_of_date.position - 1..@report_conf.header_record.as_of_date.position + @report_conf.header_record.as_of_date.length - 2]
     dr_fields = @report_conf.data_record.marshal_dump
     @lines.each do |record|
       tmp_record = DailyCommissionAndTicketCharge.new

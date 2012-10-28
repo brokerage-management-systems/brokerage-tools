@@ -112,6 +112,10 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
     '20' + read_attribute(:trade_date)
   end
 
+  def self.as_of_date_to_date str
+    Date.strptime(str, '%m/%d/%y')
+  end
+
   private
 
   def unique_trade
