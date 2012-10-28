@@ -85,4 +85,39 @@
 
 class DailyCommissionAndTicketCharge < ActiveRecord::Base
   # attr_accessible :title, :body
+  
+  validate :unique_trade
+ 
+  def expiration_date=(expiration_date)
+    write_attribute(:expiration_date, expiration_date)
+  end
+
+  def expiration_date
+    '20' + read_attribute(:expiration_date)
+  end
+
+  def settlement_date=(settlement_date)
+    write_attribute(:settlement_date, settlement_date)
+  end
+
+  def settlement_date
+    '20' + read_attribute(:settlement_date)
+  end
+
+  def trade_date=(trade_date)
+    write_attribute(:trade_date, trade_date)
+  end
+
+  def trade_date
+    '20' + read_attribute(:trade_date)
+  end
+
+  private
+
+  def unique_trade
+    td = read_attribute(:trade_date)
+    unless DailyCommissionAndTicketCharge.where(:trade_date => td, :tag_number => read_attribute(:tag_number)).first.nil?
+      errors.add(:trade_date, "Trade already exists: #{td}/#{tag_number}")
+    end
+  end
 end

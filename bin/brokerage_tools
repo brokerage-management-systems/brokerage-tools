@@ -113,7 +113,7 @@ end
 
 # report parsing not yet implemented for the following reports so quit.
 case $options.parser_type
-when :bbc702z, :bbc710z, :bbc720z, :bbc810z, :bcr973gv, :msirecord
+when :bbc702z, :bbc720z, :bbc810z, :bcr973gv, :msirecord
   puts "report: #{$options.parse_type} is not yet implemented."
   exit 1
 end

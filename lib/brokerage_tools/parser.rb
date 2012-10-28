@@ -3,13 +3,13 @@ require 'zip/zip'
 
 class Parser
 
-  attr_accessor :parser_type, :report_conf, :report_file
+  attr_accessor :header, :lines, :parser_type, :records, :report_conf, :report_file, :trailer
 
   def initialize
     @parser_type = self.class.to_s.downcase[0..-7]
     yaml_conf = File.dirname(__FILE__) + FS + @parser_type + FS + @parser_type + '.yml'
     if File.exists? yaml_conf
-      @report_conf = Hash.to_ostructs(YAML.load_file yaml_conf)
+      @report_conf = YAML.load_file yaml_conf
     else
       puts "#{yaml_conf} does not exist."
       exit 1
@@ -47,10 +47,25 @@ class Parser
   end
 
   def parse(report_file, options_trailer = nil)
-    puts "parsing"
+    file     = File.open(report_file,'r')
+    @lines   = file.readlines
+    #@header  = @lines.shift.chomp
+    @records = []
+    #@trailer = @lines.pop.chomp
+    
+    file.close
   end
 
   def save
-    puts "saving"
+    record_index = 1
+    @records.each do |record|
+      if record.save
+        yield 'saved', record_index, record
+      else
+        puts "Error: #{record.errors.messages}"
+        yield 'not saved', record_index, record
+      end
+      record_index += 1
+    end 
   end
 end

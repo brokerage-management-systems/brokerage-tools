@@ -63,6 +63,7 @@ module BrokerageTools
           parser.parse input_dir + FS + $options.app_conf.production.send("#{$options.parser_type}").report_file_name, $options.trailer
           parser.save if $options.records.nil? || $options.records == true
           parser.backup nil if $options.backup.nil? || $options.backup == true
+          parser.complete
         end
       else
         update_report_file_name 
