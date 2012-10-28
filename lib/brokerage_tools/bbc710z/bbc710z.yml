@@ -50,18 +50,12 @@ data_record:
     length: 3
     description: 'Three character (account executive) number.'
     mapped_to_database_field: ''
-  account_number_00:
-    position:
-    length:
-    description:
-    dev_notes: 'Field has no values'
-    mapped_to_database_field: ''
   branch_office_number:
     position: 14
     length: 3
     description: 'The office number assigned.'
     mapped_to_database_field: ''
-  account_number_01:
+  account_number:
     position: 17
     length: 5
     description: 'The body of the account number.'
