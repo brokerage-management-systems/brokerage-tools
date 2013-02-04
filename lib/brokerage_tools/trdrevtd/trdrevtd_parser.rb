@@ -74,8 +74,8 @@ class TrdrevtdParser < Parser
     @trdrevtd_trailer = ''
   end
 
-  def backup backup_date
-    super(@trdrevtd_trailer.run_date.strftime '%Y-%m-%d')
+  def backup(report_file = nil, backup_date = nil)
+    super(report_file, @trdrevtd_trailer.run_date.strftime('%Y-%m-%d'))
   end
 
   def parse(report_file, options_trailer = nil)

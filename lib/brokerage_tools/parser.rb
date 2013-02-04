@@ -16,16 +16,15 @@ class Parser
     end
   end
 
-  def backup backup_date
+  def backup(report_file_name = nil, backup_date = nil)
     backup_base_name      = $options.app_conf.production.send("#{@parser_type}").backup_base_name
     backup_directory_main = $options.app_conf.production.send("#{@parser_type}").backup_directory_main
     backup_directory_alt  = $options.app_conf.production.send("#{@parser_type}").backup_directory_alt
     previous_date_report_directory = $options.app_conf.production.send("#{@parser_type}").previous_date_report_directory
     report_file_directory = $options.app_conf.production.send("#{@parser_type}").report_file_directory
-    report_file_name      = $options.app_conf.production.send("#{@parser_type}").report_file_name
-
-    backup_date ||= Time.now.strftime('%Y-%m-%d')
-    archive_file_name = backup_base_name + '_' + backup_date + '.zip'
+    report_file_name    ||= $options.app_conf.production.send("#{@parser_type}").report_file_name
+    backup_date         ||= Time.now.strftime('%Y-%m-%d')
+    archive_file_name     = backup_base_name + '_' + backup_date + '.zip'
     
     if File.exists? backup_directory_main + FS + archive_file_name
        FileUtils.rm backup_directory_main + FS + archive_file_name

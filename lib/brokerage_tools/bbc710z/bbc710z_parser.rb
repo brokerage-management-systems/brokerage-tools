@@ -11,8 +11,8 @@ class Bbc710zParser < Parser
     @report_conf = Hash.to_ostructs(@report_conf)
   end
 
-  def backup backup_date
-    super(@as_of_date.strftime '%Y-%m-%d')
+  def backup(report_file = nil, backup_date = nil)
+    super(report_file, @as_of_date.strftime('%Y-%m-%d'))
   end
 
   def parse(report_file, options_trailer = nil)

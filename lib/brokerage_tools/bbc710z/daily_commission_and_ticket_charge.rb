@@ -111,6 +111,37 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
     '20' + read_attribute(:trade_date)
   end
 
+  def to_trade
+    trade = Trade.new
+    trade.account_number            = String::new self.account_number
+    trade.account_type              = String::new self.account_type
+    trade.blotter_code              = String::new self.blotter_code
+    trade.branch                    = String::new self.branch_office_number
+    # buy_sell_code could be b,s,xb,xs where x means cancel
+    trade.buy_sell_code             = String::new self.buy_sell_code
+    trade.cancel_code               = String::new self.cancel_code_01 #TODO
+    trade.raw_commission            = String::new self.commission
+    trade.raw_concession            = String::new self.trade_concession_05 #TODO
+    trade.cusip                     = String::new self.cusip_number
+    trade.entity_id                 = String::new self.rr_number
+    trade.market_code               = String::new self.market_code_01 #TODO
+    trade.raw_price                 = String::new self.price
+    # trade.raw_price                 = String::new self.alphaprice_dollar_03 + self.alphaprice_space_03 + self.alphaprice_fraction_03_a #TODO
+    trade.raw_principal             = String::new self.principal_amount
+    trade.raw_quantity              = String::new self.quantity
+    # id like to make security_description one field
+    trade.security_description_1    = String::new self.security_description_00
+    trade.security_description_2    = String::new self.security_description_01
+    trade.security_type             = String::new self.security_type_02 #TODO
+    trade.settle_date               = String::new self.settlement_date
+    trade.solicitation_code         = String::new self.solicited_code_10 #TODO
+    trade.symbol                    = String::new self.ticker_symbol
+    trade.trade_date                = String::new self.trade_date
+    trade.trade_reference_number    = String::new self.trade_reference_number_01 #TODO
+    trade.trade_definition_trade_id = String::new self.trade_definition_trade_id_12 #TODO
+    return trade
+  end
+
   def self.as_of_date_to_date str
     Date.strptime(str, '%m/%d/%y')
   end
