@@ -2,7 +2,7 @@
 #
 # Table name: daily_commission_and_ticket_charges
 #
-#  id                                     :integer(4)      not null, primary key
+#  id                                     :integer          not null, primary key
 #  realm_id_number                        :string(5)
 #  general_ledger_office                  :string(3)
 #  adjustment_code                        :string(2)
@@ -78,15 +78,27 @@
 #  commission_gross_credit_indicator      :string(1)
 #  commission_principal_trade_indicator   :string(2)
 #  reserved_field_02                      :string(70)
-#  created_at                             :datetime        not null
-#  updated_at                             :datetime        not null
+#  created_at                             :datetime         not null
+#  updated_at                             :datetime         not null
 #
 
 class DailyCommissionAndTicketCharge < ActiveRecord::Base
+
+# security (i.e. attr_accessible) ...........................................
   # attr_accessible :title, :body
   
+# validations ...............................................................
+
   validate :unique_trade
- 
+
+# class methods .............................................................
+
+  def self.as_of_date_to_date str
+    Date.strptime(str, '%m/%d/%y')
+  end
+
+# public instance methods ...................................................
+
   def expiration_date=(expiration_date)
     write_attribute(:expiration_date, expiration_date)
   end
@@ -117,41 +129,42 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
     trade.account_type              = String::new self.account_type
     trade.blotter_code              = String::new self.blotter_code
     trade.branch                    = String::new self.branch_office_number
-    # buy_sell_code could be b,s,xb,xs where x means cancel
     trade.buy_sell_code             = String::new self.buy_sell_code
-    trade.cancel_code               = String::new self.cancel_code_01 #TODO
+    trade.cancel_code               = (self.buy_sell_flag == '9' || self.buy_sell_flag == 'R') ? '1' : ''
+    trade.clearing_firm             = String::new "jpm"
     trade.raw_commission            = String::new self.commission
-    trade.raw_concession            = String::new self.trade_concession_05 #TODO
+    trade.raw_concession            = nil 
+    #trade.raw_concession            = String::new self.trade_concession_05 # TODO: find concession
     trade.cusip                     = String::new self.cusip_number
     trade.entity_id                 = String::new self.rr_number
-    trade.market_code               = String::new self.market_code_01 #TODO
+    trade.market_code               = nil
+    #trade.market_code               = String::new self.market_code_01 # TODO: find market_code
     trade.raw_price                 = String::new self.price
-    # trade.raw_price                 = String::new self.alphaprice_dollar_03 + self.alphaprice_space_03 + self.alphaprice_fraction_03_a #TODO
     trade.raw_principal             = String::new self.principal_amount
     trade.raw_quantity              = String::new self.quantity
-    # id like to make security_description one field
-    trade.security_description_1    = String::new self.security_description_00
-    trade.security_description_2    = String::new self.security_description_01
-    trade.security_type             = String::new self.security_type_02 #TODO
+    trade.security_description_1    = String::new self.security_description_00.strip
+    trade.security_description_2    = String::new self.security_description_01.strip
+    trade.security_type             = String::new self.security_indicator
     trade.settle_date               = String::new self.settlement_date
-    trade.solicitation_code         = String::new self.solicited_code_10 #TODO
-    trade.symbol                    = String::new self.ticker_symbol
+    trade.solicitation_code         = nil
+    #trade.solicitation_code         = String::new self.solicited_code_10 # TODO: find solicited_code
+    trade.symbol                    = String::new self.ticker_symbol.strip
     trade.trade_date                = String::new self.trade_date
-    trade.trade_reference_number    = String::new self.trade_reference_number_01 #TODO
-    trade.trade_definition_trade_id = String::new self.trade_definition_trade_id_12 #TODO
+    trade.trade_reference_number    = String::new self.tag_number
+    #trade.trade_reference_number    = String::new self.trade_reference_number_01
+    trade.trade_definition_trade_id = nil
+    #trade.trade_definition_trade_id = String::new self.trade_definition_trade_id_12
     return trade
   end
 
-  def self.as_of_date_to_date str
-    Date.strptime(str, '%m/%d/%y')
-  end
+# private instance methods ..................................................
 
   private
 
   def unique_trade
     td = read_attribute(:trade_date)
-    unless DailyCommissionAndTicketCharge.where(:trade_date => td, :tag_number => read_attribute(:tag_number)).first.nil?
-      errors.add(:trade_date, "Trade already exists: #{td}/#{tag_number}")
+    unless DailyCommissionAndTicketCharge.where(:trade_date => td, :buy_sell_flag => read_attribute(:buy_sell_flag),:tag_number => read_attribute(:tag_number)).first.nil?
+      errors.add(:trade_date, "Trade already exists: #{td}/#{tag_number} | #{buy_sell_flag}")
     end
   end
 end
