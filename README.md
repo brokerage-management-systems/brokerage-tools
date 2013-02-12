@@ -23,10 +23,14 @@ Or install it yourself as:
     brokerage_tools -p trdrevtd --no-records --no-backup --no-trailer
     brokerage_tools -p trdrevtd
 
+    # unzip and parse any files found    
+    brokerage_tools -p bbc710z --include-zips
+
 #### During development run with:
 
     ruby -Ilib bin/brokerage_tools -p trdrevtd --no-records --no-backup --no-trailer
     ruby -Ilib bin/brokerage_tools -p trdrevtd
+    ruby -Ilib bin/brokerage_tools -p bbc710z --include-zips
 
 ## Contributing
 
