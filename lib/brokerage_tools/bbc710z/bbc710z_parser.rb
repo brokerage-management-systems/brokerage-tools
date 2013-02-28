@@ -23,6 +23,7 @@ class Bbc710zParser < Parser
     @lines.each do |record|
       tmp_record = DailyCommissionAndTicketCharge.new
       dr_fields.each { |k,v| tmp_record.send("#{k}=", record[v.position - 1..v.position + v.length - 2].strip) unless v.position.nil? }
+      tmp_record.as_of_date = @as_of_date.strftime "%Y%m%d"
       @records << tmp_record
     end
   end

@@ -6,7 +6,7 @@ class Parser
   attr_accessor :header, :lines, :parser_type, :records, :report_conf, :report_file, :trailer
 
   def initialize
-    @parser_type = self.class.to_s.downcase[0..-7]
+    @parser_type = self.class.to_s.downcase[0...-('parser'.size)]
     yaml_conf = File.dirname(__FILE__) + FS + @parser_type + FS + @parser_type + '.yml'
     if File.exists? yaml_conf
       @report_conf = YAML.load_file yaml_conf

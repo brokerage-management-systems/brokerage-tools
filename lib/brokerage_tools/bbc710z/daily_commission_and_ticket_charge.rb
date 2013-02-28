@@ -80,6 +80,7 @@
 #  reserved_field_02                      :string(70)
 #  created_at                             :datetime         not null
 #  updated_at                             :datetime         not null
+#  as_of_date                             :string(8)
 #
 
 class DailyCommissionAndTicketCharge < ActiveRecord::Base
@@ -89,7 +90,7 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
   
 # validations ...............................................................
 
-  validate :unique_trade
+  validate :unique_record
 
 # class methods .............................................................
 
@@ -161,10 +162,10 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
 
   private
 
-  def unique_trade
+  def unique_record
     td = read_attribute(:trade_date)
-    unless DailyCommissionAndTicketCharge.where(:trade_date => td, :buy_sell_flag => read_attribute(:buy_sell_flag),:tag_number => read_attribute(:tag_number)).first.nil?
-      errors.add(:trade_date, "Trade already exists: #{td}/#{tag_number} | #{buy_sell_flag}")
+    unless DailyCommissionAndTicketCharge.where(:as_of_date => read_attribute(:as_of_date), :trade_date => td, :buy_sell_flag => read_attribute(:buy_sell_flag), :tag_number => read_attribute(:tag_number)).first.nil?
+      errors.add(:trade_date, "Record already exists: (#{as_of_date}) #{td}/#{tag_number} | #{buy_sell_flag}")
     end
   end
 end
