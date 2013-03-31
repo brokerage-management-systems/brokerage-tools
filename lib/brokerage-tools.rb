@@ -1,5 +1,5 @@
-require "brokerage_tools/version"
+# includes ....................................................................
+%w{brokerage_tools/version}.each { |lib| require lib }
 
 module BrokerageTools
-  # Your code goes here...
 end

@@ -84,21 +84,16 @@
 #
 
 class DailyCommissionAndTicketCharge < ActiveRecord::Base
-
-# security (i.e. attr_accessible) ...........................................
-  # attr_accessible :title, :body
-  
-# validations ...............................................................
-
+  # validations ...............................................................
   validate :unique_record
 
-# class methods .............................................................
+  # class methods .............................................................
 
   def self.as_of_date_to_date str
     Date.strptime(str, '%m/%d/%y')
   end
 
-# public instance methods ...................................................
+  # public instance methods ...................................................
 
   def expiration_date=(expiration_date)
     write_attribute(:expiration_date, expiration_date)
@@ -158,7 +153,7 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
     return trade
   end
 
-# private instance methods ..................................................
+  # private instance methods ..................................................
 
   private
 

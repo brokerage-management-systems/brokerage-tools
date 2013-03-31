@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: fbnr074p_reports
@@ -19,8 +18,6 @@
 #
 
 class Fbnr074pReport < ActiveRecord::Base
-
-   validates_uniqueness_of :payroll_month, :scope => [:branch, :broker_id]
-
+  # validations ...............................................................
+  validates_uniqueness_of :payroll_month, :scope => [:branch, :broker_id]
 end
-

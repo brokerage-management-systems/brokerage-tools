@@ -1,22 +1,22 @@
-require 'active_record'
-require 'brokerage_tools/parser'
-
-require 'pry'
+# includes ....................................................................
+%w{active_record brokerage_tools/parser}.each { |lib| require lib }
 
 module BrokerageTools
   class App
 
+    # class methods ...........................................................
+
     def self.init_activerecord
       ActiveRecord::Base.establish_connection(
-          :adapter   => $options.db_conf.production.adapter,
-          :database  => $options.db_conf.production.database,
-          :encoding  => $options.db_conf.production.encoding,
-          :host      => $options.db_conf.production.host,
-          :password  => $options.db_conf.production.password,
-          :pool      => $options.db_conf.production.pool,
-          :reconnect => $options.db_conf.production.reconnect,
-          :socket    => $options.db_conf.production.socket,
-          :username  => $options.db_conf.production.username)
+        :adapter   => $options.db_conf.production.adapter,
+        :database  => $options.db_conf.production.database,
+        :encoding  => $options.db_conf.production.encoding,
+        :host      => $options.db_conf.production.host,
+        :password  => $options.db_conf.production.password,
+        :pool      => $options.db_conf.production.pool,
+        :reconnect => $options.db_conf.production.reconnect,
+        :socket    => $options.db_conf.production.socket,
+        :username  => $options.db_conf.production.username)
     end
 
     def self.parse
@@ -84,6 +84,5 @@ module BrokerageTools
       puts validator.format_validation
       validator.email_validation($options.email_validation_to, $options.mailer_conf.production) unless $options.email_validation_to.nil?
     end
-
   end
 end

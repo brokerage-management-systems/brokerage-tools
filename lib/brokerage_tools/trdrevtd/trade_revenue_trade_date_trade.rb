@@ -1,4 +1,3 @@
-
 # TODO: I didn't take the below conditional into play in the previous parser.
 # Due to this the following fields are always empty:
 # security_group_code, d_market_code, d_blotter_code, filler_00
@@ -262,9 +261,13 @@
 
 class TradeRevenueTradeDateTrade < ActiveRecord::Base
 
+  # relationships .............................................................
   belongs_to :trade_revenue_trade_date_trailer
 
+  # validations ...............................................................
   validates_uniqueness_of :run_date_01, :scope => [:trade_reference_number_01, :user_reference_number_01, :trade_definition_trade_id_12, :order_reference_number_12]
+
+  # class methods .............................................................
 
   def self.parse_quantity_field trade
     temp_quantity = (trade.quantity_03.class == Fixnum) ? trade.quantity_03 : trade.quantity_03.to_s.insert(-6, ".").to_i
@@ -273,6 +276,8 @@ class TradeRevenueTradeDateTrade < ActiveRecord::Base
     end
     return temp_quantity
   end
+
+  # public instance methods ...................................................
 
   def to_trade
     trade = Trade.new
@@ -304,4 +309,3 @@ class TradeRevenueTradeDateTrade < ActiveRecord::Base
   end
 
 end
-

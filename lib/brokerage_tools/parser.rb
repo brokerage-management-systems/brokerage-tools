@@ -1,9 +1,13 @@
-require 'time'
-require 'zip/zip'
+# includes ....................................................................
+%w{time zip/zip}.each { |lib| require lib }
 
 class Parser
 
+  # security (i.e. attr_accessible) ...........................................
+
   attr_accessor :header, :lines, :parser_type, :records, :report_conf, :report_file, :trailer
+
+  # public instance methods ...................................................
 
   def initialize
     @parser_type = self.class.to_s.downcase[0...-('parser'.size)]
@@ -25,7 +29,7 @@ class Parser
     report_file_name    ||= $options.app_conf.production.send("#{@parser_type}").report_file_name
     backup_date         ||= Time.now.strftime('%Y-%m-%d')
     archive_file_name     = backup_base_name + '_' + backup_date + '.zip'
-    
+
     if File.exists? backup_directory_main + FS + archive_file_name
        FileUtils.rm backup_directory_main + FS + archive_file_name
     end
@@ -35,7 +39,7 @@ class Parser
     end
 
     unless backup_directory_alt.empty? || backup_directory_alt.nil? || backup_directory_alt.eql?(backup_directory_main)
-      FileUtils.cp(backup_directory_main + FS + archive_file_name, backup_directory_alt + FS + archive_file_name)  
+      FileUtils.cp(backup_directory_main + FS + archive_file_name, backup_directory_alt + FS + archive_file_name)
     end
 
     FileUtils.mv(report_file_directory + FS + report_file_name, previous_date_report_directory + FS + report_file_name)
@@ -51,7 +55,7 @@ class Parser
     #@header  = @lines.shift.chomp
     @records = []
     #@trailer = @lines.pop.chomp
-    
+
     file.close
   end
 

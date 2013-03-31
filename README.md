@@ -20,17 +20,17 @@ Or install it yourself as:
 
 #### If installed as a gem run with:
 
-    brokerage_tools -p trdrevtd --no-records --no-backup --no-trailer
-    brokerage_tools -p trdrevtd
+    brokerage-tools -p trdrevtd --no-records --no-backup --no-trailer
+    brokerage-tools -p trdrevtd
 
     # unzip and parse any files found    
-    brokerage_tools -p bbc710z --include-zips
+    brokerage-tools -p bbc710z --include-zips
 
 #### During development run with:
 
-    ruby -Ilib bin/brokerage_tools -p trdrevtd --no-records --no-backup --no-trailer
-    ruby -Ilib bin/brokerage_tools -p trdrevtd
-    ruby -Ilib bin/brokerage_tools -p bbc710z --include-zips
+    ruby -Ilib bin/brokerage-tools -p trdrevtd --no-records --no-backup --no-trailer
+    ruby -Ilib bin/brokerage-tools -p trdrevtd
+    ruby -Ilib bin/brokerage-tools -p bbc710z --include-zips
 
 ## Contributing
 
@@ -43,7 +43,7 @@ Or install it yourself as:
 
 ## Building the gem from master
     $ gem uninstall -aix brokerage_tools
-    $ git clone https://github.com/mweppler/brokerage-tools.git
+    $ git clone https://github.com/brokerage-management-systems/brokerage-tools
     $ cd brokerage_tools
     $ rake build
     $ gem install pkg/brokerage_tools*.gem

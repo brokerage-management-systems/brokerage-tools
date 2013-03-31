@@ -1,10 +1,15 @@
-require 'brokerage_tools/fbnr074p/fbnr074p_report'
+# includes ....................................................................
+%w{brokerage_tools/fbnr074p/fbnr074p_report}.each { |lib| require lib }
 
 class Fbnr074pParser < Parser
 
+  # security (i.e. attr_accessible) ...........................................
+
   attr_accessor :fbnr074p_records 
 
-  def initialize 
+  # public instance methods ...................................................
+
+  def initialize
     super
     @fbnr074p_records = []
   end
@@ -65,8 +70,8 @@ class Fbnr074pParser < Parser
     mysql_date = mysql_date[6...10] << '-' << mysql_date[0...2] << '-' << mysql_date[3...5]
   end
 
-# Overridden from parent class
-  
+  # overridden from parent class ..............................................
+
   def parse(report_file, options_trailer = nil) 
     file = File.open(report_file,'r')
     build_records_from_file file.readlines

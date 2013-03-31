@@ -1,7 +1,10 @@
+# includes ....................................................................
 require File.join(File.dirname(__FILE__), 'trade_revenue_trade_date_trade')
 require File.join(File.dirname(__FILE__), 'trade_revenue_trade_date_trailer')
 
 class TrdrevtdParser < Parser
+
+  # security (i.e. attr_accessible) ...........................................
 
   attr_accessor :trdrevtd_trailer
 
@@ -23,7 +26,9 @@ class TrdrevtdParser < Parser
     end
   end
 
-  # Sample data:
+  # public instance methods ...................................................
+
+  # Example data might look like:
   # "HEAS                 FIDELITY SYSTEMS    020111    TRADE AND REVENUE                                 "
   # "T+00000011158984     000000000002381     000000000000183+0003958680+0000000000+0000090100            "
   def build_report_trailer
@@ -43,7 +48,7 @@ class TrdrevtdParser < Parser
     @trdrevtd_trailer.commission      = @trailer[commission.start_index..commission.end_index]
     @trdrevtd_trailer.concession      = @trailer[concession.start_index..concession.end_index]
     @trdrevtd_trailer.clearing_charge = @trailer[clearing_charge.start_index..clearing_charge.end_index]
-    
+
     return if $options.records == false
 
     if @trdrevtd_trailer.save 
@@ -57,8 +62,9 @@ class TrdrevtdParser < Parser
   def parse_row_at_index row, row_index, trade
     @report_conf["record_#{ (row_index < 10) ? '0' << row_index.to_s : row_index.to_s }"].each do |report_field|
       next if report_field[1]['mapped_to_database_field'].empty?
+
       position = report_field[1]['position'] - 1
-      length = report_field[1]['length'] + position - 1
+      length   = report_field[1]['length'] + position - 1
       trade[report_field[1]['mapped_to_database_field']] = row[position..length]
     end
   end
@@ -67,8 +73,8 @@ class TrdrevtdParser < Parser
     OpenStruct.new({ :start_index => (field['position'] - 1), :end_index => (field['position'] + field['length'] - 2) })
   end
 
-# Overridden from parent class
- 
+  # overridden from parent class ..............................................
+
   def initialize
     super
     @trdrevtd_trailer = ''

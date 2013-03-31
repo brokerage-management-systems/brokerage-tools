@@ -1,10 +1,12 @@
+# includes ....................................................................
 require File.join(File.dirname(__FILE__), 'full_account_level_name_and_address')
 
 class Bcr973gvParser < Parser
 
+  # security (i.e. attr_accessible) ...........................................
   attr_accessor :as_of_date
 
-# Overridden from parent class
+  # overridden from parent class ..............................................
 
   def initialize
     super
@@ -29,7 +31,7 @@ class Bcr973gvParser < Parser
       @records << tmp_record
     end
   end
-  
+
   def save
     super { |action, record_index, record| puts "Record ##{record_index} #{action}: #{record.send(:as_of_date)} #{record.send(:record_type)} #{record.send(:branch_number)} #{record.send(:account_number)}" }
   end

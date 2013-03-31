@@ -1,10 +1,12 @@
+# includes ....................................................................
 require File.join(File.dirname(__FILE__), 'daily_commission_and_ticket_charge')
 
 class Bbc710zParser < Parser
 
+  # security (i.e. attr_accessible) ...........................................
   attr_accessor :as_of_date
 
-# Overridden from parent class
+  # overridden from parent class ..............................................
 
   def initialize
     super

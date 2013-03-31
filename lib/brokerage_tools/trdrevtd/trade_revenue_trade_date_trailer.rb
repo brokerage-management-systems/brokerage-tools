@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: trade_revenue_trade_date_trailers
@@ -14,10 +13,9 @@
 #
 
 class TradeRevenueTradeDateTrailer < ActiveRecord::Base
-
+  # relationships .............................................................
   has_many :trade_revenue_trade_date_trades, :class_name => 'TradeRevenueTradeDateTrade', :primary_key => 'run_date', :foreign_key => 'run_date_01', :order => "id ASC"
 
+  # validations ...............................................................
   validates_uniqueness_of :run_date
-
 end
-

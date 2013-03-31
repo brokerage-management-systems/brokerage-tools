@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: payroll_months
@@ -15,11 +14,13 @@
 
 class PayrollMonth < ActiveRecord::Base
 
+  # relationships .............................................................
+
   belongs_to :broker_payroll_submission, :primary_key => 'commission_month', :foreign_key => 'end_date'
-  # has_many :holiday_dates
+
+  # public instance methods ...................................................
 
   def month_label
     "#{ label }"
   end
-
 end
