@@ -1,4 +1,4 @@
-msirecord:
+msi_record:
   order_date:
     position: 1
     length: 8

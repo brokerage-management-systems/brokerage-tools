@@ -21,7 +21,7 @@ help = <<HELP
 Brokerage Tools is a report parsing tool.
 
 Basic Command Line Usage:
-  brokerage_tools [OPTIONS]
+  brokerage-tools [OPTIONS]
 
 Options:
 HELP
@@ -104,14 +104,14 @@ end
 begin
   opts.parse!
 rescue OptionParser::InvalidOption
-  puts "brokerage_tools: #{$!.message}"
-  puts "brokerage_tools: try 'brokerage_tools --help' for more information"
+  puts "brokerage-tools: #{$!.message}"
+  puts "brokerage-tools: try 'brokerage-tools --help' for more information"
   exit
 end
 
 # report parsing not yet implemented for the following reports so quit.
 case $options.parser_type
-when :bbc702z, :bbc720z, :bbc810z, :msirecord
+when :bbc702z, :bbc720z, :bbc810z
   puts "report: #{$options.parse_type} is not yet implemented."
   exit 1
 end
