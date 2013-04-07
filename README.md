@@ -44,7 +44,7 @@ Or install it yourself as:
 ## Building the gem from master
     $ gem uninstall -aix brokerage_tools
     $ git clone https://github.com/brokerage-management-systems/brokerage-tools
-    $ cd brokerage_tools
+    $ cd brokerage-tools
     $ rake build
     $ gem install pkg/brokerage_tools*.gem
 
