@@ -17,7 +17,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rspec"
   gem.add_dependency "activerecord"
+  #gem.add_dependency "mysql2"
   gem.add_dependency "rubyzip"
-  
-
 end

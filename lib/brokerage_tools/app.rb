@@ -28,7 +28,7 @@ module BrokerageTools
       Dir.entries(directory).each do |file|
         if $options.zips && File.extname(file.downcase) == '.zip'
           zip_file = Zip::ZipFile.new(directory + FS + file)
-          zip_file.each do |entry| 
+          zip_file.each do |entry|
             extracted_file_name_with_path = directory + FS + entry.name
             File.delete extracted_file_name_with_path if File.exists? extracted_file_name_with_path
             zip_file.extract(entry, extracted_file_name_with_path)
@@ -42,7 +42,7 @@ module BrokerageTools
     end
 
     def self.parse_file(parser, directory, file)
-      report_file = nil 
+      report_file = nil
       file.match(/#{$options.app_conf.production.send($options.parser_type).report_file_name}/) { |the_match| report_file = the_match[0] }
       return nil unless not report_file.nil? || File.file?(report_file)
 

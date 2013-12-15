@@ -81,11 +81,12 @@
 #  created_at                             :datetime         not null
 #  updated_at                             :datetime         not null
 #  as_of_date                             :string(8)
-#
+#  line_parsed_at                         :integer
+#  record_hash                            :string(32)
 
 class DailyCommissionAndTicketCharge < ActiveRecord::Base
   # validations ...............................................................
-  validate :unique_record
+  validate :unique_record, :on => :create
 
   # class methods .............................................................
 
@@ -94,6 +95,17 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
   end
 
   # public instance methods ...................................................
+
+  def add_hash_string
+    tmp_str  = '' << line_parsed_at.to_s
+    attribute_names.each do |attr_name|
+      tmp_str << send("#{attr_name}").to_s unless attr_name == 'record_hash'
+    end
+    require 'digest/md5'
+    digest = Digest::MD5.hexdigest(tmp_str)
+    self.record_hash = digest
+    digest
+  end
 
   def expiration_date=(expiration_date)
     write_attribute(:expiration_date, expiration_date)
@@ -129,12 +141,14 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
     trade.cancel_code               = (self.buy_sell_flag == '9' || self.buy_sell_flag == 'R') ? '1' : ''
     trade.clearing_firm             = String::new "jpm"
     trade.raw_commission            = String::new self.commission
-    trade.raw_concession            = nil 
-    #trade.raw_concession            = String::new self.trade_concession_05 # TODO: find concession
+    # TODO: find a value for concession (if one exists)
+    #trade.raw_concession            = String::new self.trade_concession_05
+    trade.raw_concession            = nil
     trade.cusip                     = String::new self.cusip_number
     trade.entity_id                 = String::new self.rr_number
+    # TODO: find a value for market_code (if one exists)
+    #trade.market_code               = String::new self.market_code_01
     trade.market_code               = nil
-    #trade.market_code               = String::new self.market_code_01 # TODO: find market_code
     trade.raw_price                 = String::new self.price
     trade.raw_principal             = String::new self.principal_amount
     trade.raw_quantity              = String::new self.quantity
@@ -142,8 +156,9 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
     trade.security_description_2    = String::new self.security_description_01.strip
     trade.security_type             = String::new self.security_indicator
     trade.settle_date               = String::new self.settlement_date
+    # TODO: find a value for solicited_code (if one exists)
+    #trade.solicitation_code         = String::new self.solicited_code_10
     trade.solicitation_code         = nil
-    #trade.solicitation_code         = String::new self.solicited_code_10 # TODO: find solicited_code
     trade.symbol                    = String::new self.ticker_symbol.strip
     trade.trade_date                = String::new self.trade_date
     trade.trade_reference_number    = String::new self.tag_number
@@ -158,9 +173,11 @@ class DailyCommissionAndTicketCharge < ActiveRecord::Base
   private
 
   def unique_record
-    td = read_attribute(:trade_date)
-    unless DailyCommissionAndTicketCharge.where(:as_of_date => read_attribute(:as_of_date), :trade_date => td, :buy_sell_flag => read_attribute(:buy_sell_flag), :tag_number => read_attribute(:tag_number)).first.nil?
-      errors.add(:trade_date, "Record already exists: (#{as_of_date}) #{td}/#{tag_number} | #{buy_sell_flag}")
+    where_clause = { :record_hash => read_attribute(:record_hash) }
+    unless DailyCommissionAndTicketCharge.where(where_clause).first.nil?
+      formater_values = [record_hash, line_parsed_at, as_of_date]
+      message = "Record %s line #%s from %s already exists" % formater_values
+      errors.add(:trade_date, message)
     end
   end
 end

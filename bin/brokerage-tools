@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # includes ....................................................................
-%w{rubygems optparse ostruct brokerage_tools/app}.each { |lib| require lib }
+%w{rubygems optparse ostruct brokerage_tools/app brokerage_tools/version}.each { |lib| require lib }
 
 # Thanks! http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/195810
 class Hash
