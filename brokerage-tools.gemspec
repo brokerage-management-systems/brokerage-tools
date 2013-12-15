@@ -3,10 +3,10 @@ require File.expand_path('../lib/brokerage_tools/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Matt Weppler"]
-  gem.email         = ["mweppler@gmail.com"]
+  gem.email         = ["matt@weppler.me"]
   gem.description   = %q{Brokerage Tools Specific to parsing data files provided by clearing firms}
   gem.summary       = %q{Brokerage Tools}
-  gem.homepage      = "http://mattweppler.info"
+  gem.homepage      = "http://matt.weppler.me"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
