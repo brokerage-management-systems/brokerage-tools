@@ -13,8 +13,6 @@ class Hash
   end
 end
 
-FS = File::SEPARATOR
-
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
 help = <<HELP
@@ -26,12 +24,17 @@ Basic Command Line Usage:
 Options:
 HELP
 
-conf_base = "#{Dir.pwd}#{FS}"
+# Wheres the config directory?
+if File.directory? File.join(Dir.pwd, 'config')
+  config_directory = File.join(Dir.pwd, 'config')
+else
+  config_directory = File.join(Dir.pwd)
+end
 
 $options = OpenStruct.new
-$options.app_conf    = "#{conf_base}application.yml"
-$options.db_conf     = "#{conf_base}database.yml"
-$options.mailer_conf = "#{conf_base}email.yml"
+$options.app_conf    = File.join(config_directory, 'application.yml')
+$options.db_conf     = File.join(config_directory, 'database.yml')
+$options.mailer_conf = File.join(config_directory, 'email.yml')
 
 opts = OptionParser.new do |opts|
   opts.banner = help

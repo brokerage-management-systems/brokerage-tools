@@ -11,7 +11,7 @@ class Parser
 
   def initialize
     @parser_type = self.class.to_s.downcase[0...-('parser'.size)]
-    yaml_conf = File.dirname(__FILE__) + FS + @parser_type + FS + @parser_type + '.yml'
+    yaml_conf = File.join(File.dirname(__FILE__), @parser_type, @parser_type + '.yml')
     if File.exists? yaml_conf
       @report_conf = YAML.load_file yaml_conf
     else
@@ -30,19 +30,20 @@ class Parser
     backup_date         ||= Time.now.strftime('%Y-%m-%d')
     archive_file_name     = backup_base_name + '_' + backup_date + '.zip'
 
-    if File.exists? backup_directory_main + FS + archive_file_name
-       FileUtils.rm backup_directory_main + FS + archive_file_name
+
+    if File.exists? File.join(backup_directory_main, archive_file_name)
+       FileUtils.rm File.join(backup_directory_main, archive_file_name)
     end
 
-    Zip::ZipFile.open(backup_directory_main + FS + archive_file_name, Zip::ZipFile::CREATE) do |zipfile|
-      zipfile.add(report_file_name, report_file_directory + FS + report_file_name)
+    Zip::ZipFile.open(File.join(backup_directory_main, archive_file_name), Zip::ZipFile::CREATE) do |zipfile|
+      zipfile.add(report_file_name, File.join(report_file_directory, report_file_name))
     end
 
     unless backup_directory_alt.empty? || backup_directory_alt.nil? || backup_directory_alt.eql?(backup_directory_main)
-      FileUtils.cp(backup_directory_main + FS + archive_file_name, backup_directory_alt + FS + archive_file_name)
+      FileUtils.cp(File.join(backup_directory_main, archive_file_name), File.join(backup_directory_alt, archive_file_name))
     end
 
-    FileUtils.mv(report_file_directory + FS + report_file_name, previous_date_report_directory + FS + report_file_name)
+    FileUtils.mv(File.join(report_file_directory, report_file_name), File.join(previous_date_report_directory, report_file_name))
   end
 
   def complete
