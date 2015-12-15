@@ -2,7 +2,7 @@ class Trade
 
   # security (i.e. attr_accessible) ...........................................
 
-  attr_accessor :account_number, 
+  attr_accessor :account_number,
     :account_type,
     :blotter_code,
     :branch,
@@ -168,11 +168,11 @@ class Trade
   end
 
   def pretty_print
-    puts "{\n\t'entity_id':'#{@entity_id}'\n\t'account_number':'#{full_account_number}'\n\t'trade_reference_number':'#{@trade_reference_number}'\n\t'trade_date':'#{@trade_date}'\n\t'settle_date':'#{@settle_date}'\n\t'account_type':'#{@account_type}'\n\t'market_code':'#{@market_code}'\n\t'blotter_code':'#{@blotter_code}'\n\t'buy_sell_code':'#{@buy_sell_code}'\n\t'cancel_code':'#{@cancel_code}'\n\t'quantity':'#{@quantity}'\n\t'cusip':'#{@cusip}'\n\t'symbol':'#{@symbol}'\n\t'security_description':'#{@security_description_1} #{@security_description_2}'\n\t'price':'#{@price}'\n\t'principal':'#{@principal}'\n\t'commission':'#{@commission}'\n\t'concession':'#{@concession}'\n\t'solicitation_code':'#{@solicitation_code}'\n\t'security_type':'#{@security_type}'\n\t'trade_definition_trade_id':'#{@trade_definition_trade_id}'\n}"
+    puts "{\n\t\"entity_id\":\"#{@entity_id}\"\n\t\"account_number\":\"#{full_account_number}\"\n\t\"trade_reference_number\":\"#{@trade_reference_number}\"\n\t\"trade_date\":\"#{@trade_date}\"\n\t\"settle_date\":\"#{@settle_date}\"\n\t\"account_type\":\"#{@account_type}\"\n\t\"market_code\":\"#{@market_code}\"\n\t\"blotter_code\":\"#{@blotter_code}\"\n\t\"buy_sell_code\":\"#{@buy_sell_code}\"\n\t\"cancel_code\":\"#{@cancel_code}\"\n\t\"quantity\":\"#{@quantity}\"\n\t\"cusip\":\"#{@cusip}\"\n\t\"symbol\":\"#{@symbol}\"\n\t\"security_description\":\"#{@security_description_1} #{@security_description_2}\"\n\t\"price\":\"#{@price}\"\n\t\"principal\":\"#{@principal}\"\n\t\"commission\":\"#{@commission}\"\n\t\"concession\":\"#{@concession}\"\n\t\"solicitation_code\":\"#{@solicitation_code}\"\n\t\"security_type\":\"#{@security_type}\"\n\t\"trade_definition_trade_id\":\"#{@trade_definition_trade_id}\"\n}"
   end
 
   def to_json
-    puts "{'entity_id':'#{@entity_id}','account_number':'#{full_account_number}','trade_reference_number':'#{@trade_reference_number}','trade_date':'#{@trade_date}','settle_date':'#{@settle_date}','account_type':'#{@account_type}','market_code':'#{@market_code}','blotter_code':'#{@blotter_code}','buy_sell_code':'#{@buy_sell_code}','cancel_code':'#{@cancel_code}','quantity':'#{@quantity}','cusip':'#{@cusip}','symbol':'#{@symbol}','security_description':'#{@security_description_1} #{@security_description_2}','price':'#{@price}','principal':'#{@principal}','commission':'#{@commission}','concession':'#{@concession}','solicitation_code':'#{@solicitation_code}','security_type':'#{@security_type}','trade_definition_trade_id':'#{@trade_definition_trade_id}'}"
+    puts "{\"entity_id\":\"#{@entity_id}\",\"account_number\":\"#{full_account_number}\",\"trade_reference_number\":\"#{@trade_reference_number}\",\"trade_date\":\"#{@trade_date}\",\"settle_date\":\"#{@settle_date}\",\"account_type\":\"#{@account_type}\",\"market_code\":\"#{@market_code}\",\"blotter_code\":\"#{@blotter_code}\",\"buy_sell_code\":\"#{@buy_sell_code}\",\"cancel_code\":\"#{@cancel_code}\",\"quantity\":\"#{@quantity}\",\"cusip\":\"#{@cusip}\",\"symbol\":\"#{@symbol}\",\"security_description\":\"#{@security_description_1} #{@security_description_2}\",\"price\":\"#{@price}\",\"principal\":\"#{@principal}\",\"commission\":\"#{@commission}\",\"concession\":\"#{@concession}\",\"solicitation_code\":\"#{@solicitation_code}\",\"security_type\":\"#{@security_type}\",\"trade_definition_trade_id\":\"#{@trade_definition_trade_id}\"}"
   end
 
   def to_s

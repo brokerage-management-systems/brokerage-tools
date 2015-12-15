@@ -1,0 +1,608 @@
+data_record:
+  firm_branch_fa:
+    index: 0
+    field_name: 'Firm/Branch/FA'
+    description: 'Firm, Branch, Financial Advisor number (Firm ID is 4 characters, Branch is 2 characters and FA is 3 characters)'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 9
+  account_number:
+    index: 1
+    field_name: 'Account Number'
+    description: 'Eight-character account number The account begins with the three-character BPS prefix for the firm, followed by five numbers.'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 8
+  account_type:
+    index: 2
+    field_name: 'Account Type'
+    description:
+      "Account Type
+      0 = street side account
+      1 = cash or when-issued
+      2 = margin or when-issued
+      3 = dividend/interest account
+      4 = non purpose loan account
+      5 = short margin account
+      6 = special subscription account
+      7 = convertible bond account
+      8 = non convertible b"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 1
+  trade_type:
+    index: 3
+    field_name: 'Trade Type'
+    description:
+      "Record Type
+      T-Trade record
+      U-Split trade record
+      A-Adjustment record"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 1
+  special_account_category:
+    index: 4
+    field_name: 'Special Account Category'
+    description:
+      "Special Account Category
+      DVP - DVP/RVP account
+      ALE - Inventory Account
+      Managed Account Type :
+      ANO - Advisor-Client Directed
+      CHC - Brokerage Choice
+      CSL - Resource II
+      TOP - Total Strategy
+      UNB - uMAS (Unbundled)"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 3
+  split_code:
+    index: 5
+    field_name: 'Split Code'
+    description: 'Split Code S-Split (Only populated if trade is for a split rep.)'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 1
+  tto_code:
+    index: 6
+    field_name: 'TTO Code'
+    description:
+      "TTO Rep ID
+      TTO-This time only
+      ROL-Rolled up Split records
+      SPL-Individual Split record"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 8
+  multiple_fill_code:
+    index: 7
+    field_name: 'Multiple Fill Code'
+    description: 'Multiple Fill Indicator Y-Multiple Fill'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 1
+  trade_date_or_customer_billing_start_date:
+    index: 8
+    field_name: 'Trade Date or Customer Billing Start Date'
+    description: 'Trade Date. (CCYYMMDD) For Managed Accounts: Start date of Customer billing period.'
+    type: 'Numeric'
+    decimal: ''
+    maximum_width: 8
+  settlement_date_or_customer_fee_date:
+    index: 9
+    field_name: 'Settlement Date or Customer Fee Date'
+    description: 'Settlement Date (CCYYMMDD) For Managed Accounts: the date a Customer fee was billed.'
+    type: 'Numeric'
+    decimal: ''
+    maximum_width: 8
+  transaction_date_or_customer_billing_end_date:
+    index: 10
+    field_name: 'Transaction Date or Customer Billing End Date'
+    description: 'Transaction Date:  Date trade was input into the system. For Managed Accounts: End date of Customer billing period'
+    type: 'Numeric'
+    decimal: ''
+    maximum_width: 8
+  buy_or_sell:
+    index: 11
+    field_name: 'Buy or Sell'
+    description:
+      "Buy or Sell
+      P-Purchase
+      S-Sale"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 1
+  cancel_rebill_indicator:
+    index: 12
+    field_name: 'Cancel/Rebill Indicator'
+    description:
+      "Cancel/Rebill Indicator
+      C-Cancel
+      R-Rebill
+      A-As Of"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 1
+  quantity:
+    index: 13
+    field_name: 'Quantity'
+    description: 'Quantity'
+    type: 'Numeric'
+    decimal: 6
+    maximum_width: 20
+  security_number:
+    index: 14
+    field_name: 'Security Number'
+    description: 'Broadridge (ADP) 7-character Security Number Seven characters used internally to identify securities.'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 7
+  cusip:
+    index: 15
+    field_name: 'CUSIP'
+    description: 'CUSIP'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 9
+  symbol:
+    index: 16
+    field_name: 'Symbol'
+    description: 'Symbol When the new option symbols begin to populate at the end of this file this symbol field will be blank for option securities'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 5
+  security_description_1_or_type_of_managed_account:
+    index: 17
+    field_name: 'Security Description 1 or Type of Managed Account'
+    description:
+      "Line 1 of the security description
+      For Managed Accounts: a three-character code representing the type of Managed Account:
+      ANO Advisor - Client-directed
+      (Advisor accounts FKA Fund Service Gateway)"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 30
+  reason_for_managed_account_fee:
+    index: 18
+    field_name: 'Reason for Managed Account Fee'
+    description: 'Reason for Managed Account Fee For Managed Accounts: description of the reason the Customer fee is being charged (new or closed account; quarterly fee; withdrawals, or rep change.)'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 75
+  managed_account_name:
+    index: 19
+    field_name: 'Managed Account Name'
+    description: 'Managed Account Name For Managed Accounts: abbreviated account name'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 50
+  price:
+    index: 20
+    field_name: 'Price'
+    description: 'Price'
+    type: 'Numeric'
+    decimal: 8
+    maximum_width: 13
+  principal_amount_or_amount_billed_to_customer:
+    index: 21
+    field_name: 'Principal Amount or Amount Billed to Customer'
+    description: 'Principal amount of transaction For Managed Accounts: the total dollar amount of the fee being charged to the customer account'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 19
+  interest:
+    index: 22
+    field_name: 'Interest'
+    description: 'Interest'
+    type: 'Numeric'
+    decimal: 2
+    maximum_width: 19
+  filler:
+    index: 23
+    field_name: 'Filler'
+    description: 'Filler This field was formally State Tax. It represented a legacy NY State Tax that is no longer valid.'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  filler1:
+    index: 24
+    field_name: 'Filler1'
+    description: 'Filler - this field is no longer used'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  sec_fee:
+    index: 25
+    field_name: 'SEC Fee'
+    description: 'SEC fee'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 7
+  postage:
+    index: 26
+    field_name: 'Postage'
+    description: 'Postage charge to customer'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 6
+  handling:
+    index: 27
+    field_name: 'Handling'
+    description: 'Handling fee to customer'
+    type: 'Numeric'
+    decimal: 2
+    maximum_width: 19
+  net_amount_of_trade_or_account_value:
+    index: 28
+    field_name: 'Net Amount of Trade or Account Value'
+    description: 'Net amount of trade For Managed Accounts: the value of the account used to calculate a fee.'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 13
+  commission:
+    index: 29
+    field_name: 'Commission'
+    description: 'Commission not populated on Split records'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 16
+  sales_credit:
+    index: 30
+    field_name: 'Sales Credit'
+    description: 'Sales credit not populated on Split Records'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 11
+  comm_type:
+    index: 31
+    field_name: 'Comm Type'
+    description:
+      "C = Commission
+      G = Gross Sales Credit"
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  filler2:
+    index: 32
+    field_name: 'Filler2'
+    description: 'Filler - this field is no longer used'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  offset:
+    index: 33
+    field_name: 'Offset'
+    description: 'Other side of trade. Could be an inventory number (including firm identifier), CNS or dealer number.'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 8
+  dealer_number:
+    index: 34
+    field_name: 'Dealer Number'
+    description: 'For certain offsets, dealer number appears in this field rather than the Offset.'
+    type: 'Numeric'
+    decimal: ''
+    maximum_width: 5
+  product_code:
+    index: 35
+    field_name: 'Product Code'
+    description:
+      "Product Code
+      See Product Codes tab of this workbook"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 10
+  security_type:
+    index: 36
+    field_name: 'Security Type'
+    description: 'See Security Types tab of this workbook'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 1
+  security_subtype:
+    index: 37
+    field_name: 'Security SubType'
+    description: 'See Security Types tab of this workbook'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 2
+  product_code_description:
+    index: 38
+    field_name: 'Product Code Description'
+    description: 'Product Code Description'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 60
+  control_number:
+    index: 39
+    field_name: 'Control Number'
+    description: 'Number assigned to executed trade, unique to each transaction with the exception of a cancel which will carry the control number of the trade it cancels'
+    type: 'Numeric'
+    decimal: ''
+    maximum_width: 9
+  filler3:
+    index: 40
+    field_name: 'Filler3'
+    description: 'Filler - this field is no longer used'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  trade_rep_id:
+    index: 41
+    field_name: 'Trade Rep ID'
+    description:
+      "Rep associated with Trade.  For Split reps this will be the rep id of the member reps.
+      Format for the Rep ID: last 2 characters of the firm ID and the 3-character rep number
+      For example firm 12AA, rep ID 123 displays as AA123"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 5
+  split_commission:
+    index: 42
+    field_name: 'Split Commission'
+    description: 'Commission amount based on percentage of split between reps'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 11
+  full_commission_for_discounts:
+    index: 43
+    field_name: 'Full Commission (for discounts)'
+    description: 'Commission amount based on system schedule'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 9
+  split_percentage:
+    index: 44
+    field_name: 'Split Percentage'
+    description: 'Commission percentage to be applied'
+    type: 'Numeric'
+    decimal: 6
+    maximum_width: 8
+  discount:
+    index: 45
+    field_name: 'Discount'
+    description: 'Discount'
+    type: 'Numeric'
+    decimal: 4
+    maximum_width: 5
+  filler4:
+    index: 46
+    field_name: 'Filler4'
+    description: 'Filler - this field is no longer used'
+    type: ''
+    decimal: ''
+    maximum_width: 0
+  product_master_class:
+    index: 47
+    field_name: 'Product Master Class'
+    description:
+      "Product Master Class
+      MCANN - Annuity
+      MCEQ - Equity
+      MCFIX - Fixed Income
+      MCMF - Mutual Fund
+      MCOPT - Options"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 5
+  systematic_exchange_code:
+    index: 48
+    field_name: 'Systematic Exchange Code'
+    description:
+      "A Mutual Fund Systematic Purchase
+      W Mutual Fund Automatic Withdrawal
+      E Mutual Fund Exchange"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 1
+  order_trade_type:
+    index: 49
+    field_name: 'Order Trade Type'
+    description: 'Equities Only  L = Limit order, M = Market order'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  mutual_fund_trails_amount:
+    index: 50
+    field_name: 'Mutual Fund Trails Amount'
+    description: 'Mutual Fund Trails Amount'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  managed_account_fees_amount:
+    index: 51
+    field_name: 'Managed Account Fees Amount'
+    description: 'Managed Account Fees Amount (net to Financial Consultant)'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  postage_handling_rebate:
+    index: 52
+    field_name: 'Postage/Handling Rebate'
+    description: 'Postage/Handling Rebate'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  filler5:
+    index: 53
+    field_name: 'Filler5'
+    description: 'Filler - this field is no longer used'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  filler6:
+    index: 54
+    field_name: 'Filler6'
+    description: 'Filler - this field is no longer used'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  firm_clearance_fee_rate_set_1:
+    index: 55
+    field_name: 'Firm Clearance Fee (Rate Set 1)'
+    description: 'Firm Clearance Fee (Rate Set 1)'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  firm_execution_fee_rate_set_1:
+    index: 56
+    field_name: 'Firm Execution Fee (Rate Set 1)'
+    description: 'Firm Execution Fee (Rate Set 1)'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  rep_clearance_fee_rate_set_2:
+    index: 57
+    field_name: 'Rep Clearance Fee (Rate Set 2)'
+    description: 'Rep Clearance Fee (Rate Set 2)'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  rep_execution_fee_rate_set_2:
+    index: 58
+    field_name: 'Rep Execution Fee (Rate Set 2)'
+    description: 'Rep Execution Fee (Rate Set 2)'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  dealer_clearance:
+    index: 59
+    field_name: 'Dealer Clearance'
+    description: 'Dealer Clearance'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  dealer_execution:
+    index: 60
+    field_name: 'Dealer Execution'
+    description: 'Dealer Execution'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  cancel_as_of_fee:
+    index: 61
+    field_name: 'Cancel/As of Fee'
+    description: 'Cancel/As of Fee'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  dealer_cancel_as_of_fee:
+    index: 62
+    field_name: 'Dealer Cancel/As of Fee'
+    description: 'Dealer Cancel/As of Fee'
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  dcs_rate:
+    index: 63
+    field_name: 'DCS Rate'
+    description: "For Managed Accounts: the rate used to calculate DCS' portion of the Customer fee."
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  dcs_fee:
+    index: 64
+    field_name: 'DCS Fee'
+    description: "For Managed Accounts: the total dollar amount of DCS' fee deducted from the total fee charged to the Customer (field #22)"
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  filler7:
+    index: 65
+    field_name: 'Filler7'
+    description: 'Not used'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  manager_rate:
+    index: 66
+    field_name: 'Manager Rate'
+    description: "For Managed Accounts: the rate used to calculate the Money Manager's portion of the Customer fee"
+    type: 'Numeric'
+    decimal: 5
+    maximum_width: 6
+  manager_fee:
+    index: 67
+    field_name: 'Manager Fee'
+    description: "For Managed Accounts: the total dollar amount of Money Manager's fee deducted from the total fee charged to the Customer (field #22)"
+    type: 'Signed Numeric'
+    decimal: 2
+    maximum_width: 17
+  filler8:
+    index: 68
+    field_name: 'Filler8'
+    description: 'Not used'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  filler9:
+    index: 69
+    field_name: 'Filler9'
+    description: 'Not used'
+    type: ''
+    decimal: ''
+    maximum_width: ''
+  transaction_control_number:
+    index: 70
+    field_name: 'Transaction Control Number'
+    description: 'Transaction Control number'
+    type: 'Character'
+    decimal: ''
+    maximum_width: 25
+  blotter_code:
+    index: 71
+    field_name: 'Blotter Code'
+    description:
+      "Blotter Codes are used to identify the exchange, market or trade origin (market code). They also determine how the trade will be cleared or processed for settlement (the capacity code).
+      Please refer to the Blotter Codes spreadsheet in this workbook."
+    type: 'Character'
+    decimal: ''
+    maximum_width: 2
+  occ_symbol:
+    index: 72
+    field_name: 'OCC Symbol'
+    description:
+      "Options Clearing Corporation series key comprised of 4 pieces of information:
+      option root (6 characters), the expiration date (6 digits YYMMDD), a put/call indicator (1 character C or P), and the strike price (5 digits for dollars and 3 digits for decimals, no decimal point).
+      If the option root is less than 6 characters spaces are used as filler.
+      The strike price is filled with zeros as necessary."
+    type: 'Character'
+    decimal: ''
+    maximum_width: 21
+  opra_symbol:
+    index: 73
+    field_name: 'OPRA Symbol'
+    description:
+      "Options Price Reporting Authority series key
+      option root, alpha code for expiration month, expiration date and year, strike price denominator code, explicit strike price"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 17
+  thomson_one_symbol:
+    index: 74
+    field_name: 'Thomson One symbol'
+    description:
+      "Thomson One symbol
+      option root (max 5), expiration year and day (4 digits), alpha code for expiration month (1 character), and strike price (max of 7). This field varies in length."
+    type: 'Character'
+    decimal: ''
+    maximum_width: 17
+  expanded_symbol:
+    index: 75
+    field_name: 'Expanded Symbol'
+    description:
+      "Expanded symbol - populated for multiple security types
+      For options the format is: \"\"PUT\"\" or \"\"CALL\"\", option root, three-character abbreviation for expiration month and strike price. Spaces divide the individual elements."
+    type: 'Character'
+    decimal: ''
+    maximum_width: 20
+  primary_exchange:
+    index: 76
+    field_name: 'Primary Exchange'
+    description:
+      " The Primary Exchange is a code that identifies where the security is listed and primarily trades. (This does not represent where an individual trade was executed; the blotter code can continue to be used for execution information.)
+      Please refer to the Primary Exch spreadsheet in this workbook for a list of codes and their definitions"
+    type: 'Character'
+    decimal: ''
+    maximum_width: 3

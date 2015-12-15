@@ -30,7 +30,6 @@ class Parser
     backup_date         ||= Time.now.strftime('%Y-%m-%d')
     archive_file_name     = backup_base_name + '_' + backup_date + '.zip'
 
-
     if File.exists? File.join(backup_directory_main, archive_file_name)
        FileUtils.rm File.join(backup_directory_main, archive_file_name)
     end
@@ -56,7 +55,6 @@ class Parser
     #@header  = @lines.shift.chomp
     @records = []
     #@trailer = @lines.pop.chomp
-
     file.close
   end
 
@@ -70,6 +68,6 @@ class Parser
         yield 'not saved', record_index, record
       end
       record_index += 1
-    end 
+    end
   end
 end

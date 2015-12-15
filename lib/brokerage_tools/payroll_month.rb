@@ -21,6 +21,6 @@ class PayrollMonth < ActiveRecord::Base
   # public instance methods ...................................................
 
   def month_label
-    "#{ label }"
+    "#{label}"
   end
 end

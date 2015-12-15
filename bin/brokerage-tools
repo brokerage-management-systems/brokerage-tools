@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # includes ....................................................................
-%w{rubygems optparse ostruct brokerage_tools/app brokerage_tools/version}.each { |lib| require lib }
+%w{rubygems optparse ostruct yaml brokerage_tools/app brokerage_tools/version}.each { |lib| require lib }
 
 # Thanks! http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/195810
 class Hash
@@ -51,7 +51,7 @@ opts = OptionParser.new do |opts|
     $options.mailer_conf = file
   end
 
-  opts.on('-p', '--parse TYPE', [:bbc702z, :bbc710z, :bbc720z, :bbc810z, :bcr973gv, :fbnr074p, :msirecord, :trdrevtd], 'Report types to parse: (bbc702z, bbc710z, bbc720z, bbc810z, bcr973gv, fbnr074p, msirecord, trdrevtd)') do |type|
+  opts.on('-p', '--parse TYPE', [:bbc702z, :bbc710z, :bbc720z, :bbc810z, :bcr973gv, :billingtradedt, :fbnr074p, :msirecord, :trdrevtd], 'Report types to parse: (bbc702z, bbc710z, bbc720z, bbc810z, bcr973gv, billingtradedt, fbnr074p, msirecord, trdrevtd)') do |type|
     $options.parser_type = type
   end
 

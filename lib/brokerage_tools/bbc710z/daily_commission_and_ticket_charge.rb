@@ -85,6 +85,10 @@
 #  record_hash                            :string(32)
 
 class DailyCommissionAndTicketCharge < ActiveRecord::Base
+
+  EARLIEST_POSSIBLE_DATE = 120921
+  LATEST_POSSIBLE_DATE   = 150911 # Actual last date for data 151127
+
   # validations ...............................................................
   validate :unique_record, :on => :create
 

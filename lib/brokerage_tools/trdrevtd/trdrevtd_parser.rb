@@ -8,7 +8,7 @@ class TrdrevtdParser < Parser
 
   attr_accessor :trdrevtd_trailer
 
-  def build_collection_of_trades 
+  def build_collection_of_trades
     trade = TradeRevenueTradeDateTrade.new
     row_index = 1
     # rows_of_13 = @lines
@@ -35,7 +35,7 @@ class TrdrevtdParser < Parser
     clearing_charge    = field_to_ostruct(@report_conf['trailer']['total_revenue_clearing_charge'])
     commission         = field_to_ostruct(@report_conf['trailer']['total_revenue_commission'])
     concession         = field_to_ostruct(@report_conf['trailer']['total_revenue_concession'])
-    logical_records_ht = field_to_ostruct(@report_conf['trailer']['total_logical_records_with_header_and_trailer']) 
+    logical_records_ht = field_to_ostruct(@report_conf['trailer']['total_logical_records_with_header_and_trailer'])
     logical_records    = field_to_ostruct(@report_conf['trailer']['total_logical_records'])
     principal          = field_to_ostruct(@report_conf['trailer']['total_principal'])
     year_prefix        = Time.now.year.to_s[0..1]
@@ -51,11 +51,11 @@ class TrdrevtdParser < Parser
 
     return if $options.records == false
 
-    if @trdrevtd_trailer.save 
-      puts "Trailer saved: #{ @trdrevtd_trailer.inspect }"
+    if @trdrevtd_trailer.save
+      puts "Trailer saved: #{@trdrevtd_trailer.inspect}"
     else
-      puts "Error: #{ @trdrevtd_trailer.errors.messages }"
-      puts "Trailer was not saved: #{ @trdrevtd_trailer.inspect }"
+      puts "Error: #{@trdrevtd_trailer.errors.messages}"
+      puts "Trailer was not saved: #{@trdrevtd_trailer.inspect}"
     end
   end
 
@@ -96,5 +96,4 @@ class TrdrevtdParser < Parser
   def save
     super { |action, record_index, record| puts "Record ##{record_index} #{action}: #{record.send(:run_date_01)} #{record.send(:trade_reference_number_01)} #{record.send(:user_reference_number_01)} #{record.send(:trade_definition_trade_id_12)} #{record.send(:order_reference_number_12)}" }
   end
-
 end

@@ -9,7 +9,7 @@ class TradeRevenueTradeDateValidator
 
   # public instance methods ...................................................
 
-  def email_validation mail_to, mailer_config 
+  def email_validation mail_to, mailer_config
     require 'net/smtp'
     mailer_config['message']['subject'] = "TRDREV_TD Validation Report for: #{@payroll_month.label}" || mailer_config['message']['subject']
     mailer_config['message']['body']    = @formatted_validation || mailer_config['message']['body']
@@ -27,14 +27,14 @@ END_OF_MESSAGE
     end
   end
 
-  def format_validation 
-    @formatted_validation = "*************************************************************************\n" 
+  def format_validation
+    @formatted_validation = "*************************************************************************\n"
     @formatted_validation << "\t TRDREV_TD Validation Report for: #{@payroll_month.label}\n"
     @formatted_validation << "*************************************************************************\n"
 
     @broker_list.each do |broker|
       unless @fbnr_totals.key? broker
-        @formatted_validation << "Broker: #{broker} not found in FBNR074P Report\n" 
+        @formatted_validation << "Broker: #{broker} not found in FBNR074P Report\n"
         next
       end
       unless @entity_totals.key? broker
@@ -47,14 +47,14 @@ END_OF_MESSAGE
         @formatted_validation << "Broker: #{broker} \tValidated \tCommission: #{et[:commission]}\n"
       else
         @formatted_validation << "Broker: #{broker} \tNot Validated \tDifference (from FBNR074P): #{(et[:commission] - fr[:commission]).round(2)}\n"
-        # TODO: check for cancels after month end 
+        # TODO: check for cancels after month end
       end
     end
 
     @formatted_validation << "*** END OF DATA ***\n"
   end
 
-  def validate_trdrevtd_against_fbnr(commission_month_label, entity_id = nil) 
+  def validate_trdrevtd_against_fbnr(commission_month_label, entity_id = nil)
     @payroll_month = PayrollMonth.where('label = ?', commission_month_label).first
     start_date     = @payroll_month.start_date.strftime("%Y%m%d")
     end_date       = @payroll_month.end_date.strftime("%Y%m%d")

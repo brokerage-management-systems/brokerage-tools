@@ -5,10 +5,10 @@
 # I should do it now though. Possibly go back and add it to all previous
 # records at some point.
 
-# At Record 7, Position 89, the layout segment Trade Revenue Transmission 
-# file changes based on whether the value for DUE BILL MULTIPLIER is zero 
-# or a logical value. If the DUE BILL MULTIPLIER is zero, then this segment 
-# is populated with the following alternate fields: SECURITY GROUP CODE, 
+# At Record 7, Position 89, the layout segment Trade Revenue Transmission
+# file changes based on whether the value for DUE BILL MULTIPLIER is zero
+# or a logical value. If the DUE BILL MULTIPLIER is zero, then this segment
+# is populated with the following alternate fields: SECURITY GROUP CODE,
 # D MARKET CODE, D BLOTTER CODE and FILLER.
 
 # == Schema Information
@@ -260,6 +260,9 @@
 #
 
 class TradeRevenueTradeDateTrade < ActiveRecord::Base
+
+  EARLIEST_POSSIBLE_DATE = 20090122
+  LATEST_POSSIBLE_DATE   = 20120924 # Actual last date for data 20121025
 
   # relationships .............................................................
   belongs_to :trade_revenue_trade_date_trailer

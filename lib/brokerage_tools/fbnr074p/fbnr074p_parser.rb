@@ -5,7 +5,7 @@ class Fbnr074pParser < Parser
 
   # security (i.e. attr_accessible) ...........................................
 
-  attr_accessor :fbnr074p_records 
+  attr_accessor :fbnr074p_records
 
   # public instance methods ...................................................
 
@@ -36,7 +36,7 @@ class Fbnr074pParser < Parser
       if can_parse
         fbnr_record = Fbnr074pReport.new
         branch = line[2...5].strip
-        fbnr_record.branch = (branch.empty?) ? 'EAM' : branch 
+        fbnr_record.branch = (branch.empty?) ? 'EAM' : branch
         broker_id = line[5...12].strip
         fbnr_record.broker_id = (broker_id.empty?) ? '000' : broker_id
         # broker name is not used
@@ -72,7 +72,7 @@ class Fbnr074pParser < Parser
 
   # overridden from parent class ..............................................
 
-  def parse(report_file, options_trailer = nil) 
+  def parse(report_file, options_trailer = nil)
     file = File.open(report_file,'r')
     build_records_from_file file.readlines
     file.close
@@ -88,5 +88,4 @@ class Fbnr074pParser < Parser
       end
     end
   end
-
 end

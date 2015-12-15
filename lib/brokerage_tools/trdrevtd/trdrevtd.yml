@@ -28,7 +28,7 @@ header:
     description: 'The date of the file.'
     position: 42
     length: 6
-    format: 'MMDDYY' 
+    format: 'MMDDYY'
     mapped_to_database_field: ''
   filler_02:
     description: 'FILLER - NFS internal use only.'
@@ -1193,7 +1193,7 @@ record_13:
     position: 55
     length: 7
     mapped_to_database_field: 'filler_13_l'
-  super_branch: 
+  super_branch:
     position: 62
     length: 3
     mapped_to_database_field: 'super_branch_13'
